@@ -1,5 +1,6 @@
 import Models.Document;
 import Models.Ontology;
+import Utils.LEXParser;
 import Utils.Parser;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
@@ -32,5 +33,8 @@ public class Main {
         // Tags a document as an example and prints the tagged text line by line.
         documents[0].posTagger();
         documents[0].printTaggedDocument();
+
+        // Parses the document as an example and prints parse tree.
+        documents[0].printParseTree();
     }
 }

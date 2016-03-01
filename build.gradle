@@ -11,5 +11,5 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile files('libs/stanford-postagger.jar', 'libs/slf4j-api.jar', 'libs/slf4j-simple.jar')
+    compile files('libs/stanford-postagger.jar', 'libs/slf4j-api.jar', 'libs/slf4j-simple.jar', 'libs/stanford-parser.jar')
 }
