@@ -1,7 +1,6 @@
 package Utils;
 
 import Models.Ontology;
-import Models.Relation;
 import Models.Synonym;
 import Models.Term;
 
@@ -22,19 +21,17 @@ public class Parser {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
 
-            int counter = 0;
             String line;
             Term term = null;
             while ((line = reader.readLine()) != null) {
                 if (line.isEmpty()) continue;
 
                 if (line.contains("Term")) {
-                    counter++;
                     if (term != null)
                         ontology.addTerm(term);
 
-                    String id = (line = reader.readLine()).substring(4);
-                    String name = (line = reader.readLine()).substring(6);
+                    String id = reader.readLine().substring(4);
+                    String name = reader.readLine().substring(6);
                     term = new Term(id, name);
                 }
                 else if (line.startsWith("synonym")) {
@@ -58,21 +55,17 @@ public class Parser {
                     String[] content = line.split("!");
 
                     assert term != null;
-                    term.addRelation(new Relation(
-                            content[0].trim(),
-                            content[1].trim()
-                    ));
+                    term.addRelation(content[0].trim());
                 }
             }
             if (term != null)
                 ontology.addTerm(term);
 
-            System.out.println("" + counter);
-
             reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         return ontology;
     }
 }

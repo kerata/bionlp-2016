@@ -10,7 +10,7 @@ public class Term {
     private String id;
     private String name;
     private ArrayList<Synonym> synonyms;
-    private ArrayList<Relation> is_a;
+    private ArrayList<String> is_a;
 
     public Term() {}
 
@@ -49,27 +49,27 @@ public class Term {
         this.synonyms = synonyms;
     }
 
-    public void addRelation(Relation relation) {
+    public void addRelation(String relation) {
         is_a.add(relation);
     }
 
-    public ArrayList<Relation> getIs_a() {
+    public ArrayList<String> getIs_a() {
         return is_a;
     }
 
-    public void setIs_a(ArrayList<Relation> is_a) {
+    public void setIs_a(ArrayList<String> is_a) {
         this.is_a = is_a;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        String sum = new StringBuilder()
+                .append(String.format("id: %s;", id))
+                .append(String.format("name: %s;", name))
+                .append(String.format("synonyms: %s;", synonyms.toString()))
+                .append(String.format("relations: %s;", is_a.toString()))
+                .toString();
 
-        stringBuilder.append(String.format("id: %s;", id));
-        stringBuilder.append(String.format("name: %s;", name));
-        stringBuilder.append(String.format("synonyms: %s;", synonyms.toString()));
-        stringBuilder.append(String.format("relations: %s;", is_a.toString()));
-
-        return stringBuilder.toString();
+        return sum;
     }
 }

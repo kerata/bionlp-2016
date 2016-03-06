@@ -1,8 +1,6 @@
 import Models.Document;
 import Models.Ontology;
-import Utils.LEXParser;
 import Utils.Parser;
-import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -17,8 +15,11 @@ public class Main {
     public static String DATA_PATH = "src/main/resources/data";
     public static Document[] documents;
 
+    public static Ontology ontology;
+
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
-        Ontology ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016.obo");
+        ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016.obo");
+        ontology.buildDependencyTree();
 //        System.out.println(ontology.toString());
 
         // Iterates over given files and constructs document objects.
