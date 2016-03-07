@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Ontology {
 
-    private ArrayList<Tree> dependencyTree;
+    private ArrayList<Tree> dependencyTrees;
     private Map<String, Term> terms;
     private Map<String, List<Term>> invertedIndex;
 
@@ -20,6 +20,10 @@ public class Ontology {
 
     public Map<String, Term> getTerms() {
         return terms;
+    }
+
+    public ArrayList<Tree> getDependencyTrees() {
+        return dependencyTrees;
     }
 
     public void addTerm(Term term) {
@@ -60,15 +64,19 @@ public class Ontology {
         return invertedIndex.get(keyword);
     }
 
-    public Ontology buildDependencyTree() {
-        dependencyTree = new ArrayList<>();
-        for (Iterator<Term> iterator = terms.values().iterator();iterator.hasNext();) {
+    public Ontology buildDependencyTrees() {
+        dependencyTrees = new ArrayList<>();
+        for (Iterator<Term> iterator = terms.values().iterator();iterator.hasNext();iterator = terms.values().iterator()) {
             Term term = iterator.next();
+            iterator.remove();
             Tree tree = new Tree();
-            tree.constructFromLeaf(terms, term);
-            dependencyTree.add(tree);
-//            System.out.println(tree.toString());
+            tree.constructFromLeaf(this, term);
+
+            if (!tree.hasMerged())
+                dependencyTrees.add(tree);
         }
+        dependencyTrees.get(0).printByLevel();
+        System.out.println(dependencyTrees.get(0).toString());
         return this;
     }
 

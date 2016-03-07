@@ -10,61 +10,131 @@ import java.util.*;
 public class Tree {
 
     private Node root;
-    private Map<String, Node> nodes;
+    private Map<String, ArrayList<Node>> nodes;
+    private boolean hasMerged = false;
 
     public Tree() {
         nodes = new HashMap<>();
     }
 
+    public Map<String, ArrayList<Node>> getNodes() {
+        return nodes;
+    }
+
     public Tree(@NotNull Term rootData) {
         this.root = new Node(rootData);
         nodes = new HashMap<>();
-        nodes.put(rootData.getId(), root);
+        addToNodes(root);
     }
 
-    public Node setParentNode(@NotNull Term childData, @NotNull Term parentData) {
-        Node parentNode = getNode(parentData, true);
-        Node childNode = getNode(childData, true);
-
-        Node newNode = childNode.setParent(parentNode);
-        if (newNode.level == 0)
-            root = newNode;
-
-        return newNode;
+    public void merge(Node attachFrom, Tree other) {
+        // TODO how to add all branches, all parents not just one...
+        nodes.putAll(other.getNodes());
+//        other.nodes.forEach((id, posting) -> {
+//            if (nodes.containsKey(id)) {
+//                ArrayList<Node> addTo = nodes.get(id);
+//                for (int i = 0;i < posting.size();i++)
+//                    addTo.add(posting.get(i));
+//            }
+//            else nodes.put(id, posting);
+//        });
+        attachFrom.addChild(other.getRoot());
     }
 
-    public Node addChild(@NotNull Term parentData, @NotNull Term childData) {
-        Node parentNode = getNode(parentData, true);
-        Node childNode = getNode(childData, true);
-
-        return parentNode.addChild(childNode);
+    public ArrayList<Node> addToNodes(Node node) {
+        ArrayList<Node> posting = nodes.get(node.data.getId());
+        if (posting == null) {
+            posting = new ArrayList<Node>() {
+                public boolean add(Node mt) {
+                    int index = Collections.binarySearch(this, mt);
+                    if (index < 0) index = ~index;
+                    super.add(index, mt);
+                    return true;
+                }
+            };
+            nodes.put(node.data.getId(), posting);
+        }
+        posting.add(node);
+        return posting;
     }
 
-    public Node constructFromLeaf(Map<String, Term> terms, Term rootData) {
+    public ArrayList<Node> setParentNode(@NotNull Term childData, @NotNull Term parentData) {
+        ArrayList<Node> parentNodePosting = getNode(parentData, true);
+        ArrayList<Node> childNodePosting = getNode(childData, true);
+
+        for (Node parentNode: parentNodePosting)
+            for (Node childNode: childNodePosting) {
+                Node newNode = childNode.setParent(parentNode);
+                if (newNode.level == 0)
+                    root = newNode;
+            }
+
+        return parentNodePosting;
+    }
+
+    public ArrayList<Node> addChild(@NotNull Term parentData, @NotNull Term childData) {
+        ArrayList<Node> parentNodePosting = getNode(parentData, true);
+        ArrayList<Node> childNodePosting = getNode(childData, true);
+
+        for (Node parentNode: parentNodePosting)
+            for (Node childNode: childNodePosting) {
+                parentNode.addChild(childNode);
+            }
+
+        return childNodePosting;
+    }
+
+    public Node constructFromLeaf(Ontology ontology, Term rootData) {
         this.root = new Node(rootData);
-        this.root.findRoot(this, terms);
+//        this.nodes.put(rootData.getId(), root);
+        addToNodes(root);
+        this.root.findRoot(this, ontology);
         return this.root;
+    }
+
+    public boolean hasMerged() {
+        return hasMerged;
     }
 
     public Node getRoot() {
         return root;
     }
 
-    public Node getNode(String id) {
+    public ArrayList<Node> getNode(String id) {
         return nodes.get(id);
     }
 
-    public Node getNode(@NotNull Term data, boolean shouldCreateIfNotContains) {
-        Node result = getNode(data.getId());
+    public ArrayList<Node> getNode(@NotNull Term data, boolean shouldCreateIfNotContains) {
+        ArrayList<Node> result = getNode(data.getId());
         if (shouldCreateIfNotContains && result == null) {
-            result = new Node(data);
-            nodes.put(data.getId(), result);
+            result = addToNodes(new Node(data));
         }
         return result;
     }
 
-    public Node getNode(@NotNull Term data) {
+    public ArrayList<Node> getNode(@NotNull Term data) {
         return getNode(data, false);
+    }
+
+    public void printByLevel() {
+        ArrayList<Node> sortedByLevel = new ArrayList<>();
+        for (ArrayList<Node> posting: nodes.values())
+            sortedByLevel.addAll(posting);
+        sortedByLevel.sort((o1, o2) -> {
+            int diff = o1.level - o2.level;
+            return diff < 0 ? -1 :
+                    diff == 0 ? 0 : 1;
+        });
+        StringBuilder accumulator = new StringBuilder();
+        sortedByLevel.forEach(node -> {
+            for (int i = 0;i < node.level;i++)
+                accumulator.append(" ");
+            accumulator
+                    .append(node.level)
+                    .append(node.data.toString())
+                    .append("\n");
+        });
+        System.out.println(accumulator.toString());
     }
 
     @Override
@@ -72,7 +142,7 @@ public class Tree {
         return root.toString();
     }
 
-    public static class Node {
+    public static class Node implements Comparable<Node> {
 
         int level = 0;
         Term data;
@@ -92,7 +162,6 @@ public class Tree {
         public Node setParent(Node parentNode) {
             parent = parentNode;
             parent.addChild(this);
-            parent.setLevel(level - 1);
             return parent;
         }
 
@@ -108,22 +177,45 @@ public class Tree {
 
         public void setLevel(int level) {
             this.level = level;
-            for (Node child: children)
-                child.setLevel(level + 1);
+            Iterator<Node> iterator = children.iterator();
+            while (iterator.hasNext()) {
+                Node child = iterator.next();
+                if (child != null)
+                    child.setLevel(level + 1);
+            }
         }
 
-        public void findRoot(Tree holder, Map<String, Term> terms) {
+        public void findRoot(Tree holder, Ontology ontology) {
             Iterator<String> iterator = data.getIs_a().iterator();
             while (iterator.hasNext()) {
                 String parentId = iterator.next();
-                Term parentTerm = terms.get(parentId);
+                Term parentTerm = ontology.getTerms().get(parentId);
                 if (parentTerm == null) {
-                    // TODO reach trees in Ontology and merge, not removing and merging causes many duplicates...
-//                    System.out.println(String.format("No term exists with id: %s", childId));
+                    for (Iterator<Tree> treeIterator = ontology.getDependencyTrees().iterator(); treeIterator.hasNext();) {
+                        Tree tree = treeIterator.next();
+                        ArrayList<Node> parentPosting = tree.getNode(parentId);
+                        if (parentPosting != null) {
+                            for (Node parent: parentPosting) {
+                                tree.merge(parent, holder);
+                                holder.hasMerged = true;
+                                // TODO what to do...should there be repetitions or not?
+                                break;
+                            }
+                        }
+                    }
                     continue;
                 }
-                Node parent = holder.setParentNode(this.data, parentTerm);
-                parent.findRoot(holder, terms);
+                ArrayList<Node> parentPosting = holder.setParentNode(this.data, parentTerm);
+                ontology.getTerms().remove(parentTerm.getId());
+
+                Node parent = null;
+                for (Node node: parentPosting)
+                    if (node.data.equals(parentTerm)) {
+                        parent = node;
+                        break;
+                    }
+                if (parent != null)
+                    parent.findRoot(holder, ontology);
             }
         }
 
@@ -146,6 +238,13 @@ public class Tree {
             for (Node child: children)
                 accumulator.append(child.toString());
             return accumulator.toString();
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            int diff = level - o.level;
+            return diff < 0 ? -1 :
+                    diff == 0 ? 0 : 1;
         }
     }
 }

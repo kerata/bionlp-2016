@@ -19,8 +19,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
         ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016.obo");
-        ontology.buildDependencyTree();
-//        System.out.println(ontology.toString());
+        ontology.buildDependencyTrees();
 
         // Iterates over given files and constructs document objects.
         File[] listOfFiles = (new File(DATA_PATH)).listFiles();
