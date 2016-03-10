@@ -27,18 +27,22 @@ public class Tree {
         addToNodes(root);
     }
 
-    public void merge(Node attachFrom, Tree other) {
-        // TODO how to add all branches, all parents not just one...
-        nodes.putAll(other.getNodes());
-//        other.nodes.forEach((id, posting) -> {
-//            if (nodes.containsKey(id)) {
-//                ArrayList<Node> addTo = nodes.get(id);
-//                for (int i = 0;i < posting.size();i++)
-//                    addTo.add(posting.get(i));
-//            }
-//            else nodes.put(id, posting);
-//        });
-        attachFrom.addChild(other.getRoot());
+    public void merge(ArrayList<Node> parentPosting, Tree other) {
+        parentPosting.replaceAll(attachFrom -> {
+            Node newRoot = other.getRoot().generateCopy();
+            newRoot.bringAllNodes(new ArrayList<>()).forEach(node -> {
+                ArrayList<Node> ownedNodes = nodes.get(node.data.getId());
+                if (ownedNodes != null)
+                    ownedNodes.add(node);
+                else {
+                    ArrayList<Node> posting = new ArrayList<>();
+                    posting.add(node);
+                    nodes.put(node.data.getId(), posting);
+                }
+            });
+            attachFrom.addChild(newRoot);
+            return attachFrom;
+        });
     }
 
     public ArrayList<Node> addToNodes(Node node) {
@@ -86,7 +90,6 @@ public class Tree {
 
     public Node constructFromLeaf(Ontology ontology, Term rootData) {
         this.root = new Node(rootData);
-//        this.nodes.put(rootData.getId(), root);
         addToNodes(root);
         this.root.findRoot(this, ontology);
         return this.root;
@@ -98,6 +101,13 @@ public class Tree {
 
     public Node getRoot() {
         return root;
+    }
+
+    public void setRoot(Node root) {
+        if (this.root != null)
+            nodes.remove(this.root.data.getId());
+        this.root = root;
+        addToNodes(root);
     }
 
     public ArrayList<Node> getNode(String id) {
@@ -155,6 +165,12 @@ public class Tree {
             parent = this;
         }
 
+        public Node(Node copy) {
+            this.data = copy.data;
+            this.children = copy.children;
+            this.parent = copy.parent;
+        }
+
         public Node setParent(Term parentData) {
             return setParent(new Node(parentData));
         }
@@ -177,46 +193,49 @@ public class Tree {
 
         public void setLevel(int level) {
             this.level = level;
-            Iterator<Node> iterator = children.iterator();
-            while (iterator.hasNext()) {
-                Node child = iterator.next();
+            children.forEach(child -> {
                 if (child != null)
                     child.setLevel(level + 1);
-            }
+            });
+        }
+
+        public Node generateCopy() {
+            Node copyNode = new Node(data);
+            for (Node child: children)
+                child.generateCopy().setParent(copyNode);
+            return copyNode;
+        }
+
+        public ArrayList<Node> bringAllNodes(ArrayList<Node> nodes) {
+            nodes.add(this);
+            for (Node child: children)
+                child.bringAllNodes(nodes);
+            return nodes;
         }
 
         public void findRoot(Tree holder, Ontology ontology) {
-            Iterator<String> iterator = data.getIs_a().iterator();
-            while (iterator.hasNext()) {
-                String parentId = iterator.next();
+            data.getIs_a().forEach(parentId -> {
                 Term parentTerm = ontology.getTerms().get(parentId);
                 if (parentTerm == null) {
-                    for (Iterator<Tree> treeIterator = ontology.getDependencyTrees().iterator(); treeIterator.hasNext();) {
-                        Tree tree = treeIterator.next();
+                    ontology.getDependencyTrees().forEach(tree -> {
                         ArrayList<Node> parentPosting = tree.getNode(parentId);
                         if (parentPosting != null) {
-                            for (Node parent: parentPosting) {
-                                tree.merge(parent, holder);
-                                holder.hasMerged = true;
-                                // TODO what to do...should there be repetitions or not?
-                                break;
-                            }
+                            tree.merge(parentPosting, holder);
+                            holder.hasMerged = true;
                         }
-                    }
-                    continue;
+                    });
                 }
-                ArrayList<Node> parentPosting = holder.setParentNode(this.data, parentTerm);
-                ontology.getTerms().remove(parentTerm.getId());
+                else {
+                    ArrayList<Node> parentPosting = holder.setParentNode(this.data, parentTerm);
+                    ontology.getTerms().remove(parentTerm.getId());
 
-                Node parent = null;
-                for (Node node: parentPosting)
-                    if (node.data.equals(parentTerm)) {
-                        parent = node;
-                        break;
-                    }
-                if (parent != null)
-                    parent.findRoot(holder, ontology);
-            }
+                    for (Node node: parentPosting)
+                        if (node.data.equals(parentTerm)) {
+                            node.findRoot(holder, ontology);
+                            break;
+                        }
+                }
+            });
         }
 
         @Override
