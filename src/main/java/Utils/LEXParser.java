@@ -32,7 +32,7 @@ public class LEXParser {
         gsf = tlp.grammaticalStructureFactory();
     }
 
-    public static LEXParser initLEXParser(){
+    public static LEXParser init(){
         return (me == null) ? me = new LEXParser() : me;
     }
 
