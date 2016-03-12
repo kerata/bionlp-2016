@@ -7,6 +7,7 @@ import edu.stanford.nlp.trees.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hakansahin on 28/02/16.
@@ -17,6 +18,7 @@ public class Document {
     private List taggedText;
     private Tree parse;
     private List<Habitat> habitatList;
+    private Map<String, List<String> > categories;
 
     public Document(String id, String text){
         this.id = id;
@@ -50,8 +52,11 @@ public class Document {
 
     public void setHabitatList(List<Habitat> habitatList){ this.habitatList = habitatList; }
 
+    public void setCategories(Map<String, List<String> > categories){ this.categories = categories; }
+    public Map<String, List<String> > getCategories(){ return this.categories; }
+
     public String getId(){ return this.id; }
     public String getText(){ return this.text; }
     public List getTaggedText(){ return this.taggedText; }
-    public List getHabitats(){ return this.habitatList; }
+    public List<Habitat> getHabitats(){ return this.habitatList; }
 }

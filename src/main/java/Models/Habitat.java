@@ -15,6 +15,6 @@ public class Habitat {
         this.entity = entity;
     }
 
+    public String getId(){ return this.id; }
     public String getEntity(){ return this.entity; }
-
 }
