@@ -1,0 +1,3 @@
+Habitat : T33 dry foodsCategories : [OBT:000877]Suggested : [id: OBT:002109;name: dry sausage;synonyms: [];relations: [OBT:000960, OBT:001272];, id: OBT:002285;name: fermented dry sausage;synonyms: [];relations: [OBT:002109, OBT:001306];, id: OBT:002145;name: French dry sausage;synonyms: [];relations: [OBT:002109];, id: OBT:001225;name: dry forest humus;synonyms: [];relations: [OBT:000797];, id: OBT:000857;name: dry soil;synonyms: [];relations: [OBT:000292];]
+
+

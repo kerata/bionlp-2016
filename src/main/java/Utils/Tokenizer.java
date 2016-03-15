@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Tokenizer {
 
-    public static List<String> tokenizeSentence(String sentence) {
+    public static List<String> tokenizeText(String sentence) {
         List<String> words = new ArrayList<>();
 
         PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<>

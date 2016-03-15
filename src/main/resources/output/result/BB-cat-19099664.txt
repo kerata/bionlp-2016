@@ -1,0 +1,5 @@
+Habitat : T5 patients received chemotherapyCategories : [OBT:002201, OBT:002237]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+Habitat : T9 patients who accepted chemotherapyCategories : [OBT:002186, OBT:002237]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+

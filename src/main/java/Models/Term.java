@@ -62,6 +62,15 @@ public class Term {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Term) {
+            Term other = (Term) obj;
+            return this.id.equals(other.id) && this.name.equals(other.name);
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         String sum = new StringBuilder()
                 .append(String.format("id: %s;", id))

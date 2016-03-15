@@ -1,0 +1,17 @@
+Habitat : T4 duodenalCategories : [OBT:001293]Suggested : [id: OBT:000935;name: duodenal ulcer;synonyms: [];relations: [OBT:000596];]
+
+Habitat : T11 duodenalCategories : [OBT:001293]Suggested : [id: OBT:000935;name: duodenal ulcer;synonyms: [];relations: [OBT:000596];]
+
+Habitat : T14 duodenalCategories : [OBT:001293]Suggested : [id: OBT:000935;name: duodenal ulcer;synonyms: [];relations: [OBT:000596];]
+
+Habitat : T19 duodenalCategories : [OBT:001293]Suggested : [id: OBT:000935;name: duodenal ulcer;synonyms: [];relations: [OBT:000596];]
+
+Habitat : T23 patientsCategories : [OBT:002242]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+Habitat : T25 patientsCategories : [OBT:002242]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+Habitat : T27 patientsCategories : [OBT:002242]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+Habitat : T28 patientsCategories : [OBT:002242]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+

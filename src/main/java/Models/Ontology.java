@@ -11,7 +11,7 @@ public class Ontology {
 
     private ArrayList<Tree> dependencyTrees;
     private Map<String, Term> terms;
-    private Map<String, List<Term>> invertedIndex;
+    private Map<String, Set<Term>> invertedIndex;
 
     public Ontology() {
         terms = new HashMap<>();
@@ -27,17 +27,17 @@ public class Ontology {
     }
 
     public void addTerm(Term term) {
-        List<String> tokens = Tokenizer.tokenizeSentence(term.getName());
+        List<String> tokens = Tokenizer.tokenizeText(term.getName());
         for (Synonym synonym: term.getSynonyms())
-            tokens.addAll(Tokenizer.tokenizeSentence(synonym.getDetail()));
+            tokens.addAll(Tokenizer.tokenizeText(synonym.getDetail()));
 
         for (String token: tokens) {
-            List<Term> posting = invertedIndex.get(token);
+            Set<Term> posting = invertedIndex.get(token);
             if (posting != null) {
                 posting.add(term);
             }
             else {
-                posting = new ArrayList<>();
+                posting = new HashSet<>();
                 posting.add(term);
                 invertedIndex.put(token, posting);
             }
@@ -60,7 +60,7 @@ public class Ontology {
         return result;
     }
 
-    public List<Term> getTermsForKeyword(String keyword) {
+    public Set<Term> getTermsForKeyword(String keyword) {
         return invertedIndex.get(keyword);
     }
 

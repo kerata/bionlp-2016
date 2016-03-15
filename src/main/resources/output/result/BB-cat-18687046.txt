@@ -1,0 +1,9 @@
+Habitat : T7 patientsCategories : [OBT:002133]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+Habitat : T18 patientsCategories : [OBT:002133]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+Habitat : T19 patientsCategories : [OBT:002133]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+Habitat : T21 patientsCategories : [OBT:002133]Suggested : [id: OBT:002225;name: patient with cystic fibrosis;synonyms: [detail: CF patients; type: EXACT, detail: person with CF; type: EXACT, detail: person with cystic fibrosis; type: EXACT];relations: [OBT:002187];]
+
+

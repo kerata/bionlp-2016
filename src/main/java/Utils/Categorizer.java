@@ -1,13 +1,8 @@
 package Utils;
 
-import Models.Ontology;
-import Models.Synonym;
-import Models.Term;
+import Models.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,19 +21,54 @@ public class Categorizer {
         return (me == null) ? me = new Categorizer() : me;
     }
 
-    public String categorize(String habitat){
+    public Set<Term> categorize(String habitat){
 
-        String[] tokens = habitat.split(" ");
-        for(String token : tokens)
-            for(Term term: this.ontology.getTerms().values()){
+        Set<Term> termList = new HashSet<>();
+        for(String token : Tokenizer.tokenizeText(habitat)){
+            Set<Term> foundTerms = this.ontology.getTermsForKeyword(token.toLowerCase());
+            if(foundTerms != null) termList.addAll(foundTerms);
+        }
 
-                if(term.getName().equals(token)) return term.getId();
-                for(Synonym synonym : term.getSynonyms())
-                    if(synonym.getDetail().equals(token))
-                        return term.getId();
+        return termList;
+    }
+
+    public void categorizeDocument(Document doc){
+
+        for(Habitat habitat : doc.getHabitats()){
+
+            Set<Term> possibleCategories = categorize(habitat.getEntity());
+            String message = habitat.getId() + " " + habitat.getEntity();
+            List<String> categoryIdList = doc.getCategories().get(habitat.getId());
+
+            // If there is no possible category, means any categories belong to current habitat is not found, then they added to 'False Negatives'.
+            if(possibleCategories.isEmpty()){
+                Commons.FN += categoryIdList.size();
+                Commons.printYellow(message + " : " + categoryIdList.toString());
+                continue;
             }
 
-        return "Not categorized";
+            int found = 0;
+            for(Term term : possibleCategories){
+                String categoryId = term.getId();
+                if(categoryIdList.contains(categoryId)){
+                    categoryIdList.remove(categoryId);              // Found categories removed from categoryIdList.
+                    Commons.printBlue(message + " : " + categoryId);
+                    found++;
+                }
+            }
+            // Number of found categories added to 'True Positives'.
+            Commons.TP += found;
+
+            // If any possible category is not found in categoryIdList than it marks as 'False Positive'.
+            if(found == 0){
+                Commons.FP++;
+                Commons.printRed(message + " : " + possibleCategories.toString());
+            }
+            // Number of remaining categories added to 'False Negatives'.
+            Commons.FN += (categoryIdList.size());
+            for(String catID : categoryIdList)
+                Commons.printYellow(message + " : " + catID);
+        }
     }
 
     public Map<String, List<String> > splitCategories(String text){
@@ -59,7 +89,6 @@ public class Categorizer {
 
             categories.get(id).add(category);
         }
-
         return categories;
     }
 }
