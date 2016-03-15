@@ -15,11 +15,16 @@ public class Tokenizer {
 
     public static List<String> tokenizeText(String sentence) {
         List<String> words = new ArrayList<>();
+        Stemmer stemmer = new Stemmer();
 
         PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<>
                 (new StringReader(sentence), new CoreLabelTokenFactory(), "untokenizable=noneKeep");
-        while(tokenizer.hasNext())
-            words.add(tokenizer.next().value());
+        while(tokenizer.hasNext()) {
+            String token = tokenizer.next().value().toLowerCase();
+            stemmer.add(token.toCharArray(), token.length());
+            stemmer.stem();
+            words.add(stemmer.toString());
+        }
 
         return words;
     }
