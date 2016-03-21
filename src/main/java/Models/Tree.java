@@ -91,7 +91,7 @@ public class Tree {
     public Node constructFromLeaf(Ontology ontology, Term rootData) {
         this.root = new Node(rootData);
         addToNodes(root);
-        this.root.findRoot(this, ontology);
+        this.root.buildTree(this, ontology);
         return this.root;
     }
 
@@ -124,6 +124,26 @@ public class Tree {
 
     public ArrayList<Node> getNode(@NotNull Term data) {
         return getNode(data, false);
+    }
+
+    public ArrayList<Node> findCommonRoots(String[] ids) {
+        ArrayList<Node> commonRoots = new ArrayList<>();
+        for (int i = 0;i < ids.length - 1;i++) {
+            ArrayList<Node> lhs = getNode(ids[i]);
+            for (int j = i + 1;j < ids.length;j++) {
+                ArrayList<Node> rhs = getNode(ids[j]);
+                for (Node mLhs: lhs) {
+                    for (Node mRhs : rhs) {
+                        Node commonRoot = mLhs.findFirstCommonRoot(mRhs);
+                        System.out.println(String.format("Roots of %s - %s: %s",
+                                                        mLhs.getData().getId(),
+                                                        mRhs.getData().getId(),
+                                                        commonRoot.getData().getId()));
+                    }
+                }
+            }
+        }
+        return commonRoots;
     }
 
     public void printByLevel() {
@@ -171,6 +191,22 @@ public class Tree {
             this.parent = copy.parent;
         }
 
+        public int getLevel() {
+            return level;
+        }
+
+        public Term getData() {
+            return data;
+        }
+
+        public Node getParent() {
+            return parent;
+        }
+
+        public ArrayList<Node> getChildren() {
+            return children;
+        }
+
         public Node setParent(Term parentData) {
             return setParent(new Node(parentData));
         }
@@ -187,6 +223,7 @@ public class Tree {
 
         public Node addChild(Node childNode) {
             childNode.setLevel(level + 1);
+            childNode.parent = this;
             children.add(childNode);
             return childNode;
         }
@@ -213,7 +250,7 @@ public class Tree {
             return nodes;
         }
 
-        public void findRoot(Tree holder, Ontology ontology) {
+        public void buildTree(Tree holder, Ontology ontology) {
             data.getIs_a().forEach(parentId -> {
                 Term parentTerm = ontology.getTerms().get(parentId);
                 if (parentTerm == null) {
@@ -231,11 +268,30 @@ public class Tree {
 
                     for (Node node: parentPosting)
                         if (node.data.equals(parentTerm)) {
-                            node.findRoot(holder, ontology);
+                            node.buildTree(holder, ontology);
                             break;
                         }
                 }
             });
+        }
+
+        public Node findFirstCommonRoot(Node other) {
+            // If they are same
+            if (this.equals(other))
+                return this;
+            else {
+                Node lhs = this.level > other.level ? this : other;
+                Node rhs = this.level > other.level ? other : this;
+                while (lhs.level != rhs.level)
+                    lhs = lhs.parent;
+
+                while (!lhs.equals(rhs)) {
+                    lhs = lhs.parent;
+                    rhs = rhs.parent;
+                }
+
+                return lhs;
+            }
         }
 
         @Override
