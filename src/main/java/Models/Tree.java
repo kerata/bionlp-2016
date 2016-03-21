@@ -214,11 +214,11 @@ public class Tree {
         }
 
         public void findRoot(Tree holder, Ontology ontology) {
-            data.getIs_a().forEach(parentId -> {
-                Term parentTerm = ontology.getTerms().get(parentId);
+            data.getIs_a().forEach(relation -> {
+                Term parentTerm = ontology.getTerms().get(relation.getTermId());
                 if (parentTerm == null) {
                     ontology.getDependencyTrees().forEach(tree -> {
-                        ArrayList<Node> parentPosting = tree.getNode(parentId);
+                        ArrayList<Node> parentPosting = tree.getNode(relation.getTermId());
                         if (parentPosting != null) {
                             tree.merge(parentPosting, holder);
                             holder.hasMerged = true;

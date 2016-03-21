@@ -44,10 +44,15 @@ public class Categorizer {
 
         // TODO: to see ranked results.
         Map<String, Double> test = new HashMap<>();
-        for(Map.Entry<String, Double> entry : sortedTerms.entrySet()){
-            if(termList.contains(this.ontology.getTerms().get(entry.getKey())))
+        for (Map.Entry<String, Double> entry : sortedTerms.entrySet()) {
+            if (termList.contains(this.ontology.getTerms().get(entry.getKey())))
                 test.put(entry.getKey(), entry.getValue());
         }
+
+        Map<String,Double> result = new LinkedHashMap<>();
+        test.entrySet().stream().sorted(Comparator.comparing(e -> e.getValue(), Comparator.reverseOrder()))
+                .forEachOrdered(e ->result.put(e.getKey(),e.getValue()));
+
 /*
         List<Double> index = new ArrayList<>();
         for(Term term : termList)

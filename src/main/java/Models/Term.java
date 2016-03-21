@@ -10,7 +10,7 @@ public class Term {
     private String id;
     private String name;
     private ArrayList<Synonym> synonyms;
-    private ArrayList<String> is_a;
+    private ArrayList<Relation> is_a;
 
     public Term() {}
 
@@ -49,15 +49,15 @@ public class Term {
         this.synonyms = synonyms;
     }
 
-    public void addRelation(String relation) {
-        is_a.add(relation);
+    public void addRelation(String termId, String termName) {
+        is_a.add(new Relation(termId, termName));
     }
 
-    public ArrayList<String> getIs_a() {
+    public ArrayList<Relation> getIs_a() {
         return is_a;
     }
 
-    public void setIs_a(ArrayList<String> is_a) {
+    public void setIs_a(ArrayList<Relation> is_a) {
         this.is_a = is_a;
     }
 

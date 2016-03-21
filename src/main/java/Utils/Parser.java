@@ -55,7 +55,7 @@ public class Parser {
                     String[] content = line.split("!");
 
                     assert term != null;
-                    term.addRelation(content[0].trim());
+                    term.addRelation(content[0].trim(), content[1].trim());
                 }
             }
             if (term != null)
