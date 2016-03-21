@@ -2,10 +2,12 @@ package Models;
 
 import Utils.LEXParser;
 import Utils.POSTagger;
+import Utils.Tokenizer;
 import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.trees.Tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,11 +21,22 @@ public class Document {
     private Tree parse;
     private List<Habitat> habitatList;
     private Map<String, List<String> > categories;
+    private Map<String, Integer> invertedIndex;
 
     public Document(String id, String text){
         this.id = id;
         this.text = text;
         this.habitatList = new ArrayList<>();
+    }
+
+    public Map<String, Integer> buildInvertedIndex(){
+
+        if(this.invertedIndex != null) return this.invertedIndex;
+
+        this.invertedIndex = new HashMap<>();
+        for(String token : Tokenizer.tokenizeText(this.text))
+            this.invertedIndex.put(token, this.invertedIndex.getOrDefault(token, 0) + 1);
+        return this.invertedIndex;
     }
 
     public List posTagger(){

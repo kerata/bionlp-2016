@@ -7,6 +7,7 @@ import edu.stanford.nlp.process.PTBTokenizer;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by kerata on 04/03/16.
@@ -21,6 +22,9 @@ public class Tokenizer {
                 (new StringReader(sentence), new CoreLabelTokenFactory(), "untokenizable=noneKeep");
         while(tokenizer.hasNext()) {
             String token = tokenizer.next().value().toLowerCase();
+
+            if(!Pattern.compile("\\w+").matcher(token).find()) continue;
+
             stemmer.add(token.toCharArray(), token.length());
             stemmer.stem();
             words.add(stemmer.toString());

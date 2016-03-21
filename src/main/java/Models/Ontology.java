@@ -13,9 +13,17 @@ public class Ontology {
     private Map<String, Term> terms;
     private Map<String, Set<Term>> invertedIndex;
 
+    public Set<String> vocabulary;
+    public Map<String, Integer> docFreq;
+    private Map<String, Map<String, Integer> > termFreq;
+    public Map<String, List<Double> > tfIdf;
+
     public Ontology() {
         terms = new HashMap<>();
         invertedIndex = new HashMap<>();
+        vocabulary = new HashSet<>();
+        docFreq = new HashMap<>();
+        termFreq = new HashMap<>();
     }
 
     public Map<String, Term> getTerms() {
@@ -41,9 +49,33 @@ public class Ontology {
                 posting.add(term);
                 invertedIndex.put(token, posting);
             }
+
+            // Will be used in order to compute tf-idf values.
+            vocabulary.add(token);
+            termFreq.putIfAbsent(term.getId(), new HashMap<>());
+            if(termFreq.get(term.getId()).containsKey(token))
+                termFreq.get(term.getId()).put(token, termFreq.get(term.getId()).get(token) + 1);
+            else{
+                docFreq.put(token, docFreq.getOrDefault(token, 0) + 1);
+                termFreq.get(term.getId()).put(token, 1);
+            }
         }
 
         terms.put(term.getId(), term);
+    }
+
+    // Computes tf-idf values for all terms.
+    public Map<String, List<Double> > computeTfIdfValues(){
+        if(this.tfIdf != null) return this.tfIdf;
+
+        this.tfIdf = new HashMap<>();
+        for(String termId : terms.keySet()){
+            List<Double> tfIdfValues = new ArrayList<>();
+            for(String v : vocabulary)
+                tfIdfValues.add((1 + Math.log10(termFreq.get(termId).getOrDefault(v, 1))) * Math.log10(vocabulary.size() / docFreq.get(v)));
+            this.tfIdf.put(termId, tfIdfValues);
+        }
+        return this.tfIdf;
     }
 
     public List<Term> getTermsForKeywords(List<String> keywords) {

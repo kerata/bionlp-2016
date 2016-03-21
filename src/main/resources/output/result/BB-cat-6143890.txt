@@ -1,3 +1,0 @@
-Habitat : T6 urine sedimentsCategories : [OBT:000001]Suggested : [id: OBT:000706;name: urine;synonyms: [];relations: [OBT:000314];, id: OBT:001757;name: arctic marine sediments;synonyms: [];relations: [OBT:001503];]
-
-
