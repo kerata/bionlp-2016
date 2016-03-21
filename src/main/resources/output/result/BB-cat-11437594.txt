@@ -1,3 +1,0 @@
-Habitat : T5 red alga Chondrus crispusCategories : [OBT:001922]Suggested : [id: OBT:001001;name: red clay;synonyms: [];relations: [OBT:000620];, id: OBT:001918;name: red deer meat;synonyms: [];relations: [OBT:001843];, id: OBT:002156;name: red deer;synonyms: [];relations: [OBT:002127];, id: OBT:001746;name: erythrocyte;synonyms: [detail: red blood cell; type: EXACT];relations: [OBT:000176, OBT:000056];]
-
-

@@ -1,7 +1,0 @@
-Habitat : T3 large yellow croakerCategories : [OBT:002160]Suggested : [id: OBT:002193;name: large intestine;synonyms: [];relations: [OBT:001893, OBT:000906];]
-
-Habitat : T5 large yellow croakerCategories : [OBT:002160]Suggested : [id: OBT:002193;name: large intestine;synonyms: [];relations: [OBT:001893, OBT:000906];]
-
-Habitat : T16 large yellow croakerCategories : [OBT:002160]Suggested : [id: OBT:002193;name: large intestine;synonyms: [];relations: [OBT:001893, OBT:000906];]
-
-

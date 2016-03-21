@@ -53,14 +53,14 @@ public class Main {
         }
 
         // Tags a document as an example and prints the tagged text line by line.
-//        documents[0].posTagger();
-//        documents[0].printTaggedDocument();
+//        documents.get(0).posTagger();
+//        documents.get(0).printTaggedDocument();
 
         // Parses the document as an example and prints parse tree.
-//        documents[0].printParseTree();
+//        documents.get(0).printParseTree();
 
         // Prints habitats of a document.
-//        documents[0].printHabitats();
+//        documents.get(0).printHabitats();
 
         for (Document document: documents) {
             Commons.printBlack(document.getId());
@@ -75,5 +75,8 @@ public class Main {
         Commons.printBlack("Precision : " + precision);
         Commons.printBlack("Recall : " + recall);
         Commons.printBlack("Total category : " + cnt);
+        Commons.printBlack("Trial : " + Commons.trial);
+
+
     }
 }

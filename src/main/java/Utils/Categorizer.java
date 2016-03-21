@@ -15,13 +15,26 @@ public class Categorizer {
     private Ontology ontology;
     public Categorizer(){
         this.ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016.obo");
+        this.ontology.computeTfIdfValues();
     }
 
     public static Categorizer init(){
         return (me == null) ? me = new Categorizer() : me;
     }
 
-    public Set<Term> categorize(String habitat){
+    public double computeCosSim(List<Double> v1, List<Double> v2){
+        double a = 1, b = 0, c = 0;
+
+        for(int i=0; i<v1.size(); i++){
+            a += v1.get(i) * v2.get(i);
+            b += (v1.get(i) * v1.get(i));
+            c += (v2.get(i) * v2.get(i));
+        }
+
+        return a / (Math.sqrt(b) * Math.sqrt(c));
+    }
+
+    public Set<Term> categorize(Map<String,Double> sortedTerms, String habitat){
 
         Set<Term> termList = new HashSet<>();
         for(String token : Tokenizer.tokenizeText(habitat)){
@@ -29,14 +42,47 @@ public class Categorizer {
             if(foundTerms != null) termList.addAll(foundTerms);
         }
 
+        // TODO: to see ranked results.
+        Map<String, Double> test = new HashMap<>();
+        for(Map.Entry<String, Double> entry : sortedTerms.entrySet()){
+            if(termList.contains(this.ontology.getTerms().get(entry.getKey())))
+                test.put(entry.getKey(), entry.getValue());
+        }
+/*
+        List<Double> index = new ArrayList<>();
+        for(Term term : termList)
+            index.add(res.get(term.getId()));*/
+
         return termList;
+    }
+
+    // Computes cosine similarity between Terms and Doc.
+    // Returns sorted map of terms with respect to similarities.
+    public Map<String, Double> sortTerms(Map<String, Integer> invertedIndex){
+
+        List<Double> tfIdfValues = new ArrayList<>();
+        for(String v : this.ontology.vocabulary)
+            tfIdfValues.add((1 + Math.log10(invertedIndex.getOrDefault(v,1))) *
+                    Math.log10(this.ontology.vocabulary.size() / this.ontology.docFreq.get(v)));
+
+        Map<String, Double> res = new HashMap<>();
+        for(Map.Entry<String, List<Double> > entry : this.ontology.tfIdf.entrySet())
+            res.put(entry.getKey(), computeCosSim(entry.getValue(), tfIdfValues));
+
+        Map<String,Double> result = new LinkedHashMap<>();
+        res.entrySet().stream().sorted(Comparator.comparing(e -> e.getValue(), Comparator.reverseOrder()))
+                .forEachOrdered(e ->result.put(e.getKey(),e.getValue()));
+
+        return result;
     }
 
     public void categorizeDocument(Document doc){
 
+        Map<String, Double> sortedTerms = sortTerms(doc.buildInvertedIndex());
         for(Habitat habitat : doc.getHabitats()){
 
-            Set<Term> possibleCategories = categorize(habitat.getEntity());
+            Set<Term> possibleCategories = categorize(sortedTerms, habitat.getEntity());
+
             String message = habitat.getId() + " " + habitat.getEntity();
             List<String> categoryIdList = doc.getCategories().get(habitat.getId());
 
@@ -54,16 +100,22 @@ public class Categorizer {
                     categoryIdList.remove(categoryId);              // Found categories removed from categoryIdList.
                     Commons.printBlue(message + " : " + categoryId);
                     found++;
+
                 }
+//                else {
+//                    Commons.FP++;
+//                    Commons.printRed(message + " : " + possibleCategories.toString());
+//                }
             }
             // Number of found categories added to 'True Positives'.
             Commons.TP += found;
-
+            if(found != 0) Commons.trial += possibleCategories.size();
             // If any possible category is not found in categoryIdList than it marks as 'False Positive'.
             if(found == 0){
                 Commons.FP++;
                 Commons.printRed(message + " : " + possibleCategories.toString());
             }
+
             // Number of remaining categories added to 'False Negatives'.
             Commons.FN += (categoryIdList.size());
             for(String catID : categoryIdList)
