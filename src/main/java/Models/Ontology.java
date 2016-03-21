@@ -110,8 +110,6 @@ public class Ontology {
             if (!tree.hasMerged())
                 dependencyTrees.add(tree);
         }
-        dependencyTrees.get(0).printByLevel();
-        System.out.println(dependencyTrees.get(0).toString());
         return this;
     }
 
