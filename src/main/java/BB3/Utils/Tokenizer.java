@@ -1,4 +1,4 @@
-package Utils;
+package BB3.Utils;
 
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
@@ -18,10 +18,8 @@ public class Tokenizer {
         List<String> words = new ArrayList<>();
         Stemmer stemmer = new Stemmer();
 
-        PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<>
-                (new StringReader(sentence), new CoreLabelTokenFactory(), "untokenizable=noneKeep");
-        while(tokenizer.hasNext()) {
-            String token = tokenizer.next().value().toLowerCase();
+        for (CoreLabel coreLabel: Tokenizer.tokenize(sentence, "untokenizable=noneKeep")) {
+            String token = coreLabel.value().toLowerCase();
 
             if(!Pattern.compile("\\w+").matcher(token).find()) continue;
 
@@ -31,5 +29,14 @@ public class Tokenizer {
         }
 
         return words;
+    }
+
+    public static List<CoreLabel> tokenize(String text, String parameters) {
+        List<CoreLabel> tokens = new ArrayList<>();
+        PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<>
+                (new StringReader(text), new CoreLabelTokenFactory(), parameters);
+        while (tokenizer.hasNext())
+            tokens.add(tokenizer.next());
+        return tokens;
     }
 }

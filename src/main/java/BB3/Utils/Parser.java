@@ -1,8 +1,8 @@
-package Utils;
+package BB3.Utils;
 
-import Models.Ontology;
-import Models.Synonym;
-import Models.Term;
+import BB3.Models.Ontology;
+import BB3.Models.Synonym;
+import BB3.Models.Term;
 
 import java.io.BufferedReader;
 import java.io.File;

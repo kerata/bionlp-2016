@@ -1,15 +1,15 @@
-package Models;
+package BB3.Models;
 
-import Utils.LEXParser;
-import Utils.POSTagger;
-import Utils.Tokenizer;
+import BB3.Utils.Commons;
+import BB3.Utils.LEXParser;
+import BB3.Utils.POSTagger;
+import BB3.Utils.Tokenizer;
+import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.Sentence;
+import edu.stanford.nlp.process.*;
 import edu.stanford.nlp.trees.Tree;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by hakansahin on 28/02/16.
@@ -23,6 +23,8 @@ public class Document {
     private Map<String, List<String> > categories;
     private Map<String, Integer> invertedIndex;
 
+    private int[] sentencePositions;
+
     public Document(String id, String text){
         this.id = id;
         this.text = text;
@@ -30,13 +32,8 @@ public class Document {
     }
 
     public Map<String, Integer> buildInvertedIndex(){
-
         if(this.invertedIndex != null) return this.invertedIndex;
-
-        this.invertedIndex = new HashMap<>();
-        for(String token : Tokenizer.tokenizeText(this.text))
-            this.invertedIndex.put(token, this.invertedIndex.getOrDefault(token, 0) + 1);
-        return this.invertedIndex;
+        else return this.invertedIndex = Commons.buildInvertedIndex(this.text);
     }
 
     public List posTagger(){
@@ -61,6 +58,35 @@ public class Document {
     public void printHabitats(){
         for(Habitat habitat : habitatList)
             System.out.println(habitat.getEntity());
+    }
+
+    private void findSentencePositions() {
+        List<List<CoreLabel>> sentences = new WordToSentenceProcessor<CoreLabel>()
+                .process(Tokenizer.tokenize(this.text, "untokenizable=noneKeep"));
+
+        int start = 0, end;
+        List<Integer> sentencePositions= new ArrayList<>();
+        sentencePositions.add(start);
+        for (List<CoreLabel> sentence: sentences) {
+            end = sentence.get(sentence.size() - 1).endPosition();
+            sentencePositions.add(end);
+        }
+        this.sentencePositions = new int[sentencePositions.size()];
+
+        int i = 0;
+        for (Integer pos: sentencePositions)
+            this.sentencePositions[i++] = pos;
+    }
+
+    public String getSentenceForPosition(int pos) {
+        if (sentencePositions == null) findSentencePositions();
+
+        if (pos < 0 || pos > sentencePositions[sentencePositions.length -1])
+            return "";
+        for (int i = 1;i < sentencePositions.length;i++)
+            if (pos < sentencePositions[i] || pos > sentencePositions[i -1])
+                return this.text.substring(sentencePositions[i -1], sentencePositions[i]).trim();
+        return "";
     }
 
     public void setHabitatList(List<Habitat> habitatList){ this.habitatList = habitatList; }

@@ -1,4 +1,4 @@
-package Models;
+package BB3.Models;
 
 import com.sun.istack.internal.NotNull;
 
@@ -88,10 +88,10 @@ public class Tree {
         return childNodePosting;
     }
 
-    public Node constructFromLeaf(Ontology ontology, Term rootData) {
+    public Node constructFromLeaf(Ontology ontology, Map<String, Term> terms, Term rootData) {
         this.root = new Node(rootData);
         addToNodes(root);
-        this.root.buildTree(this, ontology);
+        this.root.buildTree(this, ontology, terms);
         return this.root;
     }
 
@@ -250,9 +250,9 @@ public class Tree {
             return nodes;
         }
 
-        public void buildTree(Tree holder, Ontology ontology) {
+        public void buildTree(Tree holder, Ontology ontology, Map<String, Term> terms) {
             data.getIs_a().forEach(relation -> {
-                Term parentTerm = ontology.getTerms().get(relation.getTermId());
+                Term parentTerm = terms.get(relation.getTermId());
                 if (parentTerm == null) {
                     ontology.getDependencyTrees().forEach(tree -> {
                         ArrayList<Node> parentPosting = tree.getNode(relation.getTermId());
@@ -264,11 +264,11 @@ public class Tree {
                 }
                 else {
                     ArrayList<Node> parentPosting = holder.setParentNode(this.data, parentTerm);
-                    ontology.getTerms().remove(parentTerm.getId());
+                    terms.remove(parentTerm.getId());
 
                     for (Node node: parentPosting)
                         if (node.data.equals(parentTerm)) {
-                            node.buildTree(holder, ontology);
+                            node.buildTree(holder, ontology, terms);
                             break;
                         }
                 }

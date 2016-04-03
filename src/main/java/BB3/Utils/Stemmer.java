@@ -32,9 +32,7 @@
 
 */
 
-package Utils;
-
-import java.io.*;
+package BB3.Utils;
 
 /**
  * Stemmer, implementing the Porter Stemming Algorithm

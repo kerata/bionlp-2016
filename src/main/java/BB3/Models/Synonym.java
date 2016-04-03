@@ -1,4 +1,4 @@
-package Models;
+package BB3.Models;
 
 /**
  * Created by kerata on 28/02/16.

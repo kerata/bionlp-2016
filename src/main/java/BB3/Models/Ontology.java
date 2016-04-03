@@ -1,8 +1,9 @@
-package Models;
+package BB3.Models;
 
-import Utils.Tokenizer;
+import BB3.Utils.Tokenizer;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by kerata on 28/02/16.
@@ -73,9 +74,9 @@ public class Ontology {
 
         this.tfIdf = new HashMap<>();
         for(String termId : terms.keySet()){
-            List<Double> tfIdfValues = new ArrayList<>();
-            for(String v : vocabulary)
-                tfIdfValues.add((1 + Math.log10(termFreq.get(termId).getOrDefault(v, 1))) * Math.log10(vocabulary.size() / docFreq.get(v)));
+            List<Double> tfIdfValues = vocabulary.stream()
+                    .map(v -> (1 + Math.log10(termFreq.get(termId).getOrDefault(v, 1))) * Math.log10(vocabulary.size() / docFreq.get(v)))
+                    .collect(Collectors.toList());
             this.tfIdf.put(termId, tfIdfValues);
         }
         return this.tfIdf;
@@ -96,16 +97,19 @@ public class Ontology {
     }
 
     public Set<Term> getTermsForKeyword(String keyword) {
-        return invertedIndex.get(keyword);
+        return invertedIndex.getOrDefault(keyword, new HashSet<>());
     }
 
     public Ontology buildDependencyTrees() {
         dependencyTrees = new ArrayList<>();
+
+        Map<String, Term> terms = new HashMap<>();
+        this.terms.forEach((s, term) -> terms.put(s, new Term(term)));
         for (Iterator<Term> iterator = terms.values().iterator();iterator.hasNext();iterator = terms.values().iterator()) {
             Term term = iterator.next();
             iterator.remove();
             Tree tree = new Tree();
-            tree.constructFromLeaf(this, term);
+            tree.constructFromLeaf(this, terms, term);
 
             if (!tree.hasMerged())
                 dependencyTrees.add(tree);

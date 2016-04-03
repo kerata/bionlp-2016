@@ -1,18 +1,22 @@
-import Models.Document;
-import Models.Ontology;
-import Utils.*;
+package BB3;
+
+import BB3.Models.Document;
+import BB3.Models.Ontology;
+import BB3.Utils.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by kerata on 28/02/16.
  */
-public class Main {
+public class BB3Runner {
 
     public static String DATA_PATH = "src/main/resources/data";
     public static List<Document> documents;
@@ -20,8 +24,15 @@ public class Main {
     public static Ontology ontology;
 
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
-//        ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016.obo");
-//        ontology.buildDependencyTrees();
+        StanfordLemmatizer lemmatizer = new StanfordLemmatizer();
+        ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016.obo");
+//        ArrayList<Commons.Pair<String, Integer>> keywords = new ArrayList<>();
+//        ontology.invertedIndex
+//                .forEach((s, terms) -> keywords.add(new Commons.Pair<>(s, terms.size())));
+//        keywords.stream()
+//                .sorted(Comparator.comparing(pair -> pair.r))
+//                .forEach(pair -> System.out.println(pair.l + "_" + pair.r));
+        ontology.buildDependencyTrees();
 
         // Iterates over given files and constructs document objects.
         File[] listOfFiles = (new File(DATA_PATH)).listFiles();
@@ -34,7 +45,7 @@ public class Main {
 
             Document doc = new Document(file.getName().replace(".txt", ""),
                                             new String(Files.readAllBytes(Paths.get(file.getPath())), StandardCharsets.UTF_8));
-
+//            lemmatizer.lemmatize(doc.getText());
             // Extracts habitats from given files.
             // TODO the process is temporarily in main method.
             String NEFileName = file.getPath().replace(".txt", ".a1");
@@ -49,12 +60,12 @@ public class Main {
             for(List str : doc.getCategories().values())
                 cnt += str.size();
             documents.add(doc);
-
         }
 
         // Tags a document as an example and prints the tagged text line by line.
 //        documents.get(0).posTagger();
 //        documents.get(0).printTaggedDocument();
+//        System.out.println(documents.get(0).getText());
 
         // Parses the document as an example and prints parse tree.
 //        documents.get(0).printParseTree();
@@ -62,11 +73,14 @@ public class Main {
         // Prints habitats of a document.
 //        documents.get(0).printHabitats();
 
+        ontology.computeTfIdfValues();
+        StringBuilder sb = new StringBuilder();
         for (Document document: documents) {
             Commons.printBlack(document.getId());
-            Categorizer.init().categorizeDocument(document);
+            sb.append(Categorizer.init().categorizeDocument(document));
             Commons.printBlack("");
         }
+        Commons.printToFile(null, "FalsePositives.txt", sb.toString());
         double precision = 1.0 * Commons.TP / (Commons.TP + Commons.FP), recall = 1.0 * Commons.TP / (Commons.TP + Commons.FN);
 
         Commons.printBlack("True Positive : " + Commons.TP);
@@ -76,7 +90,5 @@ public class Main {
         Commons.printBlack("Recall : " + recall);
         Commons.printBlack("Total category : " + cnt);
         Commons.printBlack("Trial : " + Commons.trial);
-
-
     }
 }

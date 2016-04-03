@@ -1,4 +1,4 @@
-package Models;
+package BB3.Models;
 
 /**
  * Created by hakansahin on 21/03/16.
@@ -28,5 +28,10 @@ public class Relation {
 
     public void setTermName(String termName) {
         this.termName = termName;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("rId: %s", termId);
     }
 }

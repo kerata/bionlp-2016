@@ -1,4 +1,4 @@
-package Models;
+package BB3.Models;
 
 import java.util.ArrayList;
 
@@ -19,6 +19,13 @@ public class Term {
         this.name = name;
         synonyms = new ArrayList<>();
         is_a = new ArrayList<>();
+    }
+
+    public Term(Term other) {
+        this.id = other.id;
+        this.name = other.name;
+        synonyms = other.getSynonyms();
+        is_a = other.getIs_a();
     }
 
     public String getId() {
@@ -65,9 +72,14 @@ public class Term {
     public boolean equals(Object obj) {
         if (obj instanceof Term) {
             Term other = (Term) obj;
-            return this.id.equals(other.id) && this.name.equals(other.name);
+            return this.id.equals(other.id);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
     @Override

@@ -1,9 +1,11 @@
-package Utils;
+package BB3.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by hakansahin on 14/03/16.
@@ -33,17 +35,38 @@ public class Commons {
         System.out.println(ANSI_BLUE + text + ANSI_BLUE);
     }
 
-    public static void printToFile(String path, String fileName, String... texts){
-        PrintWriter writer = null;
+    public static void printToFile(String path, String fileName, String... texts) {
         try {
             File file = new File("src/main/resources/output/" + path);
             if(!file.exists()) file.mkdirs();
-            writer = new PrintWriter(file.getAbsoluteFile() + "/" + fileName, "UTF-8");
+            PrintWriter writer = new PrintWriter(file.getAbsoluteFile() + "/" + fileName, "UTF-8");
             for(String text : texts) writer.println(text);
             writer.close();
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public static Map<String, Integer> buildInvertedIndex(String text) {
+        Map<String, Integer> invertedIndex = new HashMap<>();
+        for(String token : Tokenizer.tokenizeText(text))
+            invertedIndex.put(token, invertedIndex.getOrDefault(token, 0) + 1);
+        return invertedIndex;
+    }
+
+    public static class Pair<L, R> {
+        public L l;
+        public R r;
+
+        public Pair(L l, R r) {
+            this.l = l;
+            this.r = r;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return l.equals(((Pair) obj).l);
+        }
     }
 }

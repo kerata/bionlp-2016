@@ -1,4 +1,4 @@
-package Utils;
+package BB3.Utils;
 
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
