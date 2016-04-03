@@ -39,7 +39,9 @@ public class Synonym {
 
     @Override
     public String toString() {
-        return String.format("detail: %s; type: %s", detail,
-                type != null ? type.toString() : "UNKNOWN");
+//        return String.format("detail: %s; type: %s", detail,
+//                type != null ? type.toString() : "UNKNOWN");
+
+        return String.format("\"%s\" %s []", detail, type != null ? type.toString() : "UNKNOWN");
     }
 }

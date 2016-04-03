@@ -115,6 +115,23 @@ public class Ontology {
 
     @Override
     public String toString() {
-        return String.format("terms: %s\n\ninvertedIndex: %s", terms.toString(), invertedIndex.toString());
+//        return String.format("terms: %s\n\ninvertedIndex: %s", terms.toString(), invertedIndex.toString());
+
+        StringBuilder sum = new StringBuilder();
+        for(Term term : terms.values()) {
+            sum.append("[Term]\n")
+                    .append(String.format("id: %s\n", term.getId()))
+                    .append(String.format("name: %s\n", term.getName()));
+
+            for(Synonym synonym : term.getSynonyms())
+                sum.append(String.format("synonym: %s\n", synonym.toString()));
+
+            for(Relation is_a : term.getIs_a())
+                sum.append(String.format("is_a: %s\n", is_a.toString()));
+
+            sum.append("\n");
+        }
+
+        return sum.toString();
     }
 }

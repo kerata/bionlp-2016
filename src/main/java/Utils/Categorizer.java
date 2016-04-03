@@ -14,7 +14,7 @@ public class Categorizer {
     private static Categorizer me;
     private Ontology ontology;
     public Categorizer(){
-        this.ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016.obo");
+        this.ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016_ext.obo");
         this.ontology.computeTfIdfValues();
     }
 
@@ -34,7 +34,7 @@ public class Categorizer {
         return a / (Math.sqrt(b) * Math.sqrt(c));
     }
 
-    public Set<Term> categorize(Map<String,Double> sortedTerms, String habitat){
+    public Set<Term> categorize(Map<String,Double> sortedTerms, String habitat, List<String> catIdList){
 
         Set<Term> termList = new HashSet<>();
         for(String token : Tokenizer.tokenizeText(habitat)){
@@ -49,16 +49,29 @@ public class Categorizer {
                 test.put(entry.getKey(), entry.getValue());
         }
 
-        Map<String,Double> result = new LinkedHashMap<>();
+        List<String> result = new ArrayList<>();
         test.entrySet().stream().sorted(Comparator.comparing(e -> e.getValue(), Comparator.reverseOrder()))
-                .forEachOrdered(e ->result.put(e.getKey(),e.getValue()));
+                .forEachOrdered(e ->result.add(e.getKey()));
 
-/*
-        List<Double> index = new ArrayList<>();
-        for(Term term : termList)
-            index.add(res.get(term.getId()));*/
+        List<Integer> index = new ArrayList<>();
+        for(String catId : catIdList)
+                index.add(result.indexOf(catId));
 
-        return termList;
+        if(result.isEmpty()) return new HashSet<>();
+
+        double max = test.get(result.get(0));
+        Set<Term> finalRes = new HashSet<>();
+        for(String res : result){
+            if(test.get(res) == max)
+                finalRes.add(this.ontology.getTerms().get(res));
+            return finalRes;
+        }
+
+//        List<Double> index = new ArrayList<>();
+//        for(Term term : termList)
+//            index.add(result.get(term.getId()));
+
+        return finalRes;
     }
 
     // Computes cosine similarity between Terms and Doc.
@@ -83,13 +96,54 @@ public class Categorizer {
 
     public void categorizeDocument(Document doc){
 
+        Commons.N = 0;
+        String a2Result = "";
         Map<String, Double> sortedTerms = sortTerms(doc.buildInvertedIndex());
         for(Habitat habitat : doc.getHabitats()){
 
-            Set<Term> possibleCategories = categorize(sortedTerms, habitat.getEntity());
+//            Commons.printBlack(habitat.getType());
+            if(habitat.getType().equals("Bacteria")){
+                Commons.N++;
+                a2Result += (new StringBuilder())
+                        .append(String.format("N%d\tNCBI_Taxonomy ", Commons.N))
+                        .append(String.format("Annotation:%s ",habitat.getId()))
+                        .append("Referent:2104\n")
+                        .toString();
+                continue;
+            }
 
-            String message = habitat.getId() + " " + habitat.getEntity();
             List<String> categoryIdList = doc.getCategories().get(habitat.getId());
+            Set<Term> possibleCategories = categorize(sortedTerms, habitat.getEntity(), categoryIdList);
+
+            // prints categories to a2 files.
+            for(Term term : possibleCategories){
+                Commons.N++;
+                a2Result += (new StringBuilder())
+                                .append(String.format("N%d\tOntoBiotope ", Commons.N))
+                                .append(String.format("Annotation:%s ",habitat.getId()))
+                                .append(String.format("Referent:%s\n",term.getId()))
+                                .toString();
+            }
+
+            if(possibleCategories.isEmpty()){
+                Commons.N++;
+                a2Result += (new StringBuilder())
+                        .append(String.format("N%d\tOntoBiotope ", Commons.N))
+                        .append(String.format("Annotation:%s ",habitat.getId()))
+                        .append("Referent:OBT:000000\n")
+                        .toString();
+            }
+
+/*
+            String message = habitat.getId() + " " + habitat.getEntity();
+
+
+
+//            for(String categoryId : categoryIdList){
+////                Utils.Commons.printBlack(habitat.getEntity());
+//                this.ontology.getTerms().get(categoryId).addSynonym(new Synonym(Synonym.Type.RELATED, habitat.getEntity()));
+////                Utils.Commons.printBlack(this.ontology.getTerms().get(categoryId).getSynonyms().toString());
+//            }
 
             // If there is no possible category, means any categories belong to current habitat is not found, then they added to 'False Negatives'.
             if(possibleCategories.isEmpty()){
@@ -107,25 +161,31 @@ public class Categorizer {
                     found++;
 
                 }
-//                else {
-//                    Commons.FP++;
-//                    Commons.printRed(message + " : " + possibleCategories.toString());
-//                }
+                else {
+                    Commons.FP++;
+                    Commons.printRed(message + " : " + possibleCategories.toString());
+                }
             }
             // Number of found categories added to 'True Positives'.
             Commons.TP += found;
-            if(found != 0) Commons.trial += possibleCategories.size();
+            Commons.trial += possibleCategories.size();
             // If any possible category is not found in categoryIdList than it marks as 'False Positive'.
-            if(found == 0){
-                Commons.FP++;
-                Commons.printRed(message + " : " + possibleCategories.toString());
-            }
+//            if(found == 0){
+//                Commons.FP++;
+//                Commons.printRed(message + " : " + possibleCategories.toString());
+//            }
 
             // Number of remaining categories added to 'False Negatives'.
             Commons.FN += (categoryIdList.size());
             for(String catID : categoryIdList)
-                Commons.printYellow(message + " : " + catID);
+                Commons.printYellow(message + " : " + catID);*/
         }
+
+        if(!a2Result.equals("")) Commons.printToFile("result",doc.getId() + ".a2", a2Result);
+    }
+
+    public void printOntology(){
+        Commons.printBlack(this.ontology.toString());
     }
 
     public Map<String, List<String> > splitCategories(String text){

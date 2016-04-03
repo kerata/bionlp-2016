@@ -29,4 +29,9 @@ public class Relation {
     public void setTermName(String termName) {
         this.termName = termName;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s ! %s", termId, termName);
+    }
 }

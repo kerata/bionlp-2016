@@ -15,7 +15,7 @@ public class Commons {
     private static final String ANSI_YELLOW = "\u001B[33m";
     private static final String ANSI_BLUE = "\u001B[34m";
 
-    public static int TP = 0, FP = 0, FN = 0, trial = 0;
+    public static int TP = 0, FP = 0, FN = 0, trial = 0, N = 0;
 
     public static void printBlack(String text){
         System.out.println(ANSI_BLACK + text + ANSI_BLACK);

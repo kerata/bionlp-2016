@@ -37,8 +37,8 @@ public class NERecognizer {
                     end     = m.group(4),
                     entity  = m.group(5);
 
-            if(type.equals("Habitat"))
-                habitatList.add(new Habitat(id, start, end, entity));
+            if(type.equals("Habitat") || type.equals("Bacteria"))
+                habitatList.add(new Habitat(id, start, end, entity,type));
         }
 
         return habitatList;
