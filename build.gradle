@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -12,4 +12,5 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile files('libs/stanford-postagger.jar', 'libs/slf4j-api.jar', 'libs/slf4j-simple.jar', 'libs/stanford-parser.jar')
+    compile files('libs/stanford-corenlp-3.6.0.jar', 'libs/stanford-corenlp-3.6.0-models.jar')
 }
