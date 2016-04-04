@@ -40,8 +40,8 @@ public class Ontology {
         for (Synonym synonym: term.getSynonyms())
             tokens.addAll(Tokenizer.tokenizeText(synonym.getDetail()));
 
-        for (Relation relation : term.getIs_a())
-            tokens.addAll(Tokenizer.tokenizeText(relation.getTermName()));
+//        for (Relation relation : term.getIs_a())
+//            tokens.addAll(Tokenizer.tokenizeText(relation.getTermName()));
 
         for (String token: tokens) {
             Set<Term> posting = invertedIndex.get(token);

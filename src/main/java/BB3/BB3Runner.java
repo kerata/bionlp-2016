@@ -18,14 +18,14 @@ import java.util.Map;
  */
 public class BB3Runner {
 
-    public static String DATA_PATH = "src/main/resources/data";
+    public static String DATA_PATH = "src/main/resources/dev-data";
     public static List<Document> documents;
 
     public static Ontology ontology;
 
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
-        StanfordLemmatizer lemmatizer = new StanfordLemmatizer();
-        ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016_dev_ext.obo");
+//        StanfordLemmatizer lemmatizer = new StanfordLemmatizer();
+        ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016_ext.obo");
 //        ArrayList<Commons.Pair<String, Integer>> keywords = new ArrayList<>();
 //        ontology.invertedIndex
 //                .forEach((s, terms) -> keywords.add(new Commons.Pair<>(s, terms.size())));
@@ -33,6 +33,7 @@ public class BB3Runner {
 //                .sorted(Comparator.comparing(pair -> pair.r))
 //                .forEach(pair -> System.out.println(pair.l + "_" + pair.r));
         ontology.buildDependencyTrees();
+//        Commons.printToFile("onto", "ontology.txt", ontology.getDependencyTrees().get(0).toString());
 
         // Iterates over given files and constructs document objects.
         File[] listOfFiles = (new File(DATA_PATH)).listFiles();
@@ -52,7 +53,7 @@ public class BB3Runner {
             doc.setHabitatList(NERecognizer.init().getHabitats(
                                             new String(Files.readAllBytes(Paths.get(NEFileName)), StandardCharsets.UTF_8)));
 
-            // Extracts categories from given files.
+//             Extracts categories from given files.
             String CATFileName = file.getPath().replace(".txt", ".a2");
             doc.setCategories(Categorizer.init().splitCategories(
                                             new String(Files.readAllBytes(Paths.get(CATFileName)), StandardCharsets.UTF_8)));
@@ -80,7 +81,7 @@ public class BB3Runner {
             sb.append(Categorizer.init().categorizeDocument(document));
             Commons.printBlack("");
         }
-        Commons.printToFile(null, "FalsePositives.txt", sb.toString());
+        Commons.printToFile("stats", "FalsePositives.txt", sb.toString());
         double precision = 1.0 * Commons.TP / (Commons.TP + Commons.FP), recall = 1.0 * Commons.TP / (Commons.TP + Commons.FN);
 
         Commons.printBlack("True Positive : " + Commons.TP);

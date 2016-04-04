@@ -39,7 +39,55 @@ public class Categorizer {
     public ArrayList<Term> categorize(ArrayList<Commons.Pair<Term, Double>> sortedTerms, String habitat) {
         Set<Term> termList = new HashSet<>();
         Tree ontologyTree = BB3Runner.ontology.getDependencyTrees().get(0);
-        for(String token : Tokenizer.tokenizeText(habitat)) {
+
+        // Tries exact matching
+        List<String> tokens = Tokenizer.tokenizeText(habitat);
+        StringBuilder tokenizedSB = new StringBuilder();
+        tokens.forEach(token -> tokenizedSB.append(token + " "));
+        String tokenizedText = tokenizedSB.toString();
+
+        for(String token : tokens) {
+            termLoop:
+            for (Term term : BB3Runner.ontology.getTermsForKeyword(token.toLowerCase())) {
+
+                StringBuilder termText = new StringBuilder();
+                Tokenizer.tokenizeText(term.getName()).forEach(t -> termText.append(String.format("%s ", t)));
+                if (termText.toString().equals(tokenizedText)) {
+                    termList.add(term);
+                    continue;
+                }
+
+                for (Synonym synonym : term.getSynonyms()) {
+                    StringBuilder synonymText = new StringBuilder();
+                    Tokenizer.tokenizeText(synonym.getDetail()).forEach(t -> synonymText.append(String.format("%s ", t)));
+                    if (synonymText.toString().equals(tokenizedText)) {
+                        termList.add(term);
+                        continue termLoop;
+                    }
+                }
+
+                //            StringBuilder relationText = new StringBuilder();
+                //            for(Relation relation : term.getIs_a())
+                //                Tokenizer.tokenizeText(relation.getTermName()).forEach(t -> relationText.append(String.format("%s ", t)));
+                //            if(relationText.toString().equals(tokenizedText)){
+                //                termList.add(term);
+                //                continue;
+                //            }
+            }
+        }
+
+        if(!termList.isEmpty()){
+//            termList.forEach(term -> Commons.printBlue("EXACT: " + term.getName()));
+//            ArrayList<Term> result = new ArrayList<>();
+//            sortedTerms.stream()
+//                    .filter(pair -> termList.contains(pair.l))
+//                    .forEach(pair -> {  result.add(pair.l);
+//                                        Commons.printBlue("EXACT: " + pair.l.getName());
+//                    });
+            return new ArrayList<>(termList);
+        }
+
+        for(String token : tokens) {
             BB3Runner.ontology.getTermsForKeyword(token.toLowerCase())
                     .forEach(term -> {
                         termList.add(term);
@@ -83,7 +131,7 @@ public class Categorizer {
 
     public StringBuilder categorizeDocument(Document doc) {
 
-        int maxTrialCount = 1;
+        int maxTrialCount = 2;
         Commons.N = 0;
         String a2Result = "";
         StringBuilder sb = new StringBuilder();
@@ -132,7 +180,7 @@ public class Categorizer {
 
             for(int i = 0;i < sortedTerms.size();i++)
                 if (sortedTerms.get(i).l.getId().equals(categoryIdList.get(0))) {
-                    Commons.printBlack(message + " <===> " + i);
+//                    Commons.printBlack(message + " <===> " + i);
                     break;
                 }
 
@@ -161,7 +209,7 @@ public class Categorizer {
             // Number of found categories added to 'True Positives'.
             Commons.TP += found;
             Commons.trial += trialCount;
-            if(found == 0)  {
+            if(categoryIdList.size() > found )  {
                 sb.append(doc.getId()).append(", ").append(String.format("%s", habitat.getEntity())).append("\n")
                         .append(String.format("%-30s", possibleCategories.stream().findFirst().get().getName())).append("/")
                         .append(String.format("%-30s", BB3Runner.ontology.getTerms().get(categoryIdList.get(0)).getName())).append("\n");
@@ -181,7 +229,7 @@ public class Categorizer {
         }
 
         // Prints a2 results to file.
-//        Commons.printToFile("result",doc.getId() + ".a2", a2Result);
+        Commons.printToFile("result",doc.getId() + ".a2", a2Result);
 
         return sb;
     }
