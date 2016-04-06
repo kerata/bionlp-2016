@@ -1,5 +1,6 @@
 package BB3.Models;
 
+import BB3.Utils.Commons;
 import BB3.Utils.Tokenizer;
 
 import java.util.*;
@@ -12,7 +13,7 @@ public class Ontology {
 
     private ArrayList<Tree> dependencyTrees;
     private Map<String, Term> terms;
-    private Map<String, Set<Term>> invertedIndex;
+    private Map<String, List<Term>> invertedIndex;
 
     public Set<String> vocabulary;
     public Map<String, Integer> docFreq;
@@ -36,35 +37,47 @@ public class Ontology {
     }
 
     public void addTerm(Term term) {
-        List<String> tokens = Tokenizer.tokenizeText(term.getName());
-        for (Synonym synonym: term.getSynonyms())
-            tokens.addAll(Tokenizer.tokenizeText(synonym.getDetail()));
+        List<String> relatedTokens = new ArrayList<>();
+        List<String> exactTokens = Tokenizer.tokenizeText(term.getName());
+        exactTokens.addAll(Commons.expandWithNGram(exactTokens, 2));
+        for (Synonym synonym: term.getSynonyms()) {
+            List<String> synonymTokens = Tokenizer.tokenizeText(synonym.getDetail());
+            synonymTokens.addAll(Commons.expandWithNGram(synonymTokens, 2));
+            (synonym.getType() == Synonym.Type.EXACT ? exactTokens : relatedTokens)
+                    .addAll(synonymTokens);
+        }
 
 //        for (Relation relation : term.getIs_a())
 //            tokens.addAll(Tokenizer.tokenizeText(relation.getTermName()));
 
-        for (String token: tokens) {
-            Set<Term> posting = invertedIndex.get(token);
-            if (posting != null) {
-                posting.add(term);
-            }
-            else {
-                posting = new HashSet<>();
-                posting.add(term);
-                invertedIndex.put(token, posting);
-            }
+        for (int i = 0;i < 2;i++) {
+            List<String> tokens = i == 0 ? exactTokens : relatedTokens;
+            Term weighedTerm = new Term(term);
+            weighedTerm.weight = i == 0 ? 1 : 0.5f;
+            for (String token: tokens) {
+                List<Term> posting = invertedIndex.get(token);
+                if (posting != null) {
+                    Term lastTerm = posting.get(posting.size() - 1);
+                    if (!lastTerm.equals(weighedTerm) || lastTerm.weight != weighedTerm.weight)
+                        posting.add(weighedTerm);
+                }
+                else {
+                    posting = new ArrayList<>();
+                    posting.add(weighedTerm);
+                    invertedIndex.put(token, posting);
+                }
 
-            // Will be used in order to compute tf-idf values.
-            vocabulary.add(token);
-            termFreq.putIfAbsent(term.getId(), new HashMap<>());
-            if(termFreq.get(term.getId()).containsKey(token))
-                termFreq.get(term.getId()).put(token, termFreq.get(term.getId()).get(token) + 1);
-            else{
-                docFreq.put(token, docFreq.getOrDefault(token, 0) + 1);
-                termFreq.get(term.getId()).put(token, 1);
+                // Will be used in order to compute tf-idf values.
+                vocabulary.add(token);
+                termFreq.putIfAbsent(term.getId(), new HashMap<>());
+                if(termFreq.get(term.getId()).containsKey(token))
+                    termFreq.get(term.getId()).put(token, termFreq.get(term.getId()).get(token) + 1);
+                else{
+                    docFreq.put(token, docFreq.getOrDefault(token, 0) + 1);
+                    termFreq.get(term.getId()).put(token, 1);
+                }
             }
         }
-
         terms.put(term.getId(), term);
     }
 
@@ -96,8 +109,8 @@ public class Ontology {
         return result;
     }
 
-    public Set<Term> getTermsForKeyword(String keyword) {
-        return invertedIndex.getOrDefault(keyword, new HashSet<>());
+    public List<Term> getTermsForKeyword(String keyword) {
+        return invertedIndex.getOrDefault(keyword, Collections.emptyList());
     }
 
     public Ontology buildDependencyTrees() {
@@ -119,8 +132,6 @@ public class Ontology {
 
     @Override
     public String toString() {
-//        return String.format("terms: %s\n\ninvertedIndex: %s", terms.toString(), invertedIndex.toString());
-
         StringBuilder sum = new StringBuilder();
         for(Term term : terms.values()) {
             sum.append("[Term]\n")

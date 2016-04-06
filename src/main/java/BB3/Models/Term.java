@@ -12,6 +12,8 @@ public class Term {
     private ArrayList<Synonym> synonyms;
     private ArrayList<Relation> is_a;
 
+    public float weight = -1;
+
     public Term() {}
 
     public Term(String id, String name) {

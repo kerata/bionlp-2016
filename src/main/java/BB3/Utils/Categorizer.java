@@ -32,7 +32,7 @@ public class Categorizer {
         // Tries exact matching
         List<String> tokens = Tokenizer.tokenizeText(habitat);
         StringBuilder tokenizedSB = new StringBuilder();
-        tokens.forEach(token -> tokenizedSB.append(token + " "));
+        tokens.forEach(token -> tokenizedSB.append(token).append(" "));
         String tokenizedText = tokenizedSB.toString();
 
         for(String token : tokens) {
@@ -71,9 +71,7 @@ public class Categorizer {
 
         for(String token : tokens) {
             BB3Runner.ontology.getTermsForKeyword(token.toLowerCase())
-                    .forEach(term -> {
-                        termList.add(term);
-                    });
+                    .forEach(termList::add);
         }
 
         ArrayList<Term> result = new ArrayList<>();
