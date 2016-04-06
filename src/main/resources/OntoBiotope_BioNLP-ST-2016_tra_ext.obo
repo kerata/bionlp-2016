@@ -138,6 +138,7 @@ is_a: OBT:000038 ! extreme environment
 [Term]
 id: OBT:002316
 name: neonatal patient
+synonym: "neonates" RELATED []
 is_a: OBT:002133 ! patient
 is_a: OBT:002293 ! newborn infant
 
@@ -205,6 +206,8 @@ is_a: OBT:000049 ! terrestrial habitat
 id: OBT:002312
 name: cow
 synonym: "cows" EXACT []
+synonym: "healthy cows" RELATED []
+synonym: "severely diseased animals" RELATED []
 is_a: OBT:000724 ! female animal
 is_a: OBT:002304 ! bovine
 
@@ -222,11 +225,14 @@ is_a: OBT:000038 ! extreme environment
 id: OBT:002311
 name: patient with HIV
 synonym: "HIV patient" EXACT []
-synonym: "HIV-positive men who have sex with men" RELATED []
-synonym: "MSM attending sexually transmitted infection clinics" RELATED []
-synonym: "HIV-infected patients presenting with isolated perianal ulcer disease" RELATED []
-synonym: "MSM with proctitis" RELATED []
-synonym: "MSM with perianal ulcer disease" RELATED []
+synonym: "patient with AIDS" RELATED []
+synonym: "human immunodeficiency virus-infected outpatients" RELATED []
+synonym: "persons infected with human immunodeficiency virus" RELATED []
+synonym: "asymptomatic subjects" RELATED []
+synonym: "Subjects with hypoacidity" RELATED []
+synonym: "subjects without hypoacidity" RELATED []
+synonym: "HIV-positive Hispanic populations" RELATED []
+synonym: "HIV-positive black populations" RELATED []
 is_a: OBT:002148 ! immunodeficient person
 is_a: OBT:002187 ! patient with disease
 
@@ -243,6 +249,7 @@ is_a: OBT:000038 ! extreme environment
 [Term]
 id: OBT:002310
 name: elderly patient
+synonym: "patients" RELATED []
 is_a: OBT:002133 ! patient
 is_a: OBT:002185 ! adult human
 
@@ -288,9 +295,21 @@ is_a: OBT:000724 ! female animal
 [Term]
 id: OBT:002307
 name: pediatric patient
-synonym: "young Japanese gastric cancer patients" RELATED []
-synonym: "Children attending the hospitals" RELATED []
 synonym: "children" RELATED []
+synonym: "children with digestive system symptoms" RELATED []
+synonym: "patients" RELATED []
+synonym: "pediatric" RELATED []
+synonym: "children less than 2 years of age" RELATED []
+synonym: "children greater than 9 years of age who had lower respiratory illness" RELATED []
+synonym: "Males" RELATED []
+synonym: "females" RELATED []
+synonym: "males" RELATED []
+synonym: "patients with WARI" RELATED []
+synonym: "Patient" RELATED []
+synonym: "children under 5 years of age" RELATED []
+synonym: "school age children with wheezing illness" RELATED []
+synonym: "day-care center attendees" RELATED []
+synonym: "surgical patients" RELATED []
 is_a: OBT:002133 ! patient
 is_a: OBT:002146 ! child
 
@@ -324,6 +343,7 @@ is_a: OBT:000962 ! stem vegetable
 id: OBT:000126
 name: urogenital tract part
 synonym: "genitourinary system part" RELATED []
+synonym: "pelvic dead space" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -354,11 +374,14 @@ is_a: OBT:000962 ! stem vegetable
 [Term]
 id: OBT:000124
 name: respiratory tract part
+synonym: "airways of CF patients" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
 id: OBT:002303
 name: marine farm fish
+synonym: "diseased Japanese flounder cultured in a local farm" RELATED []
+synonym: "Japanese flounder" RELATED []
 is_a: OBT:001934 ! farmed fish
 is_a: OBT:002160 ! marine fish
 
@@ -503,6 +526,7 @@ is_a: OBT:001322 ! aromatic product
 [Term]
 id: OBT:000113
 name: house
+synonym: "household" RELATED []
 is_a: OBT:000042 ! constructed habitat
 
 [Term]
@@ -519,6 +543,7 @@ is_a: OBT:001322 ! aromatic product
 id: OBT:000114
 name: city
 synonym: "urban area" EXACT []
+synonym: "outskirts of the city of Cagliari" RELATED []
 is_a: OBT:000042 ! constructed habitat
 
 [Term]
@@ -617,9 +642,6 @@ is_a: OBT:001119 ! fruit tree
 [Term]
 id: OBT:000106
 name: free-living microorganism
-synonym: "Penicillium crustosum" RELATED []
-synonym: "Penicillium brevicompactum" RELATED []
-synonym: "P. crustosum" RELATED []
 is_a: OBT:000020 ! microorganism
 
 [Term]
@@ -687,7 +709,8 @@ is_a: OBT:000950 ! leafy vegetable
 id: OBT:000103
 name: body fluid
 synonym: "bodily fluid" EXACT []
-synonym: "water content of the stools" RELATED []
+synonym: "exudates of the pelvic dead space" RELATED []
+synonym: "body fluids" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -738,14 +761,13 @@ is_a: OBT:000950 ! leafy vegetable
 [Term]
 id: OBT:000583
 name: welfare center
+synonym: "day care center" RELATED []
+synonym: "day-care center" RELATED []
 is_a: OBT:000242 ! public building
 
 [Term]
 id: OBT:000580
 name: innate immune system
-synonym: "human innate immune system" RELATED []
-synonym: "innate immune" RELATED []
-synonym: "human innate immune" RELATED []
 is_a: OBT:000232 ! immune system
 
 [Term]
@@ -786,7 +808,6 @@ is_a: OBT:000950 ! leafy vegetable
 [Term]
 id: OBT:000577
 name: placenta
-synonym: "placenta of a 38-year-old secondary recurrent aborter" RELATED []
 is_a: OBT:000126 ! urogenital tract part
 
 [Term]
@@ -797,7 +818,6 @@ is_a: OBT:000950 ! leafy vegetable
 [Term]
 id: OBT:000578
 name: spoiled food
-synonym: "spoiled cold-smoked salmon" RELATED []
 is_a: OBT:000208 ! prepared food
 
 [Term]
@@ -813,7 +833,11 @@ is_a: OBT:000230 ! vertebrate part
 [Term]
 id: OBT:001423
 name: medical center
-synonym: "cystic fibrosis (CF) units" RELATED []
+synonym: "skilled nursing facility" RELATED []
+synonym: "SNF" RELATED []
+synonym: "community SNF" RELATED []
+synonym: "hematology ward" RELATED []
+synonym: "hematological ward" RELATED []
 is_a: OBT:000009 ! medical environment
 is_a: OBT:000583 ! welfare center
 
@@ -845,15 +869,11 @@ is_a: OBT:000239 ! nervous system part
 [Term]
 id: OBT:000571
 name: blood serum
-synonym: "animal sera" RELATED []
-synonym: "human sera" RELATED []
-synonym: "opossum sera" RELATED []
-synonym: "dog sera" RELATED []
-synonym: "horse sera" RELATED []
-synonym: "sera" RELATED []
-synonym: "sera from patients with different clinical spectra and with other infections" RELATED []
-synonym: "sera from patients with melioidosis" RELATED []
-synonym: "hyperimmune mouse sera" RELATED []
+synonym: "host serum" RELATED []
+synonym: "Serum samples of these patients" RELATED []
+synonym: "serum" RELATED []
+synonym: "polyclonal rabbit serum" RELATED []
+synonym: "rabbit serum" RELATED []
 is_a: OBT:000103 ! body fluid
 
 [Term]
@@ -919,6 +939,7 @@ is_a: OBT:001822 ! cultivated plant
 [Term]
 id: OBT:000566
 name: nerve
+synonym: "peripheral nerves" RELATED []
 is_a: OBT:000239 ! nervous system part
 
 [Term]
@@ -951,6 +972,7 @@ is_a: OBT:001777 ! aquatic plant
 [Term]
 id: OBT:000564
 name: cornea
+synonym: "corneal" RELATED []
 is_a: OBT:000127 ! eye part
 
 [Term]
@@ -966,6 +988,15 @@ is_a: OBT:001834 ! skin lesion
 [Term]
 id: OBT:000565
 name: glial cell
+synonym: "Schwann cells" RELATED []
+synonym: "glial cells of the PNS" RELATED []
+synonym: "Schwann cell" RELATED []
+synonym: "Schwann cells of the adult PNS" RELATED []
+synonym: "myelinated Schwann cells" RELATED []
+synonym: "myelin-free cells" RELATED []
+synonym: "cell" RELATED []
+synonym: "infected cells" RELATED []
+synonym: "adult Schwann cells" RELATED []
 is_a: OBT:000239 ! nervous system part
 
 [Term]
@@ -978,13 +1009,13 @@ synonym: "enteric" RELATED []
 synonym: "intestinal environment" RELATED []
 synonym: "gut" RELATED []
 synonym: "enteroinvasive" RELATED []
-synonym: "intestinal environment of healthy individuals with soft stools" RELATED []
 is_a: OBT:000096 ! organ
 is_a: OBT:000543 ! gastrointestinal tract part
 
 [Term]
 id: OBT:000562
 name: jail
+synonym: "correctional facilities" RELATED []
 is_a: OBT:000242 ! public building
 
 [Term]
@@ -997,18 +1028,15 @@ id: OBT:001894
 name: healthy person
 synonym: "healthy individual" RELATED []
 synonym: "healthy human" RELATED []
-synonym: "H. pylori-negative subjects" RELATED []
-synonym: "healthy carriers" RELATED []
-synonym: "age-matched healthy controls" RELATED []
-synonym: "healthy individuals with soft stools" RELATED []
-synonym: "healthy adults" RELATED []
-synonym: "healthy individuals with soft stool" RELATED []
+synonym: "healthy children" RELATED []
+synonym: "colonized children" RELATED []
 is_a: OBT:001804 ! human
 
 [Term]
 id: OBT:000563
 name: animal with disease
-synonym: "H. pylori-infected monkeys" RELATED []
+synonym: "diseased Japanese flounder cultured in a local farm" RELATED []
+synonym: "severely diseased animals" RELATED []
 is_a: OBT:000218 ! animal
 
 [Term]
@@ -1202,17 +1230,25 @@ is_a: OBT:001815 ! beer wort
 [Term]
 id: OBT:000548
 name: lymph node
+synonym: "mesenteric lymph nodes" RELATED []
 is_a: OBT:000194 ! lymphatic system part
 
 [Term]
 id: OBT:000549
 name: phagocyte
+synonym: "professional phagocytes" RELATED []
+synonym: "professional phagocytes in Peyer's patches" RELATED []
+synonym: "cells with translocated Yops" RELATED []
+synonym: "cells" RELATED []
+synonym: "phagocytes" RELATED []
+synonym: "cell" RELATED []
 is_a: OBT:000224 ! immune cell
 
 [Term]
 id: OBT:001877
 name: root
 synonym: "root system" RELATED []
+synonym: "hairy-root" RELATED []
 is_a: OBT:000149 ! rhizosphere part
 is_a: OBT:000518 ! plant organ
 
@@ -1432,6 +1468,7 @@ is_a: OBT:000647 ! milk and milk product
 id: OBT:000198
 name: animal tissue
 synonym: "host tissues" RELATED []
+synonym: "genital tissues" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -1472,10 +1509,7 @@ is_a: OBT:000874 ! insect
 [Term]
 id: OBT:000194
 name: lymphatic system part
-synonym: "gastric mucosal-associated lymphoid tissue" RELATED []
-synonym: "MALT" RELATED []
-synonym: "gastric MALT" RELATED []
-synonym: "Lymphoepithelial" RELATED []
+synonym: "Peyer's patches" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -1787,6 +1821,7 @@ id: OBT:000164
 name: respiratory tract
 synonym: "respiratory tree" RELATED []
 synonym: "respiratory" RELATED []
+synonym: "Respiratory" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -1814,6 +1849,8 @@ is_a: OBT:001084 ! mudflat
 [Term]
 id: OBT:000162
 name: plant part
+synonym: "plant cell" RELATED []
+synonym: "aerial parts of the plant Artemisia annua" RELATED []
 is_a: OBT:000041 ! plant habitat
 
 [Term]
@@ -1973,11 +2010,15 @@ is_a: OBT:001333 ! mucosal surface
 [Term]
 id: OBT:000154
 name: fungi
+synonym: "Candida" RELATED []
 is_a: OBT:000036 ! eukaryote host
 
 [Term]
 id: OBT:001482
 name: poultry meat
+synonym: "poultry" RELATED []
+synonym: "UK retail poultry" RELATED []
+synonym: "retail poultry" RELATED []
 is_a: OBT:001302 ! bird meat
 
 [Term]
@@ -2028,11 +2069,6 @@ is_a: OBT:000719 ! coral
 [Term]
 id: OBT:000937
 name: tick
-synonym: "ticks" RELATED []
-synonym: "Amblyomma aureolatum" RELATED []
-synonym: "Amblyomma cajennense" RELATED []
-synonym: "Amblyomma dubitatum" RELATED []
-synonym: "Ixodes loricatus" RELATED []
 is_a: OBT:000887 ! arachnid
 
 [Term]
@@ -2043,6 +2079,10 @@ is_a: OBT:000817 ! dead tissue
 [Term]
 id: OBT:000935
 name: duodenal ulcer
+synonym: "duodenal ulcers" RELATED []
+synonym: "gastroduodenal ulcers" RELATED []
+synonym: "chronic duodenal ulcers" RELATED []
+synonym: "ulcers" RELATED []
 synonym: "ulcer" RELATED []
 is_a: OBT:000596 ! peptic ulcer
 
@@ -2099,6 +2139,7 @@ is_a: OBT:000471 ! leukocyte
 [Term]
 id: OBT:000924
 name: sugar
+synonym: "sugars" RELATED []
 is_a: OBT:000293 ! additive
 
 [Term]
@@ -2109,6 +2150,9 @@ is_a: OBT:000410 ! caulosphere part
 [Term]
 id: OBT:000922
 name: nursing home
+synonym: "skilled nursing facility" RELATED []
+synonym: "SNF" RELATED []
+synonym: "community SNF" RELATED []
 is_a: OBT:000583 ! welfare center
 
 [Term]
@@ -2119,8 +2163,6 @@ is_a: OBT:000555 ! membrane
 [Term]
 id: OBT:000920
 name: anus
-synonym: "perianal" RELATED []
-synonym: "anorectal" RELATED []
 is_a: OBT:000543 ! gastrointestinal tract part
 
 [Term]
@@ -2141,6 +2183,8 @@ is_a: OBT:000538 ! ulcer
 [Term]
 id: OBT:000918
 name: yolk sac
+synonym: "normal yolk sacs" RELATED []
+synonym: "infected yolk sacs" RELATED []
 is_a: OBT:000555 ! membrane
 
 [Term]
@@ -2163,6 +2207,7 @@ id: OBT:000914
 name: crude oil
 synonym: "petroleum" EXACT []
 synonym: "fossil fuel" RELATED []
+synonym: "petroleum reservoir production fluid" RELATED []
 is_a: OBT:000428 ! oil
 
 [Term]
@@ -2195,6 +2240,7 @@ is_a: OBT:000553 ! sea ice
 [Term]
 id: OBT:000906
 name: lower gastrointestinal tract part
+synonym: "Peyer's patches" RELATED []
 is_a: OBT:000543 ! gastrointestinal tract part
 
 [Term]
@@ -2210,6 +2256,7 @@ is_a: OBT:000464 ! musculoskeletal system part
 [Term]
 id: OBT:000905
 name: bird and reptile GIT part
+synonym: "caecal wall of the chicks" RELATED []
 is_a: OBT:000543 ! gastrointestinal tract part
 
 [Term]
@@ -2221,6 +2268,7 @@ is_a: OBT:000558 ! processed food
 [Term]
 id: OBT:000903
 name: mollusc
+synonym: "bivalves" RELATED []
 is_a: OBT:000321 ! invertebrate species
 
 [Term]
@@ -2242,18 +2290,17 @@ is_a: OBT:000749 ! working animal
 [Term]
 id: OBT:002298
 name: mother
-synonym: "mothers" RELATED []
 is_a: OBT:002296 ! woman
 
 [Term]
 id: OBT:002297
 name: pregnant woman
-synonym: "38-year-old secondary recurrent aborter" RELATED []
 is_a: OBT:002296 ! woman
 
 [Term]
 id: OBT:002296
 name: woman
+synonym: "women with genital infections" RELATED []
 is_a: OBT:000724 ! female animal
 is_a: OBT:002185 ! adult human
 
@@ -2266,14 +2313,8 @@ is_a: OBT:002151 ! cultivated crucifer
 [Term]
 id: OBT:002294
 name: man
-synonym: "HIV-positive men who have sex with men" RELATED []
-synonym: "men" RELATED []
-synonym: "MSM" RELATED []
-synonym: "Patients" RELATED []
-synonym: "MSM attending sexually transmitted infection clinics" RELATED []
-synonym: "HIV-infected patients presenting with isolated perianal ulcer disease" RELATED []
-synonym: "MSM with proctitis" RELATED []
-synonym: "MSM with perianal ulcer disease" RELATED []
+synonym: "man models" RELATED []
+synonym: "male gender" RELATED []
 is_a: OBT:000608 ! male animal
 is_a: OBT:002185 ! adult human
 
@@ -2283,7 +2324,7 @@ name: newborn infant
 synonym: "neonatal animal" EXACT []
 synonym: "neonate" EXACT []
 synonym: "newborn" EXACT []
-synonym: "neonatal" RELATED []
+synonym: "neonates" RELATED []
 is_a: OBT:002154 ! baby
 is_a: OBT:001347 ! newborn animal
 
@@ -2345,6 +2386,7 @@ is_a: OBT:000329 ! mound
 [Term]
 id: OBT:000543
 name: gastrointestinal tract part
+synonym: "gastroduodenal" RELATED []
 is_a: OBT:000234 ! digestive system part
 
 [Term]
@@ -2387,6 +2429,7 @@ is_a: OBT:000096 ! organ
 [Term]
 id: OBT:001868
 name: bone
+synonym: "Gingivomandibular" RELATED []
 is_a: OBT:000464 ! musculoskeletal system part
 is_a: OBT:000230 ! vertebrate part
 
@@ -2394,6 +2437,7 @@ is_a: OBT:000230 ! vertebrate part
 id: OBT:000537
 name: light organ
 synonym: "light-emitting organ" EXACT []
+synonym: "juvenile squid's light organ" RELATED []
 is_a: OBT:000096 ! organ
 
 [Term]
@@ -2405,8 +2449,6 @@ is_a: OBT:001804 ! human
 id: OBT:000538
 name: ulcer
 synonym: "ulceration" RELATED []
-synonym: "perianal ulceration" RELATED []
-synonym: "perianal ulcer" RELATED []
 is_a: OBT:000231 ! lesion
 
 [Term]
@@ -2463,6 +2505,7 @@ is_a: OBT:000230 ! vertebrate part
 [Term]
 id: OBT:001863
 name: pharynx
+synonym: "pharyngeal" RELATED []
 is_a: OBT:000124 ! respiratory tract part
 is_a: OBT:000543 ! gastrointestinal tract part
 
@@ -2567,6 +2610,7 @@ is_a: OBT:001501 ! bottling factory
 id: OBT:000520
 name: intra-uterus
 synonym: "intra-uterine" RELATED []
+synonym: "intrauterine" RELATED []
 is_a: OBT:000126 ! urogenital tract part
 
 [Term]
@@ -2764,7 +2808,6 @@ is_a: OBT:000124 ! respiratory tract part
 [Term]
 id: OBT:000506
 name: abscess
-synonym: "superficial abscesses" RELATED []
 is_a: OBT:000231 ! lesion
 
 [Term]
@@ -2776,6 +2819,8 @@ is_a: OBT:001661 ! straw
 id: OBT:000507
 name: wound
 synonym: "injury" EXACT []
+synonym: "brain injury" RELATED []
+synonym: "nerve injury" RELATED []
 is_a: OBT:000231 ! lesion
 
 [Term]
@@ -2797,13 +2842,16 @@ is_a: OBT:000236 ! commodity and primary derivative thereof
 id: OBT:001835
 name: hospital
 synonym: "hospital environment" RELATED []
+synonym: "Spanish hospitals" RELATED []
 synonym: "hospitals" RELATED []
+synonym: "hospitalized patients" RELATED []
+synonym: "hospitalized" RELATED []
+synonym: "Hospital S. Camillo De Lellis" RELATED []
 is_a: OBT:001423 ! medical center
 
 [Term]
 id: OBT:000989
 name: adult animal
-synonym: "Adult partridges" RELATED []
 is_a: OBT:000889 ! animal with life stage property
 
 [Term]
@@ -2987,6 +3035,10 @@ is_a: OBT:001489 ! rice-plant residue
 [Term]
 id: OBT:000974
 name: aquatic sediment
+synonym: "fish farm sediments" RELATED []
+synonym: "sediments" RELATED []
+synonym: "sediment samples from diseased farms" RELATED []
+synonym: "sediment sample from a disease-free fish farm" RELATED []
 is_a: OBT:000704 ! sediment
 
 [Term]
@@ -3080,7 +3132,6 @@ is_a: OBT:001540 ! testa part
 id: OBT:000965
 name: gastric mucosa
 synonym: "stomach mucosa" EXACT []
-synonym: "gastric mucosal" RELATED []
 is_a: OBT:000862 ! mucosal tissue
 
 [Term]
@@ -3152,7 +3203,8 @@ synonym: "subject" EXACT []
 synonym: "homo sapiens" EXACT []
 synonym: "people" RELATED []
 synonym: "humans" RELATED []
-synonym: "human population" RELATED []
+synonym: "susceptible individuals" RELATED []
+synonym: "household contacts of the patients" RELATED []
 is_a: OBT:001747 ! primate
 
 [Term]
@@ -3190,7 +3242,7 @@ is_a: OBT:001541 ! embryo part
 id: OBT:000953
 name: stomach
 synonym: "gastric" RELATED []
-synonym: "Gastric biopsies" RELATED []
+synonym: "Gastric" RELATED []
 is_a: OBT:000907 ! upper gastrointestinal tract part
 
 [Term]
@@ -3201,14 +3253,15 @@ is_a: OBT:001483 ! fowl
 [Term]
 id: OBT:000954
 name: young animal
-synonym: "younger ones" RELATED []
+synonym: "juvenile squid" RELATED []
 is_a: OBT:000889 ! animal with life stage property
 
 [Term]
 id: OBT:001801
 name: clinic
 synonym: "clinical center" EXACT []
-synonym: "sexually transmitted infection clinics" RELATED []
+synonym: "Mayo Clinic" RELATED []
+synonym: "well-baby-care clinic" RELATED []
 is_a: OBT:001423 ! medical center
 
 [Term]
@@ -3220,7 +3273,6 @@ is_a: OBT:000906 ! lower gastrointestinal tract part
 id: OBT:000952
 name: rectum
 synonym: "rectal" RELATED []
-synonym: "anorectal" RELATED []
 is_a: OBT:000906 ! lower gastrointestinal tract part
 
 [Term]
@@ -3281,8 +3333,7 @@ is_a: OBT:000598 ! tree
 [Term]
 id: OBT:001117
 name: rectal swab
-synonym: "Cloacal swabs of partridges" RELATED []
-synonym: "cloacal swabs" RELATED []
+synonym: "stool swab cultures" RELATED []
 is_a: OBT:000703 ! feces
 
 [Term]
@@ -3304,6 +3355,8 @@ is_a: OBT:001203 ! mammal meat
 [Term]
 id: OBT:000268
 name: eye
+synonym: "ocular" RELATED []
+synonym: "oculogenital origin" RELATED []
 is_a: OBT:000096 ! organ
 
 [Term]
@@ -3334,6 +3387,7 @@ is_a: OBT:001207 ! egg powder
 [Term]
 id: OBT:000266
 name: Intestinal mucosal lesion
+synonym: "small intestinal lesions" RELATED []
 is_a: OBT:000231 ! lesion
 
 [Term]
@@ -3589,6 +3643,7 @@ is_a: OBT:001224 ! fish meat and fish meat product
 [Term]
 id: OBT:000245
 name: high salt concentration environment
+synonym: "high salt concentrations" RELATED []
 is_a: OBT:000137 ! haline environment
 
 [Term]
@@ -3645,6 +3700,7 @@ is_a: OBT:001281 ! environmental water with chemical property
 [Term]
 id: OBT:000242
 name: public building
+synonym: "food venue" RELATED []
 is_a: OBT:000042 ! constructed habitat
 
 [Term]
@@ -3661,6 +3717,9 @@ is_a: OBT:001281 ! environmental water with chemical property
 [Term]
 id: OBT:000240
 name: enterocyte
+synonym: "Caco-2 cells" RELATED []
+synonym: "cultured Caco-2 cells" RELATED []
+synonym: "Caco-2 enterocytes" RELATED []
 is_a: OBT:000056 ! cell
 
 [Term]
@@ -3727,6 +3786,7 @@ is_a: OBT:001163 ! seed part
 [Term]
 id: OBT:000232
 name: immune system
+synonym: "host immune system" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -3743,8 +3803,6 @@ is_a: OBT:000063 ! medical equipment
 [Term]
 id: OBT:001561
 name: mosquito
-synonym: "Culex pipiens molestus" RELATED []
-synonym: "culicine mosquito" RELATED []
 is_a: OBT:001004 ! blood-feeding insect
 
 [Term]
@@ -3760,7 +3818,8 @@ is_a: OBT:001163 ! seed part
 [Term]
 id: OBT:000231
 name: lesion
-synonym: "Lymphoepithelial lesions" RELATED []
+synonym: "BCG granulomatous lesions" RELATED []
+synonym: "BCG granulomatous lesion" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -3831,7 +3890,7 @@ is_a: OBT:001045 ! cheese
 [Term]
 id: OBT:000224
 name: immune cell
-synonym: "immune cells" RELATED []
+synonym: "isolated splenocytes" RELATED []
 is_a: OBT:000056 ! cell
 
 [Term]
@@ -3852,6 +3911,11 @@ is_a: OBT:001045 ! cheese
 [Term]
 id: OBT:000222
 name: granuloma
+synonym: "granulomatous" RELATED []
+synonym: "BCG granulomas" RELATED []
+synonym: "BCG granulomas without necrosis" RELATED []
+synonym: "granulomas with central caseous necrosis, calcification and fibrotic changes" RELATED []
+synonym: "BCG granuloma" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -3881,6 +3945,7 @@ synonym: "animal host" RELATED []
 synonym: "animal-associated habitat" EXACT []
 synonym: "animal species" RELATED []
 synonym: "animals" RELATED []
+synonym: "animal models" RELATED []
 is_a: OBT:000036 ! eukaryote host
 
 [Term]
@@ -3974,6 +4039,8 @@ is_a: OBT:001181 ! bird
 id: OBT:000213
 name: intensive care unit
 synonym: "ICU" EXACT []
+synonym: "trauma intensive care unit" RELATED []
+synonym: "TICU" RELATED []
 is_a: OBT:000052 ! hospital environment
 
 [Term]
@@ -4471,7 +4538,6 @@ name: marine water
 synonym: "seawater" EXACT []
 synonym: "ocean water" EXACT []
 synonym: "sea water" EXACT []
-synonym: "world's oceans" RELATED []
 is_a: OBT:000078 ! marine environment
 is_a: OBT:001495 ! saline water
 
@@ -4491,6 +4557,7 @@ id: OBT:002036
 name: gum tissue
 synonym: "gingival" RELATED []
 synonym: "gingiva" EXACT []
+synonym: "Gingivomandibular" RELATED []
 is_a: OBT:000689 ! mouth part
 is_a: OBT:000862 ! mucosal tissue
 
@@ -4561,8 +4628,6 @@ is_a: OBT:000674 ! pea family
 [Term]
 id: OBT:001181
 name: bird
-synonym: "game bird" RELATED []
-synonym: "game birds" RELATED []
 is_a: OBT:000601 ! warm-blooded animal
 
 [Term]
@@ -4609,12 +4674,7 @@ is_a: OBT:000650 ! bulbous plant
 [Term]
 id: OBT:002025
 name: neutrophil
-synonym: "Neutrophils" RELATED []
 synonym: "neutrophils" RELATED []
-synonym: "PMNs" RELATED []
-synonym: "human neutrophils" RELATED []
-synonym: "PMN" RELATED []
-synonym: "PMN cell" RELATED []
 is_a: OBT:000549 ! phagocyte
 is_a: OBT:000927 ! granulocyte
 
@@ -4639,10 +4699,7 @@ is_a: OBT:000774 ! food processing waste
 [Term]
 id: OBT:002023
 name: monocyte
-synonym: "monocyte-like THP-1 cells" RELATED []
-synonym: "monocytes" RELATED []
-synonym: "human monocyte-like THP-1 cells" RELATED []
-synonym: "infected monocytes" RELATED []
+synonym: "human blood monocyte" RELATED []
 is_a: OBT:000549 ! phagocyte
 is_a: OBT:000928 ! agranulocyte
 
@@ -4654,12 +4711,14 @@ is_a: OBT:000828 ! waste treatment equipment
 [Term]
 id: OBT:002022
 name: macrophage
-synonym: "macrophages" RELATED []
-synonym: "murine macrophages" RELATED []
-synonym: "human monocyte-derived macrophages" RELATED []
-synonym: "HMDM" RELATED []
-synonym: "HMDMs" RELATED []
-synonym: "human macrophages" RELATED []
+synonym: "murine macrophage" RELATED []
+synonym: "murine macrophage-like cell line J774" RELATED []
+synonym: "macrophage-like cell line J774" RELATED []
+synonym: "J774 cells" RELATED []
+synonym: "J774 cell line" RELATED []
+synonym: "macrophage cell" RELATED []
+synonym: "host cell" RELATED []
+synonym: "cell" RELATED []
 is_a: OBT:000549 ! phagocyte
 is_a: OBT:000928 ! agranulocyte
 
@@ -4685,6 +4744,12 @@ is_a: OBT:000676 ! mine
 id: OBT:002020
 name: intestinal mucosa
 synonym: "gut mucosa" EXACT []
+synonym: "pigs' jejunal tissue" RELATED []
+synonym: "pigs' small intestinal tissue" RELATED []
+synonym: "tissue" RELATED []
+synonym: "jejunal mucosa" RELATED []
+synonym: "jejunal tissue" RELATED []
+synonym: "pig jejunal tissue" RELATED []
 is_a: OBT:000862 ! mucosal tissue
 is_a: OBT:000543 ! gastrointestinal tract part
 
@@ -4936,10 +5001,6 @@ is_a: OBT:000175 ! mineral matter
 [Term]
 id: OBT:001145
 name: vacuum-packed meat
-synonym: "vacuum- and modified-atmosphere-packed cold-smoked salmon stored at 5 degrees C" RELATED []
-synonym: "vacuum-packed cold-smoked salmon" RELATED []
-synonym: "vacuum packages" RELATED []
-synonym: "vacuum-packed salmon" RELATED []
 is_a: OBT:000835 ! packed food
 
 [Term]
@@ -4986,6 +5047,10 @@ is_a: OBT:000647 ! milk and milk product
 [Term]
 id: OBT:000295
 name: fish farm
+synonym: "local farm" RELATED []
+synonym: "diseased farms" RELATED []
+synonym: "disease-free fish farm" RELATED []
+synonym: "fish farming" RELATED []
 is_a: OBT:000101 ! mariculture farm
 
 [Term]
@@ -5001,6 +5066,12 @@ is_a: OBT:000133 ! soil
 [Term]
 id: OBT:000293
 name: additive
+synonym: "ozone" RELATED []
+synonym: "Ozone" RELATED []
+synonym: "O3" RELATED []
+synonym: "additives" RELATED []
+synonym: "acids" RELATED []
+synonym: "surfactants" RELATED []
 is_a: OBT:000236 ! commodity and primary derivative thereof
 
 [Term]
@@ -5011,6 +5082,7 @@ is_a: OBT:000722 ! crucifer
 [Term]
 id: OBT:000290
 name: urethra
+synonym: "urethral" RELATED []
 is_a: OBT:000126 ! urogenital tract part
 
 [Term]
@@ -5048,7 +5120,7 @@ is_a: OBT:000830 ! extractive industry equipment
 id: OBT:000287
 name: lung
 synonym: "pulmonary" RELATED []
-synonym: "lungs" RELATED []
+synonym: "lungs of CF patients" RELATED []
 is_a: OBT:000096 ! organ
 
 [Term]
@@ -5085,6 +5157,9 @@ synonym: "intestinal region" RELATED []
 synonym: "gastrointestinal" RELATED []
 synonym: "GIT" EXACT []
 synonym: "alimentary canal" RELATED []
+synonym: "human gastrointestinal" RELATED []
+synonym: "digestive system" RELATED []
+synonym: "intestinal tracts of healthy fish" RELATED []
 is_a: OBT:000096 ! organ
 
 [Term]
@@ -5177,7 +5252,8 @@ is_a: OBT:000906 ! lower gastrointestinal tract part
 id: OBT:000277
 name: nose
 synonym: "nasal" RELATED []
-synonym: "intranasal" RELATED []
+synonym: "Nares" RELATED []
+synonym: "inmates' nasal" RELATED []
 is_a: OBT:000124 ! respiratory tract part
 
 [Term]
@@ -5284,7 +5360,7 @@ is_a: OBT:001803 ! embryonic axis part
 [Term]
 id: OBT:001902
 name: fish
-synonym: "fish samples" RELATED []
+synonym: "healthy fish" RELATED []
 is_a: OBT:000257 ! vertebrate
 is_a: OBT:000227 ! aquatic eukaryotic species
 
@@ -5424,33 +5500,18 @@ is_a: OBT:000293 ! additive
 [Term]
 id: OBT:001513
 name: flea
-synonym: "fleas" RELATED []
-synonym: "Adoratopsylla antiquorum antiquorum" RELATED []
-synonym: "Ctenocephalides felis felis" RELATED []
-synonym: "Polygenis atopus" RELATED []
-synonym: "Polygenis rimatus" RELATED []
-synonym: "Polygenis roberti roberti" RELATED []
-synonym: "Polygenis tripus" RELATED []
-synonym: "Rhopalopsyllus lugubris" RELATED []
-synonym: "Rhopalopsyllus lutzi lutzi" RELATED []
 is_a: OBT:001004 ! blood-feeding insect
 
 [Term]
 id: OBT:001997
 name: prepared meat
 synonym: "processed meat" EXACT []
-synonym: "chicken nugget" RELATED []
-synonym: "product samples" RELATED []
 is_a: OBT:000715 ! meat and meat product
 is_a: OBT:000558 ! processed food
 
 [Term]
 id: OBT:000663
 name: probiotic food
-synonym: "probiotic fermented milk beverage" RELATED []
-synonym: "probiotics" RELATED []
-synonym: "bottle" RELATED []
-synonym: "probiotic" RELATED []
 is_a: OBT:000445 ! food for particular diet
 
 [Term]
@@ -5552,7 +5613,6 @@ is_a: OBT:000766 ! cortex
 id: OBT:000659
 name: epithelium
 synonym: "epithelial" RELATED []
-synonym: "Lymphoepithelial" RELATED []
 is_a: OBT:000516 ! epithelial layer
 
 [Term]
@@ -5757,6 +5817,7 @@ is_a: OBT:000434 ! water transport structure
 [Term]
 id: OBT:000641
 name: nasal secretion
+synonym: "Nares swab cultures" RELATED []
 is_a: OBT:000492 ! secretion
 
 [Term]
@@ -5989,6 +6050,7 @@ is_a: OBT:001882 ! contaminated sediment
 [Term]
 id: OBT:001950
 name: fruit
+synonym: "fruits" RELATED []
 is_a: OBT:000415 ! carposphere part
 is_a: OBT:000518 ! plant organ
 
@@ -6109,6 +6171,8 @@ is_a: OBT:001884 ! coastal aquifer
 [Term]
 id: OBT:000609
 name: laboratory
+synonym: "laboratories" RELATED []
+synonym: "clinical microbiology laboratory" RELATED []
 is_a: OBT:000259 ! research and study center
 
 [Term]
@@ -6126,7 +6190,6 @@ is_a: OBT:001880 ! vinegar factory
 id: OBT:000608
 name: male animal
 synonym: "male" EXACT []
-synonym: "male birds" RELATED []
 is_a: OBT:000380 ! animal with age or sex property
 
 [Term]
@@ -6164,6 +6227,7 @@ is_a: OBT:000259 ! research and study center
 id: OBT:001934
 name: farmed fish
 synonym: "farm fish" EXACT []
+synonym: "fish" RELATED []
 is_a: OBT:001902 ! fish
 
 [Term]
@@ -6238,7 +6302,9 @@ is_a: OBT:001867 ! cereal crop
 [Term]
 id: OBT:001925
 name: dendritic cell
-synonym: "murine dendritic cells" RELATED []
+synonym: "DC" RELATED []
+synonym: "DCs" RELATED []
+synonym: "Mtb-infected human blood monocyte-derived DCs" RELATED []
 is_a: OBT:000224 ! immune cell
 is_a: OBT:000549 ! phagocyte
 
@@ -6250,12 +6316,13 @@ is_a: OBT:001902 ! fish
 [Term]
 id: OBT:001923
 name: tobacco plant
+synonym: "tobacco" RELATED []
+synonym: "Tobacco plants expressing a chimeric 35S::rolBTR gene" RELATED []
 is_a: OBT:001822 ! cultivated plant
 
 [Term]
 id: OBT:001924
 name: septic tank
-synonym: "unhygienic septic tank" RELATED []
 is_a: OBT:000053 ! household good
 is_a: OBT:000828 ! waste treatment equipment
 
@@ -6268,11 +6335,15 @@ is_a: OBT:000293 ! additive
 [Term]
 id: OBT:001922
 name: algae
+synonym: "Chondrus crispus" RELATED []
+synonym: "red alga Chondrus crispus" RELATED []
+synonym: "red algal" RELATED []
 is_a: OBT:001777 ! aquatic plant
 
 [Term]
 id: OBT:001920
 name: brine
+synonym: "subterranean brine" RELATED []
 is_a: OBT:001785 ! brine pool
 
 [Term]
@@ -6411,6 +6482,12 @@ is_a: OBT:000149 ! rhizosphere part
 [Term]
 id: OBT:001230
 name: mollusc
+synonym: "Pelecypod" RELATED []
+synonym: "marine bivalves" RELATED []
+synonym: "arselle" RELATED []
+synonym: "pelecypods" RELATED []
+synonym: "bivalves" RELATED []
+synonym: "Arselle" RELATED []
 is_a: OBT:000841 ! seafood and seafood product
 
 [Term]
@@ -6422,7 +6499,8 @@ is_a: OBT:000218 ! animal
 id: OBT:000381
 name: genital tract
 synonym: "genital" EXACT []
-synonym: "oviduct" RELATED []
+synonym: "genital tissues" RELATED []
+synonym: "oculogenital origin" RELATED []
 is_a: OBT:000126 ! urogenital tract part
 
 [Term]
@@ -6458,6 +6536,7 @@ is_a: OBT:000197 ! organic matter
 [Term]
 id: OBT:001224
 name: fish meat and fish meat product
+synonym: "fish" RELATED []
 is_a: OBT:000715 ! meat and meat product
 
 [Term]
@@ -6503,6 +6582,7 @@ is_a: OBT:000870 ! oilseed and oilfruit and primary derivative thereof
 [Term]
 id: OBT:000374
 name: throat
+synonym: "throats of two healthy children" RELATED []
 is_a: OBT:000124 ! respiratory tract part
 
 [Term]
@@ -6651,7 +6731,6 @@ id: OBT:001210
 name: drinking water
 synonym: "water table" RELATED []
 synonym: "water" RELATED []
-synonym: "piped water" RELATED []
 is_a: OBT:000680 ! drink
 
 [Term]
@@ -6717,6 +6796,8 @@ is_a: OBT:000142 ! anaerobic bioreactor
 [Term]
 id: OBT:001204
 name: whole egg
+synonym: "egg" RELATED []
+synonym: "eggs" RELATED []
 is_a: OBT:000786 ! egg and egg products
 
 [Term]
@@ -6762,6 +6843,7 @@ is_a: OBT:000138 ! high temperature environment
 [Term]
 id: OBT:001203
 name: mammal meat
+synonym: "meat" RELATED []
 is_a: OBT:000715 ! meat and meat product
 
 [Term]
@@ -7034,6 +7116,7 @@ is_a: OBT:001138 ! conifer
 [Term]
 id: OBT:000330
 name: nasopharynx
+synonym: "nasopharyngeal" RELATED []
 is_a: OBT:000124 ! respiratory tract part
 
 [Term]
@@ -7096,13 +7179,6 @@ is_a: OBT:000175 ! mineral matter
 [Term]
 id: OBT:001656
 name: smoked salmon
-synonym: "vacuum- and modified-atmosphere-packed cold-smoked salmon stored at 5 degrees C" RELATED []
-synonym: "spoiled cold-smoked salmon" RELATED []
-synonym: "vacuum-packed cold-smoked salmon" RELATED []
-synonym: "vacuum packages" RELATED []
-synonym: "vacuum-packed salmon" RELATED []
-synonym: "cold-smoked salmon stored at 5 degrees C" RELATED []
-synonym: "salmon" RELATED []
 is_a: OBT:001197 ! smoked fish
 
 [Term]
@@ -7120,8 +7196,9 @@ is_a: OBT:001198 ! salt-preserved fish
 [Term]
 id: OBT:000323
 name: laboratory animal
-synonym: "H. pylori-infected monkeys" RELATED []
-synonym: "control monkeys" RELATED []
+synonym: "Japanese flounder" RELATED []
+synonym: "chickens" RELATED []
+synonym: "chicks" RELATED []
 is_a: OBT:000218 ! animal
 
 [Term]
@@ -7200,8 +7277,10 @@ id: OBT:000316
 name: blood
 synonym: "blood stream" RELATED []
 synonym: "bloodstream" RELATED []
-synonym: "animal blood" RELATED []
-synonym: "human blood" RELATED []
+synonym: "blood of patients who accepted chemotherapy" RELATED []
+synonym: "host blood" RELATED []
+synonym: "blood samples" RELATED []
+synonym: "Mtb-infected human blood" RELATED []
 is_a: OBT:000103 ! body fluid
 
 [Term]
@@ -7336,6 +7415,8 @@ name: cerebrospinal fluid
 synonym: "CSF" EXACT []
 synonym: "liquor cerebrospinalis" EXACT []
 synonym: "cerebro-spinal fluid" EXACT []
+synonym: "CSF from neonates and children" RELATED []
+synonym: "CSF from adults" RELATED []
 is_a: OBT:000103 ! body fluid
 
 [Term]
@@ -7381,6 +7462,10 @@ is_a: OBT:000103 ! body fluid
 [Term]
 id: OBT:000789
 name: Asteraceae
+synonym: "Artemisia annua" RELATED []
+synonym: "plant Artemisia annua" RELATED []
+synonym: "A. annua" RELATED []
+synonym: "plant" RELATED []
 is_a: OBT:000318 ! terrestrial plant
 
 [Term]
@@ -7404,6 +7489,8 @@ is_a: OBT:001897 ! cultivated Leguminosae
 [Term]
 id: OBT:002167
 name: boy
+synonym: "Males" RELATED []
+synonym: "males" RELATED []
 is_a: OBT:002146 ! child
 
 [Term]
@@ -7414,6 +7501,7 @@ is_a: OBT:002152 ! cider
 [Term]
 id: OBT:002165
 name: poultry
+synonym: "asymptomatic poultry" RELATED []
 is_a: OBT:001799 ! livestock
 is_a: OBT:001181 ! bird
 
@@ -7433,6 +7521,7 @@ id: OBT:002162
 name: soybean
 synonym: "Glycine max" EXACT []
 synonym: "Glycine hispida" EXACT []
+synonym: "soy" RELATED []
 is_a: OBT:000674 ! pea family
 is_a: OBT:001897 ! cultivated Leguminosae
 
@@ -7445,6 +7534,8 @@ is_a: OBT:000889 ! animal with life stage property
 [Term]
 id: OBT:002160
 name: marine fish
+synonym: "large yellow croaker" RELATED []
+synonym: "Pseudosciaena crocea" RELATED []
 is_a: OBT:000269 ! marine eukaryotic species
 is_a: OBT:001902 ! fish
 
@@ -7477,19 +7568,15 @@ is_a: OBT:001286 ! environmental water with physical property
 [Term]
 id: OBT:002154
 name: baby
-synonym: "paediatric" RELATED []
-synonym: "children less than two years of age" RELATED []
+synonym: "cohorts of children, ages 6 to 42 months" RELATED []
+synonym: "children ages 6 months to 14 years" RELATED []
 is_a: OBT:001804 ! human
 is_a: OBT:000889 ! animal with life stage property
 
 [Term]
 id: OBT:002153
 name: laboratory mice
-synonym: "female mouse" RELATED []
-synonym: "mice" RELATED []
-synonym: "TLR2-deficient mice" RELATED []
-synonym: "SCID mice" RELATED []
-synonym: "hyperimmune mouse" RELATED []
+synonym: "Annexin1-deficient mice" RELATED []
 is_a: OBT:001865 ! mouse
 is_a: OBT:000323 ! laboratory animal
 
@@ -7526,6 +7613,7 @@ synonym: "immune-compromised patient" EXACT []
 synonym: "immunodepressed person" EXACT []
 synonym: "immunodeppressed subject" EXACT []
 synonym: "immunocompromised host" EXACT []
+synonym: "immunocompromised patient" RELATED []
 is_a: OBT:002115 ! ill person
 
 [Term]
@@ -7542,12 +7630,12 @@ is_a: OBT:000868 ! fruit and primary derivative thereof
 id: OBT:002146
 name: child
 synonym: "children" EXACT []
-synonym: "young Japanese people" RELATED []
-synonym: "paediatric" RELATED []
-synonym: "children less than five years of age" RELATED []
-synonym: "children with diarrhea" RELATED []
-synonym: "age-matched healthy controls" RELATED []
-synonym: "older children" RELATED []
+synonym: "children attending a day care center" RELATED []
+synonym: "healthy children" RELATED []
+synonym: "colonized children" RELATED []
+synonym: "young children" RELATED []
+synonym: "cohorts of children, ages 6 to 42 months" RELATED []
+synonym: "children ages 6 months to 14 years" RELATED []
 is_a: OBT:001804 ! human
 is_a: OBT:000889 ! animal with life stage property
 
@@ -7584,6 +7672,7 @@ synonym: "mammalia-associated habitat" EXACT []
 synonym: "mammalia" RELATED []
 synonym: "mammal" RELATED []
 synonym: "mammalian host" RELATED []
+synonym: "mammals" RELATED []
 is_a: OBT:000601 ! warm-blooded animal
 
 [Term]
@@ -7672,6 +7761,8 @@ is_a: OBT:002125 ! saline lake
 [Term]
 id: OBT:001289
 name: jejunum
+synonym: "jejunal" RELATED []
+synonym: "pigs' jejunum" RELATED []
 is_a: OBT:000906 ! lower gastrointestinal tract part
 
 [Term]
@@ -7691,8 +7782,12 @@ id: OBT:002133
 name: patient
 synonym: "treated patient" EXACT []
 synonym: "person with treated disease" RELATED []
-synonym: "clinical" RELATED []
+synonym: "SNF patients" RELATED []
 synonym: "patients" RELATED []
+synonym: "patients from one SNF" RELATED []
+synonym: "Patients" RELATED []
+synonym: "clinical" RELATED []
+synonym: "clinical materials (amniotic fluid, intrauterine secretions, exudates of the pelvic dead space) of patients with various infections" RELATED []
 is_a: OBT:002115 ! ill person
 
 [Term]
@@ -7730,6 +7825,7 @@ is_a: OBT:000827 ! fermented food
 [Term]
 id: OBT:002130
 name: skin wound
+synonym: "skin wounds" RELATED []
 is_a: OBT:000507 ! wound
 is_a: OBT:001834 ! skin lesion
 
@@ -7779,7 +7875,6 @@ is_a: OBT:002098 ! decaying leaf
 [Term]
 id: OBT:001277
 name: animal probiotic
-synonym: "probiotic fermented milk beverage" RELATED []
 is_a: OBT:000663 ! probiotic food
 
 [Term]
@@ -7890,10 +7985,6 @@ is_a: OBT:000832 ! forest
 [Term]
 id: OBT:002115
 name: ill person
-synonym: "children with diarrhea" RELATED []
-synonym: "children less than two years of age" RELATED []
-synonym: "older children" RELATED []
-synonym: "MSM" RELATED []
 is_a: OBT:001804 ! human
 is_a: OBT:000563 ! animal with disease
 
@@ -7928,6 +8019,9 @@ is_a: OBT:000070 ! cultivated habitat
 [Term]
 id: OBT:002112
 name: Euprymna scolopes
+synonym: "Hawaiian bobtail squid" RELATED []
+synonym: "juvenile squid" RELATED []
+synonym: "E. scolopes" RELATED []
 is_a: OBT:002078 ! bobtail squid
 
 [Term]
@@ -7966,6 +8060,7 @@ is_a: OBT:000899 ! ruminant digestive system part
 id: OBT:001260
 name: caecum
 synonym: "cecum" EXACT []
+synonym: "caecal" RELATED []
 is_a: OBT:000906 ! lower gastrointestinal tract part
 
 [Term]
@@ -8014,6 +8109,7 @@ is_a: OBT:000689 ! mouth part
 [Term]
 id: OBT:002104
 name: lagoon
+synonym: "lagoon on the outskirts of the city of Cagliari" RELATED []
 is_a: OBT:002074 ! coastal water
 
 [Term]
@@ -8032,6 +8128,7 @@ id: OBT:001255
 name: food processing factory
 synonym: "food factory" EXACT []
 synonym: "food processing plant" EXACT []
+synonym: "food industry" RELATED []
 is_a: OBT:000779 ! factory
 
 [Term]
@@ -8178,6 +8275,8 @@ is_a: OBT:000206 ! terrestrial landscape
 [Term]
 id: OBT:000392
 name: plant tissue
+synonym: "apple surfaces" RELATED []
+synonym: "lettuce surfaces" RELATED []
 is_a: OBT:000162 ! plant part
 
 [Term]
@@ -8194,8 +8293,6 @@ is_a: OBT:000649 ! tuber
 [Term]
 id: OBT:002099
 name: monkey
-synonym: "H. pylori-infected monkeys" RELATED []
-synonym: "control monkeys" RELATED []
 is_a: OBT:000344 ! wild animal
 is_a: OBT:001747 ! primate
 
@@ -8264,9 +8361,6 @@ is_a: OBT:002050 ! livestock manure
 [Term]
 id: OBT:002086
 name: fermented milk
-synonym: "probiotic fermented milk beverage" RELATED []
-synonym: "fermented milk beverage" RELATED []
-synonym: "bottle" RELATED []
 is_a: OBT:002058 ! fermented dairy product
 
 [Term]
@@ -8274,6 +8368,7 @@ id: OBT:002085
 name: garden lettuce
 synonym: "cultivated lettuce" EXACT []
 synonym: "Lactuca sativa" EXACT []
+synonym: "lettuce" RELATED []
 is_a: OBT:001173 ! market garden plant
 is_a: OBT:000789 ! Asteraceae
 
@@ -8332,7 +8427,6 @@ is_a: OBT:002036 ! gum tissue
 [Term]
 id: OBT:002075
 name: cat
-synonym: "cats" RELATED []
 is_a: OBT:000748 ! pet
 is_a: OBT:001295 ! mammalian
 
@@ -8351,7 +8445,6 @@ is_a: OBT:002044 ! heavy metal contaminated soil
 [Term]
 id: OBT:002072
 name: dog
-synonym: "dogs" RELATED []
 is_a: OBT:000748 ! pet
 is_a: OBT:001295 ! mammalian
 
@@ -8391,13 +8484,6 @@ is_a: OBT:002049 ! agricultural wastewater treatment plant
 [Term]
 id: OBT:002065
 name: partridge
-synonym: "partridges" RELATED []
-synonym: "Perdix perdix" RELATED []
-synonym: "commercially reared partridges" RELATED []
-synonym: "male birds" RELATED []
-synonym: "female birds" RELATED []
-synonym: "Adult partridges" RELATED []
-synonym: "younger ones" RELATED []
 is_a: OBT:000344 ! wild animal
 is_a: OBT:001181 ! bird
 
@@ -8494,6 +8580,8 @@ is_a: OBT:000103 ! body fluid
 [Term]
 id: OBT:000786
 name: egg and egg products
+synonym: "egg products" RELATED []
+synonym: "egg pulp" RELATED []
 is_a: OBT:000504 ! animal product and primary derivative thereof
 
 [Term]
@@ -8897,6 +8985,7 @@ is_a: OBT:000397 ! pest insect
 id: OBT:000747
 name: peripheral nervous system
 synonym: "PNS" EXACT []
+synonym: "adult PNS" RELATED []
 is_a: OBT:000467 ! nervous system
 
 [Term]
@@ -8922,11 +9011,13 @@ is_a: OBT:000293 ! additive
 [Term]
 id: OBT:000740
 name: sputum
+synonym: "sputum of patients who accepted chemotherapy" RELATED []
 is_a: OBT:000314 ! excreta
 
 [Term]
 id: OBT:000741
 name: leaf part
+synonym: "tobacco leaf discs" RELATED []
 is_a: OBT:000411 ! phylloplane part
 
 [Term]
@@ -8987,6 +9078,8 @@ is_a: OBT:000543 ! gastrointestinal tract part
 [Term]
 id: OBT:000729
 name: gastric antrum
+synonym: "antrum" RELATED []
+synonym: "antral" RELATED []
 is_a: OBT:000543 ! gastrointestinal tract part
 
 [Term]
@@ -9002,9 +9095,6 @@ is_a: OBT:000492 ! secretion
 [Term]
 id: OBT:000724
 name: female animal
-synonym: "female birds" RELATED []
-synonym: "female mouse" RELATED []
-synonym: "mice" RELATED []
 is_a: OBT:000380 ! animal with age or sex property
 
 [Term]
@@ -9096,8 +9186,7 @@ is_a: OBT:000482 ! industrial building
 [Term]
 id: OBT:000706
 name: urine
-synonym: "urine of leprosy patients" RELATED []
-synonym: "urine of LL patients" RELATED []
+synonym: "urine of patients who accepted chemotherapy" RELATED []
 is_a: OBT:000314 ! excreta
 
 [Term]
@@ -9130,11 +9219,7 @@ synonym: "pellet" RELATED []
 synonym: "stool" RELATED []
 synonym: "frass" RELATED []
 synonym: "faecal" RELATED []
-synonym: "Watery stool" RELATED []
-synonym: "mucous stool" RELATED []
-synonym: "stools" RELATED []
-synonym: "soft stools" RELATED []
-synonym: "soft stool" RELATED []
+synonym: "chicken faecal material" RELATED []
 is_a: OBT:000314 ! excreta
 
 [Term]
@@ -9171,6 +9256,7 @@ is_a: OBT:001300 ! berry and small fruit
 [Term]
 id: OBT:002205
 name: patient with conjunctivitis
+synonym: "cases of trachoma" RELATED []
 is_a: OBT:002187 ! patient with disease
 
 [Term]
@@ -9229,7 +9315,10 @@ is_a: OBT:000628 ! reptile
 [Term]
 id: OBT:002201
 name: patient treated with antibiotics
-synonym: "children" RELATED []
+synonym: "patients received chemotherapy" RELATED []
+synonym: "patients with antibiotic administration" RELATED []
+synonym: "patients treated with ceftriaxone and azithromycin combination" RELATED []
+synonym: "cases treated with ceftriaxone monotherapy" RELATED []
 is_a: OBT:002186 ! patient treated by medication
 
 [Term]
@@ -9261,6 +9350,7 @@ is_a: OBT:000927 ! granulocyte
 [Term]
 id: OBT:000022
 name: agricultural product
+synonym: "agricultural products" RELATED []
 is_a: OBT:000012 ! agricultural habitat
 
 [Term]
@@ -9278,11 +9368,21 @@ id: OBT:000020
 name: microorganism
 synonym: "microbial" RELATED []
 synonym: "microbe" EXACT []
+synonym: "phototrophic microorganism" RELATED []
 is_a: OBT:000002 ! living organism
 
 [Term]
 id: OBT:001351
 name: tortoise
+synonym: "free-ranging gopher tortoises" RELATED []
+synonym: "Gopherus polyphemus" RELATED []
+synonym: "gopher tortoise" RELATED []
+synonym: "Georgia, USA tortoise populations" RELATED []
+synonym: "Georgia tortoise populations" RELATED []
+synonym: "tortoises" RELATED []
+synonym: "gopher tortoises" RELATED []
+synonym: "Georgia populations of gopher tortoises" RELATED []
+synonym: "tortoise populations" RELATED []
 is_a: OBT:000628 ! reptile
 
 [Term]
@@ -9293,12 +9393,19 @@ is_a: OBT:000010 ! part of living organism
 [Term]
 id: OBT:001349
 name: modified-atmosphere-packed food
-synonym: "vacuum- and modified-atmosphere-packed cold-smoked salmon stored at 5 degrees C" RELATED []
 is_a: OBT:000835 ! packed food
 
 [Term]
 id: OBT:000019
 name: animal feed
+synonym: "dried A. annua leaves" RELATED []
+synonym: "n-hexane extract from fresh A. annua leaves" RELATED []
+synonym: "Dried plant material" RELATED []
+synonym: "feed" RELATED []
+synonym: "n-hexane extract" RELATED []
+synonym: "n-hexane extract of A. annua" RELATED []
+synonym: "dried plant material" RELATED []
+synonym: "n-hexane extracts derived from A. annua" RELATED []
 is_a: OBT:000003 ! food
 
 [Term]
@@ -9370,6 +9477,7 @@ is_a: OBT:000689 ! mouth part
 [Term]
 id: OBT:000013
 name: antibiotic-containing media
+synonym: "oxacillin-resistant screening agar" RELATED []
 is_a: OBT:000001 ! experimental medium
 
 [Term]
@@ -9380,7 +9488,7 @@ is_a: OBT:000207 ! poultry house
 [Term]
 id: OBT:001344
 name: cloaca
-synonym: "Cloacal" RELATED []
+synonym: "intracloacal" RELATED []
 is_a: OBT:000905 ! bird and reptile GIT part
 
 [Term]
@@ -9407,24 +9515,31 @@ is_a: OBT:000205 ! agricultural tool
 [Term]
 id: OBT:000011
 name: artificial environment
+synonym: "environmental surfaces in a jail setting" RELATED []
+synonym: "jail environmental surfaces" RELATED []
 is_a: OBT:000000 ! bacteria habitat
 
 [Term]
 id: OBT:001342
 name: lymphocyte
-synonym: "monoclonal B cells" RELATED []
-synonym: "CD20" RELATED []
-synonym: "CD3" RELATED []
-synonym: "CD20-positive cells" RELATED []
-synonym: "lymphocytic" RELATED []
 synonym: "B cells" RELATED []
 synonym: "T cells" RELATED []
-synonym: "T-cells" RELATED []
+synonym: "CD8+ T cell" RELATED []
+synonym: "Gamma/delta T lymphocytes" RELATED []
+synonym: "TCR-gamma delta-bearing T cells" RELATED []
+synonym: "gamma delta T cells" RELATED []
+synonym: "cells" RELATED []
+synonym: "T-lymphocytes" RELATED []
+synonym: "CD8+ gamma delta T lymphocytes" RELATED []
+synonym: "CD4 cell" RELATED []
 is_a: OBT:000928 ! agranulocyte
 
 [Term]
 id: OBT:000492
 name: secretion
+synonym: "intrauterine secretions" RELATED []
+synonym: "urethral smears" RELATED []
+synonym: "HCl secretion" RELATED []
 is_a: OBT:000103 ! body fluid
 
 [Term]
@@ -9435,6 +9550,7 @@ is_a: OBT:000204 ! livestock habitat
 [Term]
 id: OBT:001340
 name: caecal content
+synonym: "caecal content of chickens" RELATED []
 is_a: OBT:000703 ! feces
 
 [Term]
@@ -9452,6 +9568,7 @@ id: OBT:000009
 name: medical environment
 synonym: "clinical" RELATED []
 synonym: "nosocomial" RELATED []
+synonym: "clinical microbiology laboratory" RELATED []
 is_a: OBT:000000 ! bacteria habitat
 
 [Term]
@@ -9534,20 +9651,32 @@ is_a: OBT:000900 ! slaughtering product
 [Term]
 id: OBT:000001
 name: experimental medium
-synonym: "rich medium" RELATED []
-synonym: "animal sera" RELATED []
-synonym: "human sera" RELATED []
-synonym: "opossum sera" RELATED []
-synonym: "dog sera" RELATED []
-synonym: "horse sera" RELATED []
-synonym: "sera" RELATED []
-synonym: "mixtures of pure compounds and uniformly 13C-labeled cell extracts" RELATED []
-synonym: "lactose-free M17 medium supplemented with glucose only (GM17)" RELATED []
-synonym: "lactose-free M17 medium supplemented with lactose only (LM17)" RELATED []
-synonym: "GM17 medium" RELATED []
-synonym: "LM17 medium" RELATED []
-synonym: "Penicillium-sensitive atopic sera" RELATED []
-synonym: "nitrocellulose paper" RELATED []
+synonym: "selective broths" RELATED []
+synonym: "strontium chloride M broth" RELATED []
+synonym: "strontium selenite broth" RELATED []
+synonym: "strontium selenite A broth" RELATED []
+synonym: "bi-selenite based media" RELATED []
+synonym: "Nares swab cultures" RELATED []
+synonym: "stool swab cultures" RELATED []
+synonym: "fructose medium" RELATED []
+synonym: "tryptic soy broth" RELATED []
+synonym: "nutrient broth" RELATED []
+synonym: "TSB" RELATED []
+synonym: "NB" RELATED []
+synonym: "high salt concentrations" RELATED []
+synonym: "abiotic surfaces" RELATED []
+synonym: "biotic surfaces" RELATED []
+synonym: "abiotic surface" RELATED []
+synonym: "primary and secondary mannitol salts" RELATED []
+synonym: "microheterogeneous mixture of mono- and diphosphorylated diglucosamine disaccharides" RELATED []
+synonym: "sucrose-lysozyme preparations" RELATED []
+synonym: "Purified preparations of Coxiella burnetii" RELATED []
+synonym: "C. burnetii extracts" RELATED []
+synonym: "C. burnetii extract" RELATED []
+synonym: "urine sediments" RELATED []
+synonym: "throat cultures" RELATED []
+synonym: "nasopharyngeal cultures" RELATED []
+synonym: "blood culture" RELATED []
 is_a: OBT:000000 ! bacteria habitat
 
 [Term]
@@ -9563,7 +9692,6 @@ is_a: OBT:000913 ! offal
 [Term]
 id: OBT:000002
 name: living organism
-synonym: "marine organisms" RELATED []
 is_a: OBT:000000 ! bacteria habitat
 
 [Term]
@@ -9575,7 +9703,6 @@ is_a: OBT:000133 ! soil
 [Term]
 id: OBT:001333
 name: mucosal surface
-synonym: "mucosal surfaces" RELATED []
 is_a: OBT:000862 ! mucosal tissue
 
 [Term]
@@ -9640,6 +9767,7 @@ is_a: OBT:000133 ! soil
 [Term]
 id: OBT:001325
 name: animal head
+synonym: "facial" RELATED []
 is_a: OBT:000913 ! offal
 
 [Term]
@@ -9718,9 +9846,8 @@ id: OBT:000471
 name: leukocyte
 synonym: "white blood cell" EXACT []
 synonym: "leucocyte" EXACT []
-synonym: "polymorphonuclear leukocytes" RELATED []
-synonym: "cell" RELATED []
 synonym: "neutrophils" RELATED []
+synonym: "leukocytes" RELATED []
 is_a: OBT:000224 ! immune cell
 
 [Term]
@@ -9769,12 +9896,6 @@ is_a: OBT:000830 ! extractive industry equipment
 id: OBT:001799
 name: livestock
 synonym: "farm animal" RELATED []
-synonym: "commercially reared partridges" RELATED []
-synonym: "partridges" RELATED []
-synonym: "male birds" RELATED []
-synonym: "female birds" RELATED []
-synonym: "Adult partridges" RELATED []
-synonym: "younger ones" RELATED []
 is_a: OBT:000343 ! domestic animal
 is_a: OBT:000045 ! agricultural species
 
@@ -9877,8 +9998,6 @@ name: chicken meat
 synonym: "chicken" RELATED []
 synonym: "broiler meat" RELATED []
 synonym: "retailed chicken" RELATED []
-synonym: "chicken nugget" RELATED []
-synonym: "product samples" RELATED []
 is_a: OBT:001482 ! poultry meat
 
 [Term]
@@ -9939,6 +10058,7 @@ is_a: OBT:001482 ! poultry meat
 [Term]
 id: OBT:000456
 name: peritoneal fluid
+synonym: "ascites" RELATED []
 is_a: OBT:000103 ! body fluid
 
 [Term]
@@ -10072,6 +10192,7 @@ is_a: OBT:000174 ! cereal feed
 [Term]
 id: OBT:001776
 name: pesticide
+synonym: "pesticide residues" RELATED []
 is_a: OBT:000247 ! organic compound
 is_a: OBT:000028 ! agricultural input
 
@@ -10125,6 +10246,7 @@ is_a: OBT:000174 ! cereal feed
 [Term]
 id: OBT:001773
 name: rabbit
+synonym: "rabbit serum" RELATED []
 is_a: OBT:001565 ! rodent
 
 [Term]
@@ -10272,6 +10394,7 @@ is_a: OBT:001503 ! marine sediment
 [Term]
 id: OBT:000428
 name: oil
+synonym: "essential oils" RELATED []
 is_a: OBT:000197 ! organic matter
 
 [Term]
@@ -10299,7 +10422,6 @@ is_a: OBT:000085 ! arthropod part
 id: OBT:002289
 name: fermented mare's milk
 synonym: "koumiss" EXACT []
-synonym: "natural fermented koumiss" RELATED []
 is_a: OBT:002086 ! fermented milk
 is_a: OBT:001610 ! mare's milk
 
@@ -10386,11 +10508,15 @@ is_a: OBT:002274 ! vinegar
 [Term]
 id: OBT:000099
 name: vaccine
+synonym: "vaccines" RELATED []
+synonym: "live vaccine" RELATED []
+synonym: "bacille Calmette Guerin cell wall vaccine" RELATED []
 is_a: OBT:000015 ! medical product
 
 [Term]
 id: OBT:000096
 name: organ
+synonym: "visceral organs" RELATED []
 is_a: OBT:000065 ! animal part
 
 [Term]
@@ -10500,6 +10626,7 @@ is_a: OBT:002250 ! creosote contaminated soil
 [Term]
 id: OBT:002265
 name: researcher
+synonym: "researchers" RELATED []
 is_a: OBT:002241 ! scientist
 
 [Term]
@@ -10591,13 +10718,12 @@ synonym: "sea" RELATED []
 synonym: "ocean" RELATED []
 synonym: "marine area" RELATED []
 synonym: "oceanic" RELATED []
-synonym: "marine environments" RELATED []
-synonym: "marine organisms" RELATED []
 is_a: OBT:000064 ! aquatic environment
 
 [Term]
 id: OBT:002257
 name: pig
+synonym: "pigs" RELATED []
 is_a: OBT:002223 ! swine
 
 [Term]
@@ -10654,19 +10780,23 @@ name: medical staff
 synonym: "health care worker" EXACT []
 synonym: "medical professional" RELATED []
 synonym: "medical personnel" RELATED []
+synonym: "diagnosticians" RELATED []
 is_a: OBT:002230 ! worker
 
 [Term]
 id: OBT:002251
 name: broiler chicken
+synonym: "broiler" RELATED []
+synonym: "broilers" RELATED []
+synonym: "birds" RELATED []
+synonym: "birds supplemented with the n-hexane extract" RELATED []
+synonym: "challenged control birds" RELATED []
+synonym: "birds receiving dried plant material" RELATED []
 is_a: OBT:002229 ! chicken
 
 [Term]
 id: OBT:000072
 name: laboratory equipment
-synonym: "LTQ Orbitrap high-resolution mass spectrometer" RELATED []
-synonym: "LTQ Obitrap" RELATED []
-synonym: "cellophane membrane disks" RELATED []
 is_a: OBT:000011 ! artificial environment
 
 [Term]
@@ -10678,10 +10808,8 @@ is_a: OBT:002221 ! hydrocarbon contaminated soil
 [Term]
 id: OBT:000073
 name: agar
-synonym: "selective agars" RELATED []
-synonym: "PALCAM" RELATED []
-synonym: "LPM" RELATED []
-synonym: "HCLA" RELATED []
+synonym: "oxacillin screening agar" RELATED []
+synonym: "oxacillin-resistant screening agar" RELATED []
 is_a: OBT:000001 ! experimental medium
 
 [Term]
@@ -10743,7 +10871,6 @@ is_a: OBT:002230 ! worker
 [Term]
 id: OBT:000068
 name: farm
-synonym: "game bird farm" RELATED []
 is_a: OBT:000012 ! agricultural habitat
 
 [Term]
@@ -10762,11 +10889,13 @@ id: OBT:000065
 name: animal part
 synonym: "body part" RELATED []
 synonym: "animal host part" RELATED []
+synonym: "clinical materials (amniotic fluid, intrauterine secretions, exudates of the pelvic dead space) of patients with various infections" RELATED []
 is_a: OBT:000010 ! part of living organism
 
 [Term]
 id: OBT:002243
 name: patient with bacteremia
+synonym: "Patients with underlying cirrhosis and the aforementioned bacteremia" RELATED []
 is_a: OBT:002216 ! patient with infectious disease
 
 [Term]
@@ -10783,6 +10912,9 @@ is_a: OBT:000010 ! part of living organism
 [Term]
 id: OBT:002242
 name: patient with gastric ulcer
+synonym: "patients with duodenal ulcers" RELATED []
+synonym: "subjects with ulcers and bulbitis" RELATED []
+synonym: "patients" RELATED []
 is_a: OBT:002236 ! patient with ulcer
 
 [Term]
@@ -10798,6 +10930,8 @@ synonym: "medical care equipment" RELATED []
 synonym: "medical supply" RELATED []
 synonym: "medical care supply" RELATED []
 synonym: "medical device" RELATED []
+synonym: "medical devices" RELATED []
+synonym: "Biomaterial" RELATED []
 is_a: OBT:000009 ! medical environment
 
 [Term]
@@ -10865,8 +10999,6 @@ is_a: OBT:002237 ! patient with cancer
 [Term]
 id: OBT:002238
 name: patient with lymphoma
-synonym: "patients with high-grade primary gastric lymphoma" RELATED []
-synonym: "patients with low-grade MALT lymphoma" RELATED []
 is_a: OBT:002237 ! patient with cancer
 
 [Term]
@@ -10883,8 +11015,9 @@ is_a: OBT:000005 ! aquaculture habitat
 [Term]
 id: OBT:002237
 name: patient with cancer
-synonym: "patients with gastric cancer" RELATED []
-synonym: "young Japanese gastric cancer patients" RELATED []
+synonym: "patients received chemotherapy" RELATED []
+synonym: "patients who accepted chemotherapy" RELATED []
+synonym: "patients with hematological malignancies" RELATED []
 is_a: OBT:002187 ! patient with disease
 
 [Term]
@@ -10896,12 +11029,6 @@ is_a: OBT:000004 ! natural environment habitat
 [Term]
 id: OBT:002236
 name: patient with ulcer
-synonym: "HIV-infected patients presenting with isolated perianal ulcer disease" RELATED []
-synonym: "MSM with perianal ulcer disease" RELATED []
-synonym: "patients with active duodenal ulcer disease and H pylori infection" RELATED []
-synonym: "patients" RELATED []
-synonym: "patients with PPI-based triple therapy" RELATED []
-synonym: "patients with bismuth-based triple therapy" RELATED []
 is_a: OBT:002187 ! patient with disease
 
 [Term]
@@ -10913,7 +11040,22 @@ is_a: OBT:001279 ! marine mud
 id: OBT:000056
 name: cell
 synonym: "cellular" EXACT []
-synonym: "13C-labeled cell" RELATED []
+synonym: "host cell" RELATED []
+synonym: "plant cell" RELATED []
+synonym: "fully differentiated Caco-2 cells" RELATED []
+synonym: "Caco-2" RELATED []
+synonym: "cells" RELATED []
+synonym: "human cells" RELATED []
+synonym: "eukaryotic cell" RELATED []
+synonym: "human corneal epithelial (HCE) cells" RELATED []
+synonym: "HCE cell" RELATED []
+synonym: "HCE cells" RELATED []
+synonym: "host cells" RELATED []
+synonym: "cell types grown in culture" RELATED []
+synonym: "apoptotic cells" RELATED []
+synonym: "McCoy cells" RELATED []
+synonym: "cycloheximide-treated McCoy cells" RELATED []
+synonym: "parietal cell" RELATED []
 is_a: OBT:000010 ! part of living organism
 
 [Term]
@@ -10934,6 +11076,7 @@ is_a: OBT:000004 ! natural environment habitat
 [Term]
 id: OBT:002234
 name: inmate
+synonym: "inmates" RELATED []
 is_a: OBT:002185 ! adult human
 
 [Term]
@@ -10976,10 +11119,6 @@ is_a: OBT:001255 ! food processing factory
 [Term]
 id: OBT:000052
 name: hospital environment
-synonym: "paediatric cystic fibrosis units" RELATED []
-synonym: "adult cystic fibrosis units" RELATED []
-synonym: "regional paediatric CF units" RELATED []
-synonym: "regional adult CF units" RELATED []
 is_a: OBT:000009 ! medical environment
 
 [Term]
@@ -11000,8 +11139,6 @@ is_a: OBT:000011 ! artificial environment
 [Term]
 id: OBT:002230
 name: worker
-synonym: "food handlers" RELATED []
-synonym: "food handler" RELATED []
 is_a: OBT:002185 ! adult human
 
 [Term]
@@ -11032,6 +11169,9 @@ is_a: OBT:000942 ! fruit with edible peel
 [Term]
 id: OBT:002229
 name: chicken
+synonym: "farmed chickens" RELATED []
+synonym: "chickens" RELATED []
+synonym: "chicks" RELATED []
 is_a: OBT:002165 ! poultry
 
 [Term]
@@ -11076,14 +11216,15 @@ name: patient with cystic fibrosis
 synonym: "CF patients" EXACT []
 synonym: "person with CF" EXACT []
 synonym: "person with cystic fibrosis" EXACT []
-synonym: "productive patients" RELATED []
-synonym: "patients" RELATED []
-synonym: "patient" RELATED []
+synonym: "clinical" RELATED []
+synonym: "patients with CF" RELATED []
 is_a: OBT:002187 ! patient with disease
 
 [Term]
 id: OBT:000048
 name: subterrestrial habitat
+synonym: "subterranean brine" RELATED []
+synonym: "subterranean environment" RELATED []
 is_a: OBT:000004 ! natural environment habitat
 
 [Term]
@@ -11207,6 +11348,9 @@ is_a: OBT:001298 ! citrus fruit
 [Term]
 id: OBT:002217
 name: traveler
+synonym: "israeli travelers" RELATED []
+synonym: "travelers" RELATED []
+synonym: "Israeli travelers" RELATED []
 is_a: OBT:002185 ! adult human
 
 [Term]
@@ -11217,26 +11361,23 @@ is_a: OBT:000006 ! habitat wrt chemico-physical property
 [Term]
 id: OBT:002216
 name: patient with infectious disease
-synonym: "patients with Helicobacter pylori-chronic active gastritis" RELATED []
-synonym: "patients with chronic active gastritis" RELATED []
-synonym: "H. pylori-positive subjects" RELATED []
-synonym: "patients with chronic gastritis" RELATED []
-synonym: "gastroenteritis patients" RELATED []
-synonym: "patients suffering from rickettsial disease of different degrees of severity" RELATED []
-synonym: "Patients with H. pylori infection" RELATED []
-synonym: "Children attending the hospitals" RELATED []
+synonym: "patients diagnosed with bacterial meningitis" RELATED []
+synonym: "neonates" RELATED []
 synonym: "children" RELATED []
-synonym: "Patients" RELATED []
-synonym: "MSM attending sexually transmitted infection clinics" RELATED []
-synonym: "MSM with proctitis" RELATED []
-synonym: "leprosy patients" RELATED []
-synonym: "LL patients" RELATED []
-synonym: "patients with different clinical spectra and with other infections" RELATED []
-synonym: "patients with melioidosis" RELATED []
-synonym: "patients with active duodenal ulcer disease and H pylori infection" RELATED []
+synonym: "adults" RELATED []
+synonym: "inpatient cases of CDI (48.6% female; median age, 62.5 years; range, 0.1-103.7 years)" RELATED []
+synonym: "Patients with severe-complicated CDI" RELATED []
+synonym: "hospitalized patients" RELATED []
+synonym: "inpatients" RELATED []
+synonym: "population-based cohort" RELATED []
 synonym: "patients" RELATED []
-synonym: "patients with PPI-based triple therapy" RELATED []
-synonym: "patients with bismuth-based triple therapy" RELATED []
+synonym: "patients treated with ceftriaxone and azithromycin combination" RELATED []
+synonym: "patients with various infections" RELATED []
+synonym: "women with genital infections" RELATED []
+synonym: "people" RELATED []
+synonym: "people with V. cholerae O:1 infection" RELATED []
+synonym: "day-care center attendees" RELATED []
+synonym: "colonized children" RELATED []
 is_a: OBT:002187 ! patient with disease
 
 [Term]
@@ -11262,6 +11403,8 @@ synonym: "eukaryotic" RELATED []
 synonym: "eukaryotic host" EXACT []
 synonym: "eukaryote" RELATED []
 synonym: "bacteria host" RELATED []
+synonym: "eukarya" RELATED []
+synonym: "eukaryotes" RELATED []
 is_a: OBT:000002 ! living organism
 
 [Term]
@@ -11278,6 +11421,8 @@ is_a: OBT:002187 ! patient with disease
 id: OBT:000037
 name: biofilm
 synonym: "microbial slime" RELATED []
+synonym: "biofilms" RELATED []
+synonym: "established mature biofilms" RELATED []
 is_a: OBT:000007 ! bacteria associated habitat
 
 [Term]
@@ -11312,7 +11457,11 @@ synonym: "food product" EXACT []
 synonym: "alimentary" RELATED []
 synonym: "agro-alimentary environment" RELATED []
 synonym: "foodborne" RELATED []
+synonym: "foods" RELATED []
 synonym: "food" RELATED []
+synonym: "food products" RELATED []
+synonym: "product surface" RELATED []
+synonym: "food surface" RELATED []
 is_a: OBT:000003 ! food
 
 [Term]
@@ -11343,10 +11492,9 @@ is_a: OBT:002187 ! patient with disease
 [Term]
 id: OBT:000033
 name: microflora
+synonym: "contaminant microflora" RELATED []
 synonym: "intestinal microbiota" RELATED []
-synonym: "bacterial flora" RELATED []
-synonym: "LAB with an associate Gram-negative flora" RELATED []
-synonym: "LAB microflora" RELATED []
+synonym: "normal flora of children" RELATED []
 is_a: OBT:000007 ! bacteria associated habitat
 
 [Term]
@@ -11388,8 +11536,20 @@ is_a: OBT:002165 ! poultry
 [Term]
 id: OBT:000029
 name: cell culture
-synonym: "monocyte-like THP-1 cells" RELATED []
-synonym: "human monocyte-like THP-1 cells" RELATED []
+synonym: "Caco-2 cells" RELATED []
+synonym: "cultured Caco-2 cells" RELATED []
+synonym: "hydrophilic tissue culture plates" RELATED []
+synonym: "HCE cell biotic surface" RELATED []
+synonym: "biotic HCE cell surface" RELATED []
+synonym: "biotic surface" RELATED []
+synonym: "biotic surfaces" RELATED []
+synonym: "murine macrophage-like cell line J774" RELATED []
+synonym: "macrophage-like cell line J774" RELATED []
+synonym: "J774 cells" RELATED []
+synonym: "J774 cell line" RELATED []
+synonym: "macrophage cell line" RELATED []
+synonym: "McCoy cells" RELATED []
+synonym: "cycloheximide-treated McCoy cells" RELATED []
 is_a: OBT:000001 ! experimental medium
 
 [Term]
@@ -11470,6 +11630,12 @@ is_a: OBT:000398 ! blood vessel
 [Term]
 id: OBT:000805
 name: plant material
+synonym: "Dried plant material" RELATED []
+synonym: "n-hexane extract" RELATED []
+synonym: "dried A. annua leaves" RELATED []
+synonym: "n-hexane extract of A. annua" RELATED []
+synonym: "dried plant material" RELATED []
+synonym: "n-hexane extracts derived from A. annua" RELATED []
 is_a: OBT:000532 ! dead matter
 
 [Term]
@@ -11520,6 +11686,14 @@ is_a: OBT:002187 ! patient with disease
 [Term]
 id: OBT:002196
 name: patient with cirrhosis
+synonym: "patients with cirrhosis" RELATED []
+synonym: "cirrhotic patients" RELATED []
+synonym: "Patients with underlying cirrhosis and the aforementioned bacteremia" RELATED []
+synonym: "cirrhotic patients (16 male, five female; mean age, 50.9 yr; range 28-67 yr)" RELATED []
+synonym: "Child B" RELATED []
+synonym: "Child C" RELATED []
+synonym: "patients with skin manifestation" RELATED []
+synonym: "Patients with decompensated cirrhosis" RELATED []
 is_a: OBT:002187 ! patient with disease
 
 [Term]
@@ -11531,6 +11705,7 @@ is_a: OBT:002038 ! marine water
 [Term]
 id: OBT:002194
 name: small intestine
+synonym: "small intestinal" RELATED []
 is_a: OBT:001893 ! intestine
 is_a: OBT:000907 ! upper gastrointestinal tract part
 
@@ -11548,6 +11723,7 @@ is_a: OBT:002134 ! fermented juice
 [Term]
 id: OBT:002191
 name: girl
+synonym: "females" RELATED []
 is_a: OBT:002146 ! child
 
 [Term]
@@ -11568,30 +11744,29 @@ is_a: OBT:002141 ! beer
 [Term]
 id: OBT:002187
 name: patient with disease
-synonym: "patients with atypical lymphoid infiltrates" RELATED []
-synonym: "humans" RELATED []
-synonym: "human" RELATED []
-synonym: "dyspeptic patients" RELATED []
-synonym: "patients with chronic dyspepsia" RELATED []
+synonym: "children with digestive system symptoms" RELATED []
+synonym: "patients" RELATED []
 synonym: "children" RELATED []
+synonym: "children greater than 9 years of age who had lower respiratory illness" RELATED []
+synonym: "patients with WARI" RELATED []
+synonym: "Patient" RELATED []
+synonym: "children under 5 years of age" RELATED []
+synonym: "school age children with wheezing illness" RELATED []
+synonym: "patients with enteritis" RELATED []
 is_a: OBT:002133 ! patient
 
 [Term]
 id: OBT:002186
 name: patient treated by medication
 synonym: "patient treated with medication" RELATED []
-synonym: "patients with PPI-based triple therapy" RELATED []
+synonym: "patients who accepted chemotherapy" RELATED []
 is_a: OBT:002133 ! patient
 
 [Term]
 id: OBT:002185
 name: adult human
+synonym: "adults" RELATED []
 synonym: "adult" RELATED []
-synonym: "healthy adults" RELATED []
-synonym: "probiotic group" RELATED []
-synonym: "placebo group" RELATED []
-synonym: "probiotic groups" RELATED []
-synonym: "placebo groups" RELATED []
 is_a: OBT:000989 ! adult animal
 is_a: OBT:001804 ! human
 
@@ -11637,6 +11812,9 @@ is_a: OBT:000399 ! extremely acid environment
 [Term]
 id: OBT:002177
 name: infant
+synonym: "chicks" RELATED []
+synonym: "healthy infants younger than 6 months" RELATED []
+synonym: "infants younger than 6 months" RELATED []
 is_a: OBT:002154 ! baby
 
 [Term]
@@ -11726,6 +11904,7 @@ is_a: OBT:000166 ! industrial waste
 [Term]
 id: OBT:001750
 name: apple juice
+synonym: "commercial apple juice" RELATED []
 is_a: OBT:000968 ! juice
 
 [Term]
@@ -11736,7 +11915,6 @@ is_a: OBT:000158 ! catheter
 [Term]
 id: OBT:001751
 name: opossum
-synonym: "opossums" RELATED []
 is_a: OBT:001295 ! mammalian
 
 [Term]
@@ -11749,6 +11927,10 @@ is_a: OBT:000236 ! commodity and primary derivative thereof
 [Term]
 id: OBT:001749
 name: yeast
+synonym: "Pichia pastoris" RELATED []
+synonym: "methylotrophic yeast Pichia pastoris" RELATED []
+synonym: "P. pastoris" RELATED []
+synonym: "Saccharomyces cerevisiae" RELATED []
 is_a: OBT:000020 ! microorganism
 is_a: OBT:000154 ! fungi
 
@@ -11765,17 +11947,19 @@ is_a: OBT:000158 ! catheter
 [Term]
 id: OBT:001747
 name: primate
+synonym: "Macaca mulatta sensitized with bacille Calmette Guerin cell wall vaccine" RELATED []
+synonym: "Macaca mulatta infected with virulent Mycobacterium tuberculosis" RELATED []
 is_a: OBT:001295 ! mammalian
 
 [Term]
 id: OBT:000417
 name: growing plant
+synonym: "off-shoots at the stem base" RELATED []
 is_a: OBT:000219 ! plant
 
 [Term]
 id: OBT:001748
 name: meat industry
-synonym: "chicken nugget processing plant" RELATED []
 is_a: OBT:001255 ! food processing factory
 
 [Term]
@@ -11865,8 +12049,6 @@ is_a: OBT:000157 ! phyllosphere
 [Term]
 id: OBT:000895
 name: cooled food
-synonym: "vacuum- and modified-atmosphere-packed cold-smoked salmon stored at 5 degrees C" RELATED []
-synonym: "cold-smoked salmon stored at 5 degrees C" RELATED []
 is_a: OBT:000558 ! processed food
 
 [Term]
@@ -12105,6 +12287,7 @@ is_a: OBT:001224 ! fish meat and fish meat product
 [Term]
 id: OBT:000877
 name: dried food
+synonym: "dry foods" RELATED []
 is_a: OBT:000558 ! processed food
 
 [Term]
@@ -12255,7 +12438,6 @@ is_a: OBT:000283 ! insect part
 id: OBT:000862
 name: mucosal tissue
 synonym: "mucosa" RELATED []
-synonym: "mucosal" RELATED []
 is_a: OBT:000556 ! lining
 
 [Term]
@@ -12375,6 +12557,12 @@ is_a: OBT:000292 ! soil with physical property
 id: OBT:000849
 name: leaf
 synonym: "plant leaf" EXACT []
+synonym: "dried A. annua leaves" RELATED []
+synonym: "fresh A. annua leaves" RELATED []
+synonym: "Dried plant material" RELATED []
+synonym: "dried plant material" RELATED []
+synonym: "tobacco leaf" RELATED []
+synonym: "wrinkled leaves with epinastic growth" RELATED []
 is_a: OBT:000411 ! phylloplane part
 
 [Term]
@@ -12412,6 +12600,7 @@ is_a: OBT:000434 ! water transport structure
 [Term]
 id: OBT:000841
 name: seafood and seafood product
+synonym: "Seafood" RELATED []
 is_a: OBT:000504 ! animal product and primary derivative thereof
 
 [Term]
@@ -12428,13 +12617,13 @@ is_a: OBT:000499 ! raw primary commodities
 [Term]
 id: OBT:000838
 name: drinking water supply
-synonym: "fresh water supply" RELATED []
 is_a: OBT:000337 ! drinking water facility
 
 [Term]
 id: OBT:000839
 name: garden vegetable and primary derivative thereof
 synonym: "legumes" RELATED []
+synonym: "vegetables" RELATED []
 is_a: OBT:000418 ! plant product and primary derivative thereof
 
 [Term]
@@ -12475,6 +12664,7 @@ is_a: OBT:000339 ! extractive industrial site
 [Term]
 id: OBT:000831
 name: central nervous system
+synonym: "CNS" RELATED []
 is_a: OBT:000467 ! nervous system
 
 [Term]

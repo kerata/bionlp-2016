@@ -5,15 +5,14 @@ package BB3.Models;
  */
 public class Habitat {
 
-    private String id, entity, type;
+    private String id, entity;
     private int start, end;
 
-    public Habitat(String id, String start, String end, String entity, String type){
+    public Habitat(String id, String start, String end, String entity){
         this.id     = id;
         this.start  = Integer.parseInt(start);
         this.end    = Integer.parseInt(end);
         this.entity = entity;
-        this.type   = type;
     }
 
     public String getId(){
@@ -28,7 +27,6 @@ public class Habitat {
     public int getEnd() {
         return end;
     }
-    public String getType(){ return this.type; }
 
     @Override
     public String toString() {

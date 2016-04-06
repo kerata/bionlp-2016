@@ -5,7 +5,7 @@ stomach                       /gastric mucosa
 BB-cat-10496597, MALT
 malt vinegar brewery          /lymphatic system part         
 BB-cat-10496597, monoclonal B cells
-plant part                    /lymphocyte                    
+feeder cell                   /lymphocyte                    
 BB-cat-10496597, gastric MALT
 stomach                       /lymphatic system part         
 BB-cat-10496597, patients with high-grade primary gastric lymphoma
@@ -23,29 +23,37 @@ malt vinegar brewery          /lymphatic system part
 BB-cat-10496597, patients with chronic active gastritis
 patient with urinary tract infection/patient with infectious disease
 BB-cat-10496597, CD20-positive cells
-plant part                    /lymphocyte                    
-BB-cat-10496597, B cells
-plant part                    /lymphocyte                    
+feeder cell                   /lymphocyte                    
 BB-cat-10496597, Lymphoepithelial lesions
 atherosclerotic lesion        /lesion                        
 BB-cat-10496597, monoclonal B cells
-plant part                    /lymphocyte                    
+feeder cell                   /lymphocyte                    
 BB-cat-10496597, gastric MALT
 stomach                       /lymphatic system part         
 BB-cat-11989773, chicken nugget processing plant
 food processing factory       /meat industry                 
+BB-cat-11989773, chicken
+chicken                       /chicken meat                  
 BB-cat-11989773, chicken nugget
 chicken manure                /chicken meat                  
+BB-cat-11989773, food
+food                          /food for human                
 BB-cat-11989773, food handlers
 food processing factory       /worker                        
 BB-cat-11989773, chicken nugget processing plant
 food processing factory       /meat industry                 
 BB-cat-11989773, chicken nugget
 chicken manure                /chicken meat                  
+BB-cat-11989773, selective agars
+antibiotic-containing media   /agar                          
 BB-cat-11989773, product samples
 aquatic sediment              /chicken meat                  
 BB-cat-11989773, food handler
 food processing factory       /worker                        
+BB-cat-11989773, food
+food                          /food for human                
+BB-cat-11989773, food
+food                          /food for human                
 BB-cat-11989773, food handlers
 food processing factory       /worker                        
 BB-cat-11989773, product samples
@@ -54,8 +62,8 @@ BB-cat-12109661, H. pylori-positive subjects
 patient with gastric ulcer    /patient with infectious disease
 BB-cat-12109661, H. pylori-negative subjects
 patient with gastric ulcer    /healthy person                
-BB-cat-12109661, H. pylori-infected monkeys
-monkey                        /animal with disease           
+BB-cat-12109661, children
+patient with infectious disease/child                         
 BB-cat-12109661, patients with gastric cancer
 stomach                       /patient with cancer           
 BB-cat-12109661, patients with chronic gastritis
@@ -63,7 +71,11 @@ animal part                   /patient with infectious disease
 BB-cat-12109661, young Japanese gastric cancer patients
 stomach                       /pediatric patient             
 BB-cat-12109661, young Japanese people
-young animal                  /child                         
+marine farm fish              /child                         
+BB-cat-1214327, clinical
+clinic                        /patient                       
+BB-cat-1214327, clinical
+clinic                        /patient                       
 BB-cat-1214327, gastroenteritis patients
 animal part                   /patient with infectious disease
 BB-cat-1214327, healthy carriers
@@ -89,39 +101,37 @@ patient with cystic fibrosis  /hospital environment
 BB-cat-15293611, regional adult CF units
 patient with cystic fibrosis  /hospital environment          
 BB-cat-15293611, patients
-patient with infectious disease/patient with cystic fibrosis  
-BB-cat-15293611, clinic
-patient with cystic fibrosis  /clinic                        
+patient                       /patient with cystic fibrosis  
 BB-cat-15293611, patients
-patient with infectious disease/patient with cystic fibrosis  
+patient                       /patient with cystic fibrosis  
 BB-cat-15293611, patients
-patient with infectious disease/patient with cystic fibrosis  
+patient                       /patient with cystic fibrosis  
 BB-cat-15293611, patient
-patient with infectious disease/patient with cystic fibrosis  
+patient                       /patient with cystic fibrosis  
 BB-cat-15293611, patients
-patient with infectious disease/patient with cystic fibrosis  
+patient                       /patient with cystic fibrosis  
 BB-cat-15293611, patients
-patient with infectious disease/patient with cystic fibrosis  
+patient                       /patient with cystic fibrosis  
 BB-cat-15293611, patients
-patient with infectious disease/patient with cystic fibrosis  
+patient                       /patient with cystic fibrosis  
 BB-cat-15293611, patients
-patient with infectious disease/patient with cystic fibrosis  
+patient                       /patient with cystic fibrosis  
 BB-cat-15618837, dyspeptic patients
-patient with urinary tract infection/patient with disease          
+patient with infectious disease/patient with disease          
 BB-cat-15618837, patients with chronic dyspepsia
-patient with urinary tract infection/patient with disease          
-BB-cat-15618837, clinic
-patient with cystic fibrosis  /clinic                        
+patient with infectious disease/patient with disease          
 BB-cat-15618837, Gastric biopsies
 patient with gastric ulcer    /stomach                       
 BB-cat-15618837, dyspeptic patients
-patient with urinary tract infection/patient with disease          
+patient with infectious disease/patient with disease          
 BB-cat-16273411, neonatal
 neonatal patient              /newborn infant                
 BB-cat-16273411, placenta of a 38-year-old secondary recurrent aborter
 lagoon                        /placenta                      
 BB-cat-16273411, 38-year-old secondary recurrent aborter
 experimental medium           /pregnant woman                
+BB-cat-16458564, children
+pediatric patient             /child                         
 BB-cat-16458564, children less than five years of age
 pediatric patient             /child                         
 BB-cat-16458564, children with diarrhea
@@ -132,14 +142,22 @@ BB-cat-16458564, children less than two years of age
 pediatric patient             /ill person                    
 BB-cat-16458564, older children
 pediatric patient             /child                         
-BB-cat-16458564, children
-patient with infectious disease/pediatric patient             
+BB-cat-16458564, Watery stool
+rectal swab                   /feces                         
+BB-cat-16458564, mucous stool
+rectal swab                   /feces                         
 BB-cat-16458564, piped water
 hospital drinking water       /drinking water                
+BB-cat-16458564, children
+pediatric patient             /child                         
+BB-cat-16458564, children
+pediatric patient             /child                         
 BB-cat-16458564, fresh water supply
 hospital drinking water       /drinking water supply         
 BB-cat-16458564, unhygienic septic tank
 tank water                    /septic tank                   
+BB-cat-16458564, children
+pediatric patient             /child                         
 BB-cat-18094887, Ixodes loricatus
 wood tick                     /tick                          
 BB-cat-18094887, animal blood
@@ -147,7 +165,7 @@ animal blood                  /blood
 BB-cat-18094887, human blood
 human                         /blood                         
 BB-cat-18094887, animal sera
-animal part                   /blood serum                   
+animal                        /blood serum                   
 BB-cat-18094887, human sera
 human                         /blood serum                   
 BB-cat-18094887, opossum sera
@@ -169,21 +187,23 @@ lagoon                        /experimental medium
 BB-cat-18694716, 13C-labeled cell
 feeder cell                   /cell                          
 BB-cat-18789156, monocyte-like THP-1 cells
-plant part                    /cell culture                  
+feeder cell                   /cell culture                  
 BB-cat-18789156, monocyte-like THP-1 cells
-plant part                    /monocyte                      
+feeder cell                   /monocyte                      
 BB-cat-18789156, monocyte-like THP-1 cells
-plant part                    /monocyte                      
+feeder cell                   /monocyte                      
 BB-cat-18789156, monocyte-like THP-1 cells
-plant part                    /monocyte                      
-BB-cat-18789156, host tissues
-animal part                   /animal tissue                 
+feeder cell                   /monocyte                      
+BB-cat-18789156, infected monocytes
+animal part                   /monocyte                      
 BB-cat-18789156, monocyte-like THP-1 cells
-plant part                    /monocyte                      
+feeder cell                   /monocyte                      
 BB-cat-19339076, lactose-free M17 medium supplemented with glucose only (GM17)
 animal part                   /experimental medium           
 BB-cat-19339076, lactose-free M17 medium supplemented with lactose only (LM17)
 animal part                   /experimental medium           
+BB-cat-19552770, commercially reared partridges
+commercial yogurt             /partridge                     
 BB-cat-19552770, Cloacal swabs of partridges
 lagoon                        /rectal swab                   
 BB-cat-19552770, male birds
@@ -194,66 +214,104 @@ BB-cat-19552770, game bird
 game bird meat                /bird                          
 BB-cat-19552770, game bird farm
 game bird meat                /farm                          
-BB-cat-19552770, Adult partridges
-adult animal                  /livestock                     
 BB-cat-19552770, younger ones
 lagoon                        /young animal                  
 BB-cat-19552770, game birds
 game bird meat                /bird                          
+BB-cat-19552770, commercially reared partridges
+commercial yogurt             /partridge                     
 BB-cat-20174624, human innate immune system
 immune system                 /innate immune system          
+BB-cat-20174624, innate immune
+immune system                 /innate immune system          
 BB-cat-20174624, murine dendritic cells
-plant part                    /dendritic cell                
+feeder cell                   /dendritic cell                
 BB-cat-20174624, human monocyte-derived macrophages
 human                         /macrophage                    
 BB-cat-20174624, cell
-glial cell                    /leukocyte                     
+cell                          /leukocyte                     
 BB-cat-20174624, PMN cell
-plant part                    /neutrophil                    
+feeder cell                   /neutrophil                    
 BB-cat-20174624, PMN cell
-plant part                    /neutrophil                    
+feeder cell                   /neutrophil                    
 BB-cat-20174624, human innate immune
 immune system                 /innate immune system          
 BB-cat-20580604, probiotic fermented milk beverage
 milk and milk product         /fermented milk                
 BB-cat-20580604, intestinal environment of healthy individuals with soft stools
 lagoon                        /intestine                     
+BB-cat-20580604, soft stools
+soft tissue                   /feces                         
 BB-cat-20580604, fermented milk beverage
 milk and milk product         /fermented milk                
 BB-cat-20580604, bottle
 bottling factory              /fermented milk                
+BB-cat-20580604, probiotics
+feed probiotics               /probiotic food                
 BB-cat-20580604, bottle
 bottling factory              /fermented milk                
 BB-cat-20580604, intestinal environment of healthy individuals with soft stools
 lagoon                        /intestine                     
+BB-cat-20580604, soft stools
+soft tissue                   /feces                         
+BB-cat-20580604, soft stools
+soft tissue                   /feces                         
+BB-cat-20580604, probiotics
+feed probiotics               /probiotic food                
+BB-cat-20580604, probiotic
+feed probiotics               /probiotic food                
 BB-cat-20580604, water content of the stools
 lagoon                        /body fluid                    
 BB-cat-20580604, probiotic group
 feed probiotics               /adult human                   
+BB-cat-20580604, probiotic
+feed probiotics               /probiotic food                
+BB-cat-20580604, probiotic
+feed probiotics               /probiotic food                
+BB-cat-20580604, probiotics
+feed probiotics               /probiotic food                
+BB-cat-20580604, probiotic
+feed probiotics               /probiotic food                
 BB-cat-20580604, probiotic groups
 feed probiotics               /adult human                   
 BB-cat-20580604, probiotic fermented milk beverage
 milk and milk product         /animal probiotic              
+BB-cat-20580604, soft stool
+soft tissue                   /feces                         
+BB-cat-21270066, perianal ulceration
+patient with gastric ulcer    /ulcer                         
 BB-cat-21270066, HIV-positive men who have sex with men
 patient with gastric ulcer    /man                           
+BB-cat-21270066, Patients
+patient                       /patient with infectious disease
 BB-cat-21270066, MSM attending sexually transmitted infection clinics
 patient with urinary tract infection/man                           
 BB-cat-21270066, sexually transmitted infection clinics
 patient with urinary tract infection/clinic                        
 BB-cat-21270066, HIV-infected patients presenting with isolated perianal ulcer disease
 patient with gastric ulcer    /patient with HIV              
+BB-cat-21270066, perianal ulcer
+patient with gastric ulcer    /ulcer                         
 BB-cat-21270066, MSM with proctitis
 patient with gastric ulcer    /man                           
 BB-cat-21270066, MSM with perianal ulcer disease
 patient with gastric ulcer    /man                           
+BB-cat-21270066, perianal ulcer
+patient with gastric ulcer    /ulcer                         
 BB-cat-21543877, human population
 human body louse              /human                         
 BB-cat-21695078, female mouse
 mouse                         /female animal                 
+BB-cat-21695078, mucosal
+mucosal surface               /mucosal tissue                
 BB-cat-21695078, mice
 mouse                         /laboratory mice               
 BB-cat-21695078, mice
 mouse                         /female animal                 
+BB-cat-21695078, neutrophils
+neutrophil                    /leukocyte                     
+BB-cat-21695078, mucosal
+mucosal surface               /mucosal tissue                
 BB-cat-21894542, world's oceans
 lymphatic system part         /marine water                  
 BB-cat-21894542, marine organisms
@@ -280,30 +338,50 @@ BB-cat-3544198, nitrocellulose paper
 paper carton                  /experimental medium           
 BB-cat-3544198, LL patients
 urine                         /patient with infectious disease
+BB-cat-47483, clinical
+clinic                        /patient                       
+BB-cat-9521147, clinical
+clinic                        /patient                       
+BB-cat-9521147, clinical
+clinic                        /patient                       
 BB-cat-9521147, sera from patients with different clinical spectra and with other infections
-yoghurt from fermented soybean milk/blood serum                   
+clinic                        /blood serum                   
 BB-cat-9521147, patients with different clinical spectra and with other infections
 clinic                        /patient with infectious disease
+BB-cat-9521147, clinical
+clinic                        /patient                       
 BB-cat-9521147, sera from patients with melioidosis
-yoghurt from fermented soybean milk/blood serum                   
+patient                       /blood serum                   
 BB-cat-9521147, patients with melioidosis
-patient with urinary tract infection/patient with infectious disease
+patient                       /patient with infectious disease
 BB-cat-9521147, hyperimmune mouse sera
 mouse                         /blood serum                   
 BB-cat-9521147, hyperimmune mouse
 mouse                         /laboratory mice               
 BB-cat-9553794, vacuum- and modified-atmosphere-packed cold-smoked salmon stored at 5 degrees C
 oilseed and oilfruit and primary derivative thereof/smoked salmon                 
+BB-cat-9553794, vacuum-packed cold-smoked salmon
+salmon meat                   /smoked salmon                 
 BB-cat-9553794, vacuum packages
 packaging factory             /vacuum-packed meat            
-BB-cat-9745160, patient
-patient with infectious disease/patient                       
+BB-cat-9553794, vacuum-packed salmon
+salmon meat                   /smoked salmon                 
+BB-cat-9553794, cold-smoked salmon stored at 5 degrees C
+salmon meat                   /smoked salmon                 
+BB-cat-9553794, salmon
+salmon meat                   /smoked salmon                 
 BB-cat-9745160, patients with active duodenal ulcer disease and H pylori infection
 patient with gastric ulcer    /patient with infectious disease
+BB-cat-9745160, ulcer
+ulcer                         /duodenal ulcer                
+BB-cat-9745160, patients
+patient                       /patient with infectious disease
+BB-cat-9745160, patients
+patient                       /patient with infectious disease
+BB-cat-9745160, patients
+patient                       /patient with infectious disease
 BB-cat-9745160, patients with PPI-based triple therapy
 patient with gastric ulcer    /patient with infectious disease
 BB-cat-9745160, patients with bismuth-based triple therapy
 patient with gastric ulcer    /patient with infectious disease
-BB-cat-9745160, patients
-patient with infectious disease/patient                       
 

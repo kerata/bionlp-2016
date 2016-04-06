@@ -33,6 +33,5 @@ public class Relation {
     @Override
     public String toString() {
         return String.format("%s ! %s", termId, termName);
-//        return String.format("rId: %s", termId);
     }
 }

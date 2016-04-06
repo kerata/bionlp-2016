@@ -25,7 +25,7 @@ public class BB3Runner {
 
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
 //        StanfordLemmatizer lemmatizer = new StanfordLemmatizer();
-        ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016_ext.obo");
+        ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016_tra_ext.obo");
 //        ArrayList<Commons.Pair<String, Integer>> keywords = new ArrayList<>();
 //        ontology.invertedIndex
 //                .forEach((s, terms) -> keywords.add(new Commons.Pair<>(s, terms.size())));
@@ -33,7 +33,6 @@ public class BB3Runner {
 //                .sorted(Comparator.comparing(pair -> pair.r))
 //                .forEach(pair -> System.out.println(pair.l + "_" + pair.r));
         ontology.buildDependencyTrees();
-//        Commons.printToFile("onto", "ontology.txt", ontology.getDependencyTrees().get(0).toString());
 
         // Iterates over given files and constructs document objects.
         File[] listOfFiles = (new File(DATA_PATH)).listFiles();
@@ -43,7 +42,6 @@ public class BB3Runner {
         documents = new ArrayList<>();
         for(File file : listOfFiles){
             if(!file.getName().endsWith(".txt")) continue;
-
             Document doc = new Document(file.getName().replace(".txt", ""),
                                             new String(Files.readAllBytes(Paths.get(file.getPath())), StandardCharsets.UTF_8));
 //            lemmatizer.lemmatize(doc.getText());
@@ -55,7 +53,7 @@ public class BB3Runner {
 
 //             Extracts categories from given files.
             String CATFileName = file.getPath().replace(".txt", ".a2");
-            doc.setCategories(Categorizer.init().splitCategories(
+            doc.setCategories(Categorizer.splitCategories(
                                             new String(Files.readAllBytes(Paths.get(CATFileName)), StandardCharsets.UTF_8)));
 
             for(List str : doc.getCategories().values())
@@ -63,24 +61,14 @@ public class BB3Runner {
             documents.add(doc);
         }
 
-        // Tags a document as an example and prints the tagged text line by line.
-//        documents.get(0).posTagger();
-//        documents.get(0).printTaggedDocument();
-//        System.out.println(documents.get(0).getText());
-
-        // Parses the document as an example and prints parse tree.
-//        documents.get(0).printParseTree();
-
-        // Prints habitats of a document.
-//        documents.get(0).printHabitats();
-
         ontology.computeTfIdfValues();
         StringBuilder sb = new StringBuilder();
         for (Document document: documents) {
             Commons.printBlack(document.getId());
-            sb.append(Categorizer.init().categorizeDocument(document));
+            sb.append(Categorizer.categorizeDocument(document));
             Commons.printBlack("");
         }
+
         Commons.printToFile("stats", "FalsePositives.txt", sb.toString());
         double precision = 1.0 * Commons.TP / (Commons.TP + Commons.FP), recall = 1.0 * Commons.TP / (Commons.TP + Commons.FN);
 

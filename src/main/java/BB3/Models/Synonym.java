@@ -38,10 +38,16 @@ public class Synonym {
     }
 
     @Override
-    public String toString() {
-//        return String.format("detail: %s; type: %s", detail,
-//                type != null ? type.toString() : "UNKNOWN");
+    public boolean equals(Object obj) {
+        if (obj instanceof Synonym) {
+            Synonym other = (Synonym) obj;
+            return this.detail.equals(other.detail);
+        }
+        return false;
+    }
 
+    @Override
+    public String toString() {
         return String.format("\"%s\" %s []", detail, type != null ? type.toString() : "UNKNOWN");
     }
 }

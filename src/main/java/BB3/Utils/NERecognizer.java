@@ -41,8 +41,8 @@ public class NERecognizer {
                 } while (mScope.find());
             }
 
-            if(type.equals("Habitat") || type.equals("Bacteria"))
-                habitatList.add(new Habitat(id, start, end, entity,type));
+            if(type.equals("Habitat"))
+                habitatList.add(new Habitat(id, start, end, entity));
         }
 
         return habitatList;
