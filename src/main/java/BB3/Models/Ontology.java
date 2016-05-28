@@ -122,7 +122,7 @@ public class Ontology {
             Term term = iterator.next();
             iterator.remove();
             Tree tree = new Tree();
-            tree.constructFromLeaf(this, terms, term);
+            tree.constructForTerm(this, terms, term);
 
             if (!tree.hasMerged())
                 dependencyTrees.add(tree);
