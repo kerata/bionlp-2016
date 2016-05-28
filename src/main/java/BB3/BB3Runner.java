@@ -26,13 +26,6 @@ public class BB3Runner {
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
 //        StanfordLemmatizer lemmatizer = new StanfordLemmatizer();
         ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016_tra_ext.obo");
-//        ArrayList<Commons.Pair<String, Integer>> keywords = new ArrayList<>();
-//        ontology.invertedIndex
-//                .forEach((s, terms) -> keywords.add(new Commons.Pair<>(s, terms.size())));
-//        keywords.stream()
-//                .sorted(Comparator.comparing(pair -> pair.r))
-//                .forEach(pair -> System.out.println(pair.l + "_" + pair.r));
-        ontology.buildDependencyTrees();
 
         // Iterates over given files and constructs document objects.
         File[] listOfFiles = (new File(DATA_PATH)).listFiles();

@@ -148,8 +148,7 @@ public class Tree {
 
     public void printByLevel() {
         ArrayList<Node> sortedByLevel = new ArrayList<>();
-        for (ArrayList<Node> posting: nodes.values())
-            sortedByLevel.addAll(posting);
+        nodes.values().forEach(sortedByLevel::addAll);
         sortedByLevel.sort((o1, o2) -> {
             int diff = o1.level - o2.level;
             return diff < 0 ? -1 :
@@ -158,11 +157,11 @@ public class Tree {
         StringBuilder accumulator = new StringBuilder();
         sortedByLevel.forEach(node -> {
             for (int i = 0;i < node.level;i++)
-                accumulator.append(" ");
-            accumulator
-                    .append(node.level)
-                    .append(node.data.toString())
-                    .append("\n");
+                accumulator
+                        .append(" ")
+                        .append(node.level)
+                        .append(node.data.toString())
+                        .append("\n");
         });
         System.out.println(accumulator.toString());
     }
@@ -307,11 +306,28 @@ public class Tree {
         public String toString() {
             StringBuilder accumulator = new StringBuilder();
             for (int i = 0;i < level;i++)
-                accumulator.append(" ");
-            accumulator.append(level).append(data.toString()).append("\n");
-
-            for (Node child: children)
-                accumulator.append(child.toString());
+                accumulator.append("-");
+            accumulator
+//                    .append(level)
+//                    .append(data.toString())
+                    .append(data.getId());
+            int maxlvl = 7;
+            if (level < maxlvl) {
+                if (children.size() == 0)
+                    accumulator
+                            .append("\n");
+                else {
+                    accumulator
+                            .append("-")
+                            .append("\n");
+                    for (Node child: children)
+                        accumulator.append(child.toString());
+                }
+            }
+            else if (level == maxlvl)
+                accumulator
+                        .append("+")
+                        .append("\n");
             return accumulator.toString();
         }
 

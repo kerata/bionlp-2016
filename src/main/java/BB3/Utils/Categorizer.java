@@ -31,6 +31,7 @@ public class Categorizer {
 
         // Tries exact matching
         List<String> tokens = Tokenizer.tokenizeText(habitat);
+//        tokens.addAll(Commons.expandWithNGram(tokens, 2));
         StringBuilder tokenizedSB = new StringBuilder();
         tokens.forEach(token -> tokenizedSB.append(token).append(" "));
         String tokenizedText = tokenizedSB.toString();
@@ -53,6 +54,8 @@ public class Categorizer {
                     StringBuilder synonymText = new StringBuilder();
                     Tokenizer.tokenizeText(synonym.getDetail()).forEach(t -> synonymText.append(String.format("%s ", t)));
                     if (synonymText.toString().equals(tokenizedText)) {
+                        if (synonym.getType() == Synonym.Type.EXACT)
+                            return new ArrayList<>(Collections.singleton(term));
                         termList.add(term);
                         continue termLoop;
                     }
