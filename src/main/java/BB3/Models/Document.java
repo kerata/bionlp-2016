@@ -1,13 +1,9 @@
 package BB3.Models;
 
 import BB3.Utils.Commons;
-import BB3.Utils.LEXParser;
-import BB3.Utils.POSTagger;
 import BB3.Utils.Tokenizer;
 import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.process.*;
-import edu.stanford.nlp.trees.Tree;
 
 import java.util.*;
 
@@ -16,53 +12,53 @@ import java.util.*;
  */
 public class Document {
 
-    private String id, text;
-    private List taggedText;
-    private Tree parse;
-    private List<Habitat> habitatList;
-    private Map<String, List<String> > categories;
+    private String id, title, paragraph;
+    private Map<String, Habitat> habitatMap;
+    private Map<String, List<String> > categoryList;
     private Map<String, Integer> invertedIndex;
 
     private int[] sentencePositions;
 
-    public Document(String id, String text){
+    public Document(String id){
         this.id = id;
-        this.text = text;
-        this.habitatList = new ArrayList<>();
+        this.habitatMap = new HashMap<>();
+        this.categoryList = new HashMap<>();
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public void setParagraph(String paragraph){
+        this.paragraph = paragraph;
+    }
+
+    public void addHabitat(Habitat habitat){
+        this.habitatMap.put(habitat.getId(), habitat);
+    }
+
+    public void addCategoryToHabitat(String habitatId, String categoryId){
+        this.categoryList.putIfAbsent(habitatId, new ArrayList<>());
+        this.categoryList.get(habitatId).add(categoryId);
+    }
+
+    public List<String> getCategoriesForHabitat(String habitatId){
+        return this.categoryList.getOrDefault(habitatId, new ArrayList<>());
     }
 
     public Map<String, Integer> buildInvertedIndex(){
         if(this.invertedIndex != null) return this.invertedIndex;
-        else return this.invertedIndex = Commons.buildInvertedIndex(this.text);
-    }
-
-    public List posTagger(){
-        return this.taggedText = POSTagger.tagDocument(this.text);
-    }
-
-    public void parse(){
-        if(parse == null)
-            parse = LEXParser.init().parseDocument(text);
-    }
-
-    public void printTaggedDocument(){
-        for(Object sentence : this.taggedText)
-            System.out.println(Sentence.listToString((List)sentence, false));
-    }
-
-    public void printParseTree(){
-        parse();
-        parse.pennPrint();
+        else return this.invertedIndex = Commons.buildInvertedIndex(this.title + "\n" + this.paragraph);
     }
 
     public void printHabitats(){
-        for(Habitat habitat : habitatList)
+        for(Habitat habitat : habitatMap.values())
             System.out.println(habitat.getEntity());
     }
 
     private void findSentencePositions() {
         List<List<CoreLabel>> sentences = new WordToSentenceProcessor<CoreLabel>()
-                .process(Tokenizer.tokenize(this.text, "untokenizable=noneKeep"));
+                .process(Tokenizer.tokenize(this.paragraph, "untokenizable=noneKeep"));
 
         int start = 0, end;
         List<Integer> sentencePositions= new ArrayList<>();
@@ -85,17 +81,14 @@ public class Document {
             return "";
         for (int i = 1;i < sentencePositions.length;i++)
             if (pos < sentencePositions[i] || pos > sentencePositions[i -1])
-                return this.text.substring(sentencePositions[i -1], sentencePositions[i]).trim();
+                return this.paragraph.substring(sentencePositions[i -1], sentencePositions[i]).trim();
         return "";
     }
 
-    public void setHabitatList(List<Habitat> habitatList){ this.habitatList = habitatList; }
-
-    public void setCategories(Map<String, List<String> > categories){ this.categories = categories; }
-    public Map<String, List<String> > getCategories(){ return this.categories; }
+    public void setHabitatMap(Map<String, Habitat> habitatMap){ this.habitatMap = habitatMap; }
+    public void setCategoryList(Map<String, List<String> > categories){ this.categoryList = categories; }
+    public Map<String, List<String> > getCategoryList(){ return this.categoryList; }
 
     public String getId(){ return this.id; }
-    public String getText(){ return this.text; }
-    public List getTaggedText(){ return this.taggedText; }
-    public List<Habitat> getHabitats(){ return this.habitatList; }
+    public Map<String, Habitat> getHabitatMap(){ return this.habitatMap; }
 }

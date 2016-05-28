@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 /**
  * Created by kerata on 28/02/16.
  */
+
 public class Ontology {
 
     private ArrayList<Tree> dependencyTrees;
@@ -26,6 +27,10 @@ public class Ontology {
         vocabulary = new HashSet<>();
         docFreq = new HashMap<>();
         termFreq = new HashMap<>();
+    }
+
+    public Term getTerm(String id) throws NullPointerException {
+        return terms.get(id);
     }
 
     public Map<String, Term> getTerms() {

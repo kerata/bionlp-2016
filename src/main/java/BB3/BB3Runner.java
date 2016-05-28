@@ -1,7 +1,6 @@
 package BB3;
 
-import BB3.Models.Document;
-import BB3.Models.Ontology;
+import BB3.Models.*;
 import BB3.Utils.*;
 
 import java.io.*;
@@ -18,60 +17,59 @@ import java.util.Map;
  */
 public class BB3Runner {
 
-    public static String DATA_PATH = "src/main/resources/dev-data";
-    public static List<Document> documents;
+    public static String
+            DATA_PATH = "src/main/resources/data",
+            DEV_DATA_PATH = "src/main/resources/dev-data",
+            ONTOLOGY_PATH = "src/main/resources/OntoBiotope_BioNLP-ST-2016.obo",
+            PREDICTION_FOLDER_PATH = "src/main/resources/output/result";
 
+    public static Map<String, Document> documentMap;
     public static Ontology ontology;
 
-    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
-//        StanfordLemmatizer lemmatizer = new StanfordLemmatizer();
-        ontology = Parser.buildOntology("src/main/resources/OntoBiotope_BioNLP-ST-2016_tra_ext.obo");
-        ontology.buildDependencyTrees();
+    public static final int MAX_TRIAL_CNT = 2;
 
-        // Iterates over given files and constructs document objects.
-        File[] listOfFiles = (new File(DATA_PATH)).listFiles();
-        assert listOfFiles != null;
+    public static void main(String[] args) throws IOException {
 
-        int cnt = 0;
-        documents = new ArrayList<>();
-        for(File file : listOfFiles){
-            if(!file.getName().endsWith(".txt")) continue;
-            Document doc = new Document(file.getName().replace(".txt", ""),
-                                            new String(Files.readAllBytes(Paths.get(file.getPath())), StandardCharsets.UTF_8));
-//            lemmatizer.lemmatize(doc.getText());
-            // Extracts habitats from given files.
-            // TODO the process is temporarily in main method.
-            String NEFileName = file.getPath().replace(".txt", ".a1");
-            doc.setHabitatList(NERecognizer.init().getHabitats(
-                                            new String(Files.readAllBytes(Paths.get(NEFileName)), StandardCharsets.UTF_8)));
+//        ontology = Parser.expandOntology(ONTOLOGY_PATH, DEV_DATA_PATH);
+        ontology = Parser.buildOntology(ONTOLOGY_PATH, false);
+        documentMap = Parser.buildDocumentList(DATA_PATH);
 
-//             Extracts categories from given files.
-            String CATFileName = file.getPath().replace(".txt", ".a2");
-            doc.setCategories(Categorizer.splitCategories(
-                                            new String(Files.readAllBytes(Paths.get(CATFileName)), StandardCharsets.UTF_8)));
+        documentMap.values().forEach(document -> {
+            Commons.printRed(document.getId());
+            Categorizer.categorizeDocument(document, (habitat, category) -> Commons.printBlack(habitat.getId() + " : " + category.getId()));
+        });
 
-            for(List str : doc.getCategories().values())
-                cnt += str.size();
-            documents.add(doc);
-        }
+        Evaluator.evaluateResultsOfAllFiles(PREDICTION_FOLDER_PATH, DATA_PATH, new Evaluator.EvaluationListener() {
 
-        ontology.computeTfIdfValues();
-        StringBuilder sb = new StringBuilder();
-        for (Document document: documents) {
-            Commons.printBlack(document.getId());
-            sb.append(Categorizer.categorizeDocument(document));
-            Commons.printBlack("");
-        }
+            @Override
+            public void onDocumentEvaluationStart(String documentId) {
+                Commons.printBlack(documentId);
+            }
 
-        Commons.printToFile("stats", "FalsePositives.txt", sb.toString());
-        double precision = 1.0 * Commons.TP / (Commons.TP + Commons.FP), recall = 1.0 * Commons.TP / (Commons.TP + Commons.FN);
+            @Override
+            public void onHabitatEvaluated(String documentId, String habitatId, String predictedCategoryId, List<String> referenceCategoryIdList) {
+                String habitatEntity = documentMap.get(documentId).getHabitatMap().get(habitatId).getEntity();
 
-        Commons.printBlack("True Positive : " + Commons.TP);
-        Commons.printBlack("False Positive : " + Commons.FP);
-        Commons.printBlack("False Negative : " + Commons.FN);
-        Commons.printBlack("Precision : " + precision);
-        Commons.printBlack("Recall : " + recall);
-        Commons.printBlack("Total category : " + cnt);
-        Commons.printBlack("Trial : " + Commons.trial);
+                if (!predictedCategoryId.equals("") && referenceCategoryIdList != null){
+                    StringBuilder sb = new StringBuilder();
+                    referenceCategoryIdList.forEach(referenceCategoryId -> sb.append(ontology.getTerm(referenceCategoryId).getName()).append(","));
+                    Commons.printRed(habitatEntity + " -> " + ontology.getTerm(predictedCategoryId).getName() + " - " + sb.deleteCharAt(sb.length()-1).toString());
+                } else if (referenceCategoryIdList == null)
+                    Commons.printBlue(habitatEntity + " -> " + ontology.getTerm(predictedCategoryId).getName());
+                else if (predictedCategoryId.equals(""))
+                    for (String referenceCategoryId : referenceCategoryIdList)
+                        Commons.printYellow(habitatEntity + " -> " + ontology.getTerm(referenceCategoryId).getName());
+            }
+
+            @Override
+            public void onDocumentEvaluated(String documentId, Stat stat) {
+                Commons.printBlack(stat.toString());
+            }
+
+            @Override
+            public void onFolderEvaluated(Stat stat) {
+                Commons.printBlack(stat.toString());
+            }
+        });
     }
 }

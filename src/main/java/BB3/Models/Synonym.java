@@ -47,6 +47,11 @@ public class Synonym {
     }
 
     @Override
+    public int hashCode() {
+        return detail.hashCode();
+    }
+
+    @Override
     public String toString() {
         return String.format("\"%s\" %s []", detail, type != null ? type.toString() : "UNKNOWN");
     }
