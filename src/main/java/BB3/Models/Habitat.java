@@ -6,13 +6,14 @@ package BB3.Models;
 public class Habitat {
 
     private String id, entity;
-    private int start, end;
+    private int rank, start, end;
 
     public Habitat(String id, String start, String end, String entity){
         this.id     = id;
         this.start  = Integer.parseInt(start);
         this.end    = Integer.parseInt(end);
         this.entity = entity;
+        this.rank   = Integer.parseInt(id.replace("T",""));
     }
 
     public String getId(){
@@ -21,6 +22,7 @@ public class Habitat {
     public String getEntity(){
         return this.entity;
     }
+    public int getRank() { return this.rank; }
     public int getStart() {
         return start;
     }

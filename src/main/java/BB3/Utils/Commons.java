@@ -1,9 +1,6 @@
 package BB3.Utils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -19,6 +16,23 @@ public class Commons {
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_YELLOW = "\u001B[33m";
     private static final String ANSI_BLUE = "\u001B[34m";
+
+    public static void print(File file, String text) {
+        BufferedWriter bf;
+        try{
+            if(file == null) {
+                bf = (new BufferedWriter(new OutputStreamWriter(System.out)));
+                bf.write(String.format("%s%s%s",ANSI_BLACK,text,ANSI_BLACK));
+                bf.flush();
+            } else {
+                bf = (new BufferedWriter(new FileWriter(file)));
+                bf.write(text);
+                bf.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void printBlack(String text){
         System.out.println(ANSI_BLACK + text + ANSI_BLACK);
@@ -38,7 +52,7 @@ public class Commons {
 
     public static void printToFile(String path, String fileName, String... texts) {
         try {
-            File file = new File("src/main/resources/output/" + path);
+            File file = new File(path);
             if(!file.exists()) file.mkdirs();
             PrintWriter writer = new PrintWriter(file.getAbsoluteFile() + "/" + fileName, "UTF-8");
             for(String text : texts) writer.println(text);

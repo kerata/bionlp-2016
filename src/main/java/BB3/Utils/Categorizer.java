@@ -1,6 +1,5 @@
 package BB3.Utils;
 
-import BB3.BB3Runner;
 import BB3.Models.*;
 
 import java.util.*;
@@ -11,11 +10,12 @@ import java.util.stream.Collectors;
  */
 public class Categorizer {
 
-    public interface DocumentCategorizerListener {
+    public interface CategorizationListener {
         void onCategoryAddedToHabitat(Habitat habitat, Term category);
+        void onCategorizationEnded();
     }
 
-    public static DocumentCategorizerListener listener;
+    public static CategorizationListener listener;
 
     public static double computeCosineSimilarity(List<Double> v1, List<Double> v2){
         double a = 1, b = 0, c = 0;
@@ -31,15 +31,15 @@ public class Categorizer {
 
     // Computes cosine similarity between Terms and Doc.
     // Returns sorted map of terms with respect to similarities.
-    public static ArrayList<Commons.Pair<Term, Double>> sortTerms(Map<String, Integer> invertedIndex) {
-        List<Double> tfIdfValues = BB3Runner.ontology.vocabulary.stream()
+    public static ArrayList<Commons.Pair<Term, Double>> sortTerms(Ontology ontology, Map<String, Integer> invertedIndex) {
+        List<Double> tfIdfValues = ontology.vocabulary.stream()
                 .map(v -> (1 + Math.log10(invertedIndex.getOrDefault(v, 1))) *
-                    Math.log10(BB3Runner.ontology.vocabulary.size() / BB3Runner.ontology.docFreq.get(v)))
+                    Math.log10(ontology.vocabulary.size() / ontology.docFreq.get(v)))
                 .collect(Collectors.toList());
 
         Map<Term, Double> res = new HashMap<>();
-        for(Map.Entry<String, List<Double> > entry : BB3Runner.ontology.tfIdf.entrySet())
-            res.put(BB3Runner.ontology.getTerms().get(entry.getKey()), computeCosineSimilarity(entry.getValue(), tfIdfValues));
+        for(Map.Entry<String, List<Double> > entry : ontology.tfIdf.entrySet())
+            res.put(ontology.getTerms().get(entry.getKey()), computeCosineSimilarity(entry.getValue(), tfIdfValues));
 
         ArrayList<Commons.Pair<Term, Double>> result = new ArrayList<>();
         res.entrySet().stream()
@@ -49,7 +49,7 @@ public class Categorizer {
         return result;
     }
 
-    public static ArrayList<Term> findPossibleCategories(ArrayList<Commons.Pair<Term, Double>> sortedTerms, String habitatEntity) {
+    public static ArrayList<Term> findPossibleCategories(Ontology ontology, ArrayList<Commons.Pair<Term, Double>> sortedTerms, String habitatEntity) {
         Set<Term> possibleCategories = new HashSet<>();
 
         // Tries exact matching
@@ -60,7 +60,7 @@ public class Categorizer {
 
         for(String habitatToken : habitatTokens) {
             termLoop:
-            for (Term term : BB3Runner.ontology.getTermsForKeyword(habitatToken.toLowerCase())) {
+            for (Term term : ontology.getTermsForKeyword(habitatToken.toLowerCase())) {
 
                 StringBuilder termTextSB = new StringBuilder();
                 Tokenizer.tokenizeText(term.getName()).forEach(t -> termTextSB.append(String.format("%s ", t)));
@@ -92,7 +92,7 @@ public class Categorizer {
         }
 
         for(String habitatToken : habitatTokens) {
-            BB3Runner.ontology.getTermsForKeyword(habitatToken.toLowerCase())
+            ontology.getTermsForKeyword(habitatToken.toLowerCase())
                     .forEach(possibleCategories::add);
         }
 
@@ -103,26 +103,27 @@ public class Categorizer {
         return result;
     }
 
-    public static void categorizeDocument(Document document, DocumentCategorizerListener listener){
+    public static void categorizeDocument(Ontology ontology, Document document, int MAX_TRIAL_CNT, CategorizationListener listener) {
+        ArrayList<Commons.Pair<Term, Double>> sortedTerms = sortTerms(ontology, document.buildInvertedIndex());
+        document.getHabitatMap().values().stream()
+                .sorted((o1, o2) -> Integer.compare(o1.getRank(), o2.getRank()))
+                .forEach(habitat -> {
+                    int trialCount = 0;
+                    ArrayList<Term> possibleCategories = findPossibleCategories(ontology, sortedTerms, habitat.getEntity());
 
-        ArrayList<Commons.Pair<Term, Double>> sortedTerms = sortTerms(document.buildInvertedIndex());
-        for(Habitat habitat : document.getHabitatMap().values()) {
-            int trialCount = 0;
+                    if (possibleCategories.isEmpty()) {
+                        document.addCategoryToHabitat(habitat.getId(), "OBT:000001");
+                        if (listener != null)
+                            listener.onCategoryAddedToHabitat(habitat, ontology.getTerms().get("OBT:000001"));
+                    } else {
 
-            ArrayList<Term> possibleCategories = findPossibleCategories(sortedTerms, habitat.getEntity());
-
-            if(possibleCategories.isEmpty()){
-                document.addCategoryToHabitat(habitat.getId(), "OBT:000001");
-                if (listener != null) listener.onCategoryAddedToHabitat(habitat, BB3Runner.ontology.getTerms().get("OBT:000001"));
-                continue;
-            }
-
-            for (Term term : possibleCategories) {
-                document.addCategoryToHabitat(habitat.getId(), term.getId());
-                if (listener != null) listener.onCategoryAddedToHabitat(habitat, term);
-                if (++trialCount == BB3Runner.MAX_TRIAL_CNT) break;
-            }
-
-        }
+                        for (Term term : possibleCategories) {
+                            document.addCategoryToHabitat(habitat.getId(), term.getId());
+                            if (listener != null) listener.onCategoryAddedToHabitat(habitat, term);
+                            if (++trialCount == MAX_TRIAL_CNT) break;
+                        }
+                    }
+                });
+        if(listener != null) listener.onCategorizationEnded();
     }
 }
