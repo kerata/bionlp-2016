@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bionlp.iml" filepath="$PROJECT_DIR$/bionlp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bionlp.iml" filepath="$PROJECT_DIR$/.idea/modules/bionlp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bionlp_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bionlp_main.iml" group="bionlp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bionlp_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bionlp_test.iml" group="bionlp" />
     </modules>
   </component>
 </project>
